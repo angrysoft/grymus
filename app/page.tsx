@@ -5,8 +5,7 @@ import {
   CardActions,
   CardContent,
   Container,
-  Divider,
-  Typography,
+  Typography
 } from "@mui/material";
 import Image from "next/image";
 import { Header } from "./components/Header";
@@ -20,8 +19,6 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         gap: "5rem",
-        // // paddingTop: "8rem",
-        // padding: "8rem 2rem 2rem 2rem",
       }}
     >
       <Box

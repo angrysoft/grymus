@@ -7,11 +7,10 @@ import {
   Box,
   Card,
   CardContent,
-  CardHeader,
   Container,
   Divider,
   Link,
-  Typography,
+  Typography
 } from "@mui/material";
 
 export function Contact() {
