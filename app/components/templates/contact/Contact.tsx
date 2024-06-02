@@ -11,6 +11,7 @@ import {
   Container,
   Divider,
   Link,
+  Stack,
   Typography,
 } from "@mui/material";
 
@@ -21,11 +22,13 @@ export function Contact() {
         maxWidth="lg"
         component="section"
         sx={{
-          display: "flex",
-          justifyContent: "center",
+          // display: "flex",
+          // justifyContent: "center",
+          // flexWrap: "wrap",
+          // padding: "3rem",
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" },
           gap: "3rem",
-          flexWrap: "wrap",
-          padding: "3rem",
         }}
       >
         <Card>
@@ -33,17 +36,15 @@ export function Contact() {
             <Typography textAlign="center">
               <PlaceIcon color="primary" sx={{ fontSize: "6rem" }} />
             </Typography>
-            <Typography variant="h4">Adres</Typography>
-            <Divider />
-            <Box
-              sx={{
-                padding: "1rem",
-              }}
-            >
-              <Typography variant="h6">Przedszkole Miejskie nr 16</Typography>
-              <Typography>ul. Karczewska 27A</Typography>
-              <Typography>05-400 Otwock</Typography>
-            </Box>
+            <Typography variant="h4" textAlign="center">
+              Adres
+            </Typography>
+            <Divider sx={{ margin: "1rem" }} />
+            <Stack useFlexGap spacing={1} justifyContent="center">
+              <Typography variant="h6" textAlign="center">Przedszkole Miejskie nr 16</Typography>
+              <Typography textAlign="center">ul. Karczewska 27A</Typography>
+              <Typography textAlign="center">05-400 Otwock</Typography>
+            </Stack>
           </CardContent>
         </Card>
         <Card>
@@ -51,23 +52,25 @@ export function Contact() {
             <Typography textAlign="center">
               <LocalPhoneIcon color="primary" sx={{ fontSize: "6rem" }} />
             </Typography>
-            <Typography variant="h4">Kontakt</Typography>
-            <Divider />
-            <Box
-              sx={{
-                padding: "1rem",
-              }}
-            >
+            <Typography variant="h4" textAlign="center">
+              Kontakt
+            </Typography>
+            <Divider sx={{ margin: "1rem" }} />
+            <Stack useFlexGap spacing={1} justifyContent="center">
               <Typography
                 sx={{
                   display: "flex",
                   gap: "1rem",
-                  justifyContent: "space-between",
                   alignItems: "center",
+                  justifyContent: "center"
                 }}
               >
                 <LocalPhoneIcon />
-                <Link href="tel:227795411" underline="none">
+                <Link
+                  href="tel:227795411"
+                  underline="none"
+                  color={"text.primary"}
+                >
                   {" "}
                   22-779-54-11
                 </Link>
@@ -76,17 +79,21 @@ export function Contact() {
                 sx={{
                   display: "flex",
                   gap: "1rem",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                   alignItems: "center",
                 }}
               >
                 <MailIcon />
-                <Link href="mailto:grymus16@wp.pl" underline="none">
+                <Link
+                  href="mailto:grymus16@wp.pl"
+                  underline="none"
+                  color={"text.primary"}
+                >
                   {" "}
                   grymus16@wp.pl
                 </Link>
               </Typography>
-            </Box>
+            </Stack>
           </CardContent>
         </Card>
         <Card>
@@ -94,15 +101,15 @@ export function Contact() {
             <Typography textAlign="center">
               <ScheduleIcon color="primary" sx={{ fontSize: "6rem" }} />
             </Typography>
-            <Typography variant="h4">Godziny Otwarcia</Typography>
-            <Divider />
-            <Box
-              sx={{
-                padding: "1rem",
-              }}
-            >
-              <Typography variant="h6">6:30 - 17:00</Typography>
-            </Box>
+            <Typography variant="h4" textAlign="center">
+              Godziny Otwarcia
+            </Typography>
+            <Divider sx={{ margin: "1rem" }} />
+            <Stack useFlexGap spacing={1} justifyContent="center">
+              <Typography variant="h6" textAlign="center">
+                6:30 - 17:00
+              </Typography>
+            </Stack>
           </CardContent>
         </Card>
       </Container>

@@ -5,7 +5,6 @@ import {
   CardActions,
   CardContent,
   Container,
-  Divider,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -20,17 +19,15 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         gap: "5rem",
-        // // paddingTop: "8rem",
-        // padding: "8rem 2rem 2rem 2rem",
       }}
     >
       <Box
         component="section"
         sx={{
-          backgroundColor: "rgb(98 89 149)",
+          backgroundColor: "primary.main",
           padding: "3rem"
         }}
-      >
+        >
         <Container maxWidth="xl">
           <Header>Przedszkole Miejskie nr 16 Grymuś w Otwocku</Header>
           <Box
