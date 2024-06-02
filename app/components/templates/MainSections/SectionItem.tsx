@@ -9,7 +9,7 @@ interface ISectionProps {
 export function SectionItem(props: Readonly<ISectionProps>) {
   return (
     <Paper
-      variant="outlined"
+      // variant="outlined"
       component="article"
       sx={{
         width: "18rem",
