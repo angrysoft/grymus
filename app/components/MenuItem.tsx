@@ -1,4 +1,5 @@
-import { Button, Typography } from "@mui/material";
+'use client'
+import { Button, Typography, styled } from "@mui/material";
 
 interface IMenuProps {
   name: string;
@@ -7,7 +8,15 @@ interface IMenuProps {
   variant?: "text" | "outlined" | "contained";
 }
 
+// const MenuButton = styled('div')(({ theme }) => ({
+//   color: theme.palette.primary.contrastText,
+//   backgroundColor: theme.palette.primary.main,
+//   padding: theme.spacing(1),
+//   borderRadius: theme.shape.borderRadius,
+// }));
+
 export function MenuItem(props: Readonly<IMenuProps>) {
+  // FIXME button console log error
   return (
     <Button
       sx={{

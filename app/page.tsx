@@ -5,7 +5,7 @@ import {
   CardActions,
   CardContent,
   Container,
-  Typography
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { Header } from "./components/Header";
@@ -24,10 +24,10 @@ export default function Home() {
       <Box
         component="section"
         sx={{
-          backgroundColor: "rgb(98 89 149)",
+          backgroundColor: "primary.main",
           padding: "3rem"
         }}
-      >
+        >
         <Container maxWidth="xl">
           <Header>Przedszkole Miejskie nr 16 Grymuś w Otwocku</Header>
           <Box

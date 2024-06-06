@@ -9,7 +9,7 @@ interface ISectionProps {
 export function SectionItem(props: Readonly<ISectionProps>) {
   return (
     <Paper
-      variant="outlined"
+      // variant="outlined"
       component="article"
       sx={{
         width: "18rem",
@@ -35,10 +35,10 @@ export function SectionItem(props: Readonly<ISectionProps>) {
         <Typography
           variant="h3"
           sx={{
-            color: "white",
+            color: "primary.contrastText",
             textShadow: "1px 1px 2px rgb(0,0,0, 40%)",
             padding: "0.5rem",
-            borderRadius: "0.25rem",
+            borderRadius: "0.3rem",
             backgroundColor: "primary.main",
           }}
         >

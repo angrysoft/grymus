@@ -1,6 +1,7 @@
 "use client";
 import { Love_Ya_Like_A_Sister, Sriracha, Kalam } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
+import { deepPurple, purple } from "@mui/material/colors";
 
 const sriracha = Sriracha({
   weight: ["400"],
@@ -55,6 +56,15 @@ const theme = createTheme({
     },
     h4: {
       fontFamily: headerFont.style.fontFamily,
+    },
+  },
+  palette: {
+    primary: {
+      main: purple[500],
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#f44336",
     },
   },
 });
