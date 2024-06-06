@@ -17,6 +17,7 @@ export default function Groups() {
       sx={{
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
         gap: "5rem",
       }}
     >
@@ -27,7 +28,12 @@ export default function Groups() {
           padding: "3rem",
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{
+          display: "flex",
+          flexDirection: "column",
+          
+          gap: "2rem"
+        }}>
           <Header>Grupy</Header>
           <Box
             sx={{
@@ -44,9 +50,8 @@ export default function Groups() {
                   image={group.image}
                   title={group.name}
                   url={""}
-                >
-                  {group.desc}
-                </Group>
+                  desc={group.desc} />
+                  
               );
             })}
           </Box>

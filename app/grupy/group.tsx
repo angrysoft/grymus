@@ -1,39 +1,55 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
+  Paper,
+  Stack,
   Typography,
 } from "@mui/material";
 
 interface IGroupProps {
-  children: React.ReactNode;
   image: string;
   title: string;
   url: string;
+  desc: string;
 }
 
 export function Group(props: Readonly<IGroupProps>) {
   return (
-    <Card
+    <Paper
       sx={{
-        minWidth: "18rem",
+        aspectRatio: "1/1",
       }}
     >
-      <CardMedia
-        image={props.image}
-        sx={{
-          height: "50%",
-        }}
-      />
-      <CardContent>
-        <Typography variant="h3">{props.title}</Typography>
-        {props.children}
-      </CardContent>
-      <CardActions>
+      <Stack>
+        <Box
+          component={"picture"}
+          sx={{
+            padding: "1rem",
+          }}
+        >
+          <source srcSet={props.url} />
+          <img src={props.image} alt={props.title} style={{ width: "100%" }} />
+        </Box>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            <Typography variant="h3" textAlign={"center"}>
+              {props.title}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div dangerouslySetInnerHTML={{ __html: props.desc }}></div>
+          </AccordionDetails>
+        </Accordion>
         <Button href={props.url}>Galeria</Button>
-      </CardActions>
-    </Card>
+      </Stack>
+    </Paper>
   );
 }

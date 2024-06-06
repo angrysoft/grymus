@@ -15,10 +15,10 @@ export function Logo() {
     >
       <Link href="https://grymus.przedszkola.net.pl/">
         <Image
-          src={"/images/grymus_logo_500.png"}
+          src={"/images/grymus_logo_250.webp"}
           alt={""}
-          width={500}
-          height={126}
+          width={250}
+          height={63}
           style={{
             height: "auto",
             maxWidth: "100%"
