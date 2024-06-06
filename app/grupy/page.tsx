@@ -17,7 +17,6 @@ export default function Groups() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         gap: "5rem",
       }}
     >
@@ -39,6 +38,7 @@ export default function Groups() {
             sx={{
               display: "flex",
               justifyContent: "center",
+              alignItems: "center",
               gap: "3rem",
               flexWrap: "wrap",
             }}

@@ -44,8 +44,10 @@ export function Group(props: Readonly<IGroupProps>) {
               {props.title}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <div dangerouslySetInnerHTML={{ __html: props.desc }}></div>
+          <AccordionDetails >
+            <Typography dangerouslySetInnerHTML={{ __html: props.desc }} sx={{
+            fontSize: "1.2rem",
+          }}></Typography>
           </AccordionDetails>
         </Accordion>
         <Button href={props.url}>Galeria</Button>
