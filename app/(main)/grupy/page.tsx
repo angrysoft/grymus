@@ -1,15 +1,16 @@
 "use client";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import useSWR from "swr";
 import { Header } from "../components/Header";
-import { fetcher } from "../lib/fetcher";
-import { GroupData } from "../models/groups";
+import { Loader } from "../components/Loader";
+import { fetcher } from "../../lib/fetcher";
+import { GroupData } from "../../models/groups";
 import { Group } from "./group";
 
 export default function Groups() {
   const { data } = useSWR<GroupData[]>("/api/groups", fetcher);
   if (!data) {
-    return <Typography>Ładowanie ...</Typography>;
+    return <Loader />;
   }
 
   return (
@@ -27,12 +28,15 @@ export default function Groups() {
           padding: "3rem",
         }}
       >
-        <Container maxWidth={false} sx={{
-          display: "flex",
-          flexDirection: "column",
-          
-          gap: "2rem"
-        }}>
+        <Container
+          maxWidth="xl"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+
+            gap: "2rem",
+          }}
+        >
           <Header>Grupy</Header>
           <Box
             sx={{
@@ -50,8 +54,8 @@ export default function Groups() {
                   image={group.image}
                   title={group.name}
                   url={""}
-                  desc={group.desc} />
-                  
+                  desc={group.desc}
+                />
               );
             })}
           </Box>

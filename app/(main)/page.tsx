@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { Background } from "./components/Background";
 import { Header } from "./components/Header";
 import { MainSections } from "./components/templates/MainSections/MainSections";
 import { Contact } from "./components/templates/contact/Contact";
@@ -21,14 +22,13 @@ export default function Home() {
         gap: "5rem",
       }}
     >
-      <Box
-        component="section"
+      <Background
+        opacity={0.8}
         sx={{
-          backgroundColor: "primary.main",
-          padding: "3rem"
+          padding: "3rem",
         }}
-        >
-        <Container maxWidth="xl">
+      >
+        <Container maxWidth="xl" component="section">
           <Header>Przedszkole Miejskie nr 16 Grymuś w Otwocku</Header>
           <Box
             sx={{
@@ -77,35 +77,35 @@ export default function Home() {
             />
           </Box>
         </Container>
-      </Box>
-      <Box component="section">
-        <Container maxWidth="lg">
-          <Card variant="outlined" component="article">
-            <CardContent>
-              <Typography variant="h3" component="h2">
-                Wizja przedszkola
-              </Typography>
-              <Typography>
-                Naszym celem jest aby każde dziecko w przedszkolu czuło się
-                bezpieczne, akceptowane, aby spędzało czas w życzliwej, dobrej
-                atmosferze. Dążymy do tego, aby dzieci rozwijały swoją aktywność
-                twórczą poprzez działalność plastyczną, taniec i śpiew. Aby były
-                niezwykle pomysłowe, miały bogaty słownik. W całokształcie
-                naszej pracy na pierwszym miejscu stawiamy dziecko – jego dobro,
-                poznanie wychowanków i planowanie działań w danej grupie tak,
-                aby każde dziecko mogło rozwijać się harmonijnie i osiągać
-                sukcesy na miarę swoich możliwości rozwojowych.
-              </Typography>
-              <CardActions>
-                <Button href="/pages/koncepcja-pracy-przedszkola" size="small">
-                  Czytaj wiecej
-                </Button>
-              </CardActions>
-            </CardContent>
-          </Card>
-        </Container>
-      </Box>
-      <MainSections />
+      </Background>
+      <Container maxWidth="lg" component="section">
+        <Card variant="outlined" component="article">
+          <CardContent>
+            <Typography variant="h3" component="h2">
+              Wizja przedszkola
+            </Typography>
+            <Typography>
+              Naszym celem jest aby każde dziecko w przedszkolu czuło się
+              bezpieczne, akceptowane, aby spędzało czas w życzliwej, dobrej
+              atmosferze. Dążymy do tego, aby dzieci rozwijały swoją aktywność
+              twórczą poprzez działalność plastyczną, taniec i śpiew. Aby były
+              niezwykle pomysłowe, miały bogaty słownik. W całokształcie naszej
+              pracy na pierwszym miejscu stawiamy dziecko – jego dobro, poznanie
+              wychowanków i planowanie działań w danej grupie tak, aby każde
+              dziecko mogło rozwijać się harmonijnie i osiągać sukcesy na miarę
+              swoich możliwości rozwojowych.
+            </Typography>
+            <CardActions>
+              <Button href="/strony/koncepcja-pracy-przedszkola" size="small">
+                Czytaj wiecej
+              </Button>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </Container>
+      <Background opacity={0.8}>
+        <MainSections />
+      </Background>
       <Contact />
     </Box>
   );

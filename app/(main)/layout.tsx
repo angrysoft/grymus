@@ -2,7 +2,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import type { Metadata } from "next";
-import theme from "./theme";
+import theme from "../theme";
 import { Container, Box, Toolbar } from "@mui/material";
 import { Menu } from "./components/Menu";
 import { Footer } from "./components/Footer";
@@ -18,7 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        scrollBehavior: "smooth",
+      }}
+    >
       <body
         style={{
           backgroundImage: "url(/images/bg.png)",

@@ -16,7 +16,7 @@ interface IHeaderProps {
 export function Header(props: Readonly<IHeaderProps>) {
   return (
     <>
-      {props.title && <title>props.title</title>}
+      {props.title && <title>{props.title}</title>}
       <Typography
         variant={props.variant ?? "h1"}
         align="center"

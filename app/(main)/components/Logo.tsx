@@ -9,7 +9,7 @@ export function Logo() {
         display: "flex",
         position: "relative",
         width: "16rem",
-        margin: {xs:"auto", md:"0"},
+        margin: { xs: "auto", md: "0" },
         padding: "1rem",
       }}
     >
@@ -21,8 +21,9 @@ export function Logo() {
           height={63}
           style={{
             height: "auto",
-            maxWidth: "100%"
+            maxWidth: "100%",
           }}
+          priority={false}
         />
       </Link>
     </Box>

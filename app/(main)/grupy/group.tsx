@@ -9,6 +9,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 
 interface IGroupProps {
   image: string;
@@ -18,10 +19,13 @@ interface IGroupProps {
 }
 
 export function Group(props: Readonly<IGroupProps>) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <Paper
       sx={{
         aspectRatio: "1/1",
+        width: "400px",
       }}
     >
       <Stack>
@@ -30,24 +34,29 @@ export function Group(props: Readonly<IGroupProps>) {
           sx={{
             padding: "1rem",
           }}
+          onClick={() => setExpanded((expanded) => !expanded)}
         >
           <source srcSet={props.url} />
           <img src={props.image} alt={props.title} style={{ width: "100%" }} />
         </Box>
-        <Accordion>
+        <Accordion expanded={expanded}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
+            aria-controls={props.title}
+            id={props.title}
+            onClick={() => setExpanded((expanded) => !expanded)}
           >
             <Typography variant="h3" textAlign={"center"}>
               {props.title}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails >
-            <Typography dangerouslySetInnerHTML={{ __html: props.desc }} sx={{
-            fontSize: "1.2rem",
-          }}></Typography>
+          <AccordionDetails>
+            <Typography
+              dangerouslySetInnerHTML={{ __html: props.desc }}
+              sx={{
+                fontSize: "1.2rem",
+              }}
+            ></Typography>
           </AccordionDetails>
         </Accordion>
         <Button href={props.url}>Galeria</Button>

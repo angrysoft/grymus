@@ -16,18 +16,15 @@ import {
 
 export function Contact() {
   return (
-    <Box>
+    <Box id="kontakt">
       <Container
         maxWidth="lg"
         component="section"
         sx={{
-          // display: "flex",
-          // justifyContent: "center",
-          // flexWrap: "wrap",
-          // padding: "3rem",
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" },
           gap: "3rem",
+          marginTop: "7rem",
         }}
       >
         <Card>
@@ -40,7 +37,9 @@ export function Contact() {
             </Typography>
             <Divider sx={{ margin: "1rem" }} />
             <Stack useFlexGap spacing={1} justifyContent="center">
-              <Typography variant="h6" textAlign="center">Przedszkole Miejskie nr 16</Typography>
+              <Typography variant="h6" textAlign="center">
+                Przedszkole Miejskie nr 16
+              </Typography>
               <Typography textAlign="center">ul. Karczewska 27A</Typography>
               <Typography textAlign="center">05-400 Otwock</Typography>
             </Stack>
@@ -61,7 +60,7 @@ export function Contact() {
                   display: "flex",
                   gap: "1rem",
                   alignItems: "center",
-                  justifyContent: "center"
+                  justifyContent: "center",
                 }}
               >
                 <LocalPhoneIcon />

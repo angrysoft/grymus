@@ -10,15 +10,15 @@ export function MainSections() {
       component="section"
       sx={{
         display: "flex",
-        justifyContent: "center",
+        // justifyContent: "space-between",
         gap: "3rem",
         flexWrap: "wrap",
-        padding: "3rem",
+        padding: "3rem 0",
       }}
     >
       <SectionItem
         title="Jadłospis"
-        url="/pages/jadlospis"
+        url="/strony/jadlospis"
         image="/images/sections/jadlospis.jpg"
       />
 

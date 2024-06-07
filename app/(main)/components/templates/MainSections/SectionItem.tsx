@@ -1,4 +1,6 @@
-import { Link, Paper, Typography } from "@mui/material";
+"use client";
+import { Link, Paper, Typography, alpha } from "@mui/material";
+import theme from "../../../../theme";
 
 interface ISectionProps {
   image: string;
@@ -19,6 +21,7 @@ export function SectionItem(props: Readonly<ISectionProps>) {
         backgroundSize: "cover",
         backgroundPosition: "center",
         padding: "1rem",
+        margin: "auto",
       }}
     >
       <Link
@@ -39,7 +42,7 @@ export function SectionItem(props: Readonly<ISectionProps>) {
             textShadow: "1px 1px 2px rgb(0,0,0, 40%)",
             padding: "0.5rem",
             borderRadius: "0.3rem",
-            backgroundColor: "primary.main",
+            backgroundColor: alpha(theme.palette.secondary.main, 0.5),
           }}
         >
           {props.title}

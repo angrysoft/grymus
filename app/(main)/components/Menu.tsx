@@ -17,11 +17,12 @@ interface Props {}
 
 const drawerWidth = 240;
 const navItems = [
-  { name: "Aktualności", url: "/aktualnosci" },
-  { name: "Strefa rodzica", url: "/strefa-rodzica" },
-  { name: "Grupy", url: "/grupy" },
-  { name: "O nas", url: "/o-nas" },
-  { name: "Kontakt", url: "kontakt" },
+  { name: "Home", url: "/", scroll:false },
+  { name: "Aktualności", url: "/aktualnosci", scroll:false },
+  { name: "Strefa rodzica", url: "/strefa-rodzica", scroll:false },
+  { name: "Grupy", url: "/grupy", scroll:false },
+  { name: "O nas", url: "/o-nas", scroll:false },
+  { name: "Kontakt", url: "/#kontakt", scroll:true },
 ];
 
 function Menu(props: Props) {
@@ -46,6 +47,7 @@ function Menu(props: Props) {
             url={item.url}
             key={item.name}
             color={`hsl(${Math.floor(Math.random() * 360)} 100%, 50%)`}
+            scroll={item.scroll}
           />
         ))}
       </Box>
@@ -62,7 +64,6 @@ function Menu(props: Props) {
       <AppBar
         component="nav"
         color="inherit"
-        // elevation={0}
         sx={{
           height: "6rem",
           borderBottom: "2px solid rgba(118,118,118,0.3)",
@@ -103,6 +104,7 @@ function Menu(props: Props) {
                 key={item.name}
                 color={`hsl(${Math.floor(Math.random() * 360)} 100%, 50%)`}
                 variant="text"
+                scroll={item.scroll}
               />
             ))}
           </Box>
