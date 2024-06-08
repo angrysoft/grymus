@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { Header } from "../../components/Header";
 import { Loader } from "../../components/Loader";
 import { fetcher } from "../../../lib/fetcher";
-import { PageData } from "../../../models/pages";
+import { PageData } from "../../../models/page";
 
 export default function Page({
   params,
@@ -37,7 +37,7 @@ export default function Page({
             padding: "2rem",
           }}
           component="section"
-          dangerouslySetInnerHTML={{ __html: data.body }}
+          dangerouslySetInnerHTML={{ __html: data.content }}
         />
       </Container>
     </Box>

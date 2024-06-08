@@ -1,7 +1,7 @@
 "use client";
-import { Love_Ya_Like_A_Sister, Sriracha, Kalam } from "next/font/google";
+import { purple } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
-import { deepPurple, purple } from "@mui/material/colors";
+import { Kalam, Love_Ya_Like_A_Sister, Sriracha } from "next/font/google";
 
 const sriracha = Sriracha({
   weight: ["400"],

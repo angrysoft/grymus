@@ -1,10 +1,19 @@
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "../../../lib/prisma";
+
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { slug: string } },
 ) {
-  return Response.json({
-    title: "test",
-    body: "lfjdlfjakjf djlfdla jf ljf laj;lfjjfja dlkf fj;laja jld ;j",
-    slug: params.slug,
+  const result = await prisma.realization.findUnique({
+    where: {
+      slug: params.slug,
+      enabled: true,
+    },
+    include: {
+      photos: true,
+    },
   });
+  if (!result) return NextResponse.json({ success: false, result: {} });
+  return NextResponse.json({ success: true, result: result });
 }
