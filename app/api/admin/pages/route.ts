@@ -1,9 +1,7 @@
+import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../../lib/auth";
 import { createSlug } from "../../../lib/utils";
-import { Prisma } from "@prisma/client";
 
 export async function GET(request: NextRequest) {
   const items: number = Number(request.nextUrl.searchParams.get("items") ?? 50);
@@ -33,11 +31,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Access denied" }, { status: 401 });
-
   const data = await request.json();
+  console.log(data);
+
   if (!data) {
     return;
   }
@@ -50,10 +46,13 @@ export async function POST(request: NextRequest) {
         enabled: data.enabled || false,
       },
     });
-    return NextResponse.json({
-      data: { added: realization.id },
-      status: "success",
-    });
+    return NextResponse.json(
+      {
+        data: { added: realization.id },
+        status: "success",
+      },
+      { status: 201 },
+    );
   } catch (e: any) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       console.error(e);
@@ -66,7 +65,7 @@ export async function POST(request: NextRequest) {
       }
       // } else if (e instanceof Prisma.PrismaClientUnknownRequestError) {
     } else {
-      return NextResponse.json({ status: "error", error: e });
+      return NextResponse.json({ status: "error", error: e }, {status: 400});
     }
   }
 }

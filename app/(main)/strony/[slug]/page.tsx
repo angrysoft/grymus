@@ -5,15 +5,16 @@ import { Header } from "../../components/Header";
 import { Loader } from "../../components/Loader";
 import { fetcher } from "../../../lib/fetcher";
 import { PageData } from "../../../models/page";
+import { DefaultResponse } from "../../../models/default-response";
 
 export default function Page({
   params,
 }: Readonly<{ params: { slug: string } }>) {
-  const { data } = useSWR<PageData>(`/api/pages/${params.slug}`, fetcher);
+  const { data } = useSWR<DefaultResponse<PageData>>(`/api/pages/${params.slug}`, fetcher);
   if (!data) {
     return <Loader />;
   }
-
+  console.log(data);
   return (
     <Box
       sx={{
@@ -29,7 +30,7 @@ export default function Page({
           padding: "3rem",
         }}
       >
-        <Header title={data.title}>{data.title}</Header>
+        <Header title={data.result.title}>{data.result.title}</Header>
       </Box>
       <Container maxWidth="xl">
         <Paper
@@ -37,7 +38,7 @@ export default function Page({
             padding: "2rem",
           }}
           component="section"
-          dangerouslySetInnerHTML={{ __html: data.content }}
+          dangerouslySetInnerHTML={{ __html: data.result.content }}
         />
       </Container>
     </Box>

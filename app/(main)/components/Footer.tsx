@@ -4,8 +4,7 @@ import {
   Divider,
   Link,
   Stack,
-  Typography,
-  Theme,
+  Typography
 } from "@mui/material";
 
 export function Footer() {
@@ -13,8 +12,6 @@ export function Footer() {
     <Box
       component={"footer"}
       sx={{
-        // background:
-        //   "linear-gradient(90deg, rgb(34,36,50) 0%, rgb(38,49,70) 50%,rgb(11,20,36)  100%)",
         backgroundColor: "primary.main",
         color: "primary.contrastText",
         padding: "2rem",
@@ -60,12 +57,12 @@ export function Footer() {
           <Stack useFlexGap spacing={2}>
             <Typography variant="h4">Informacje</Typography>
             <Divider color={"secondary.main"} />
-            <Link underline="none" href="/rodo" color={"primary.contrastText"}>
+            <Link underline="none" href="/strony/rodo" color={"primary.contrastText"}>
               RODO
             </Link>
             <Link
               underline="none"
-              href="/deklaracja-dostepnosci"
+              href="/strony/deklaracja-dostepnosci"
               color={"primary.contrastText"}
             >
               Deklaracja Dostępności

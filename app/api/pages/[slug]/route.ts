@@ -5,13 +5,10 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { slug: string } },
 ) {
-  const result = await prisma.realization.findUnique({
+  const result = await prisma.page.findUnique({
     where: {
       slug: params.slug,
       enabled: true,
-    },
-    include: {
-      photos: true,
     },
   });
   if (!result) return NextResponse.json({ success: false, result: {} });

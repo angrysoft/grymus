@@ -20,27 +20,37 @@ interface IMenuProps {
 export function MenuItem(props: Readonly<IMenuProps>) {
   // FIXME button console log error
   return (
-    <Button
-      sx={{
-        fontSize: "1.2rem",
-        color: props.color,
-        textShadow:
-          "-1px 1px 0 rgb(0 0 0 / 75%),1px 1px 0 rgb(0 0 0 / 75%),1px -1px 0 rgb(0 0 0 / 75%),-1px -1px 0 rgb(0 0 0 / 75%)",
+    <Link
+      href={props.url}
+      style={{
+        textDecoration: "none",
+        color: "inherit",
       }}
-      variant={props.variant ?? "text"}
+      scroll
     >
-      <Link
-        href={props.url}
-        style={{
-          textDecoration: "none",
-          color: "inherit",
+      {/* <Button
+        sx={{
+          fontSize: "1.2rem",
+          color: props.color,
+          textShadow:
+            "-1px 1px 0 rgb(0 0 0 / 75%),1px 1px 0 rgb(0 0 0 / 75%),1px -1px 0 rgb(0 0 0 / 75%),-1px -1px 0 rgb(0 0 0 / 75%)",
         }}
-        scroll
+        variant={props.variant ?? "text"}
+      > */}
+      <Typography
+        variant="accents"
+        sx={{
+          letterSpacing: "2px",
+          fontSize: "1.2rem",
+          color: props.color,
+          padding: "1rem",
+          textShadow:
+            "-1px 1px 0 rgb(0 0 0 / 75%),1px 1px 0 rgb(0 0 0 / 75%),1px -1px 0 rgb(0 0 0 / 75%),-1px -1px 0 rgb(0 0 0 / 75%)"
+        }}
       >
-        <Typography variant="accents" sx={{ letterSpacing: "2px" }}>
-          {props.name}
-        </Typography>
-      </Link>
-    </Button>
+        {props.name}
+      </Typography>
+      {/* </Button> */}
+    </Link>
   );
 }

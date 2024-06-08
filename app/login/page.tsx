@@ -56,6 +56,7 @@ export default function Login() {
           id="password"
           label="Hasło"
           name="password"
+          type="password"
           error={error.length > 0}
           helperText={error}
           fullWidth

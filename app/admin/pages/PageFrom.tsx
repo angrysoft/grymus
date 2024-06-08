@@ -11,9 +11,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Editor } from "@tinymce/tinymce-react";
-import { FormEvent, SyntheticEvent, useRef, useState } from "react";
-import { createSlug } from "../../lib/utils";
 import { useRouter } from "next/navigation";
+import { FormEvent, useRef, useState } from "react";
+import { createSlug } from "../../lib/utils";
 
 interface IPageFromProps {
   id?: number;
@@ -33,10 +33,11 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
     ev.preventDefault();
     setError("");
     const form = new FormData(ev.target as HTMLFormElement);
+
     if (editorRef.current) {
       const pagesData = {
         title: form.get("title"),
-        enabled: form.get("enabled"),
+        enabled: form.get("enabled") === "on",
         content: editorRef.current.getContent(),
       };
       editorRef.current.setDirty(false);
@@ -50,6 +51,9 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         method: method,
         body: JSON.stringify(pagesData),
       });
+
+      console.log(pagesData, res);
+
       if (!res.ok) {
         setError("Nie udało się zapisać ");
         return;
@@ -76,6 +80,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
     >
       <TextField
         id="title"
+        name="title"
         label="Tytuł Strony"
         defaultValue={null}
         fullWidth
@@ -92,14 +97,12 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         <FormControlLabel
           control={
             <Switch
+              name="enabled"
               defaultChecked={props.enabled}
-              onChange={(ev: SyntheticEvent<HTMLInputElement>) =>
-                setEnabled(ev.target.value)
-              }
+              onChange={(ev: any) => setEnabled(ev.target.value)}
             />
           }
           label="Opublikowana"
-          // onChange={(ev: SyntheticEvent<HTMLInputElement>) => setEnabled(ev.target.value )}
         />
 
         <FormHelperText id="my-helper-text">
@@ -118,7 +121,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         apiKey="ajul7zksmk772je0mygzjbkk63ivqdvxlqf0fw2r1r2cwz5y"
         init={{
           plugins:
-            "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
+            "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
           imagetools_toolbar: "editimage imageoptions",
           menubar: "file edit view insert format tools table help",
           toolbar:

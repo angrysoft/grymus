@@ -1,17 +1,13 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 import * as React from "react";
 import theme from "../theme";
 import { AdminAction } from "./components/AdminAction";
-import { IconButton } from "@mui/material";
-import { signOut } from "next-auth/react";
 import { AdminBar } from "./components/AdminBar";
 
 export const metadata = {
@@ -27,8 +23,6 @@ export default function RootLayout({
   const drawerWidth = 240;
 
   return (
-    <html lang="pl">
-      <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -61,7 +55,5 @@ export default function RootLayout({
             </Box>
           </ThemeProvider>
         </AppRouterCacheProvider>
-      </body>
-    </html>
   );
 }
