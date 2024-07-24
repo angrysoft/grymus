@@ -1,9 +1,13 @@
 "use client";
 import useSWR from "swr";
-import { fetcher } from "../../lib/fetcher";
 import { Loader } from "../../(main)/components/Loader";
+import { fetcher } from "../../lib/fetcher";
 
-import * as React from "react";
+import AddIcon from "@mui/icons-material/Add";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Box, Fab, IconButton } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,9 +16,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { PagesData } from "../../models/pages";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import AddIcon from "@mui/icons-material/Add";
-import { Box, Fab, IconButton } from "@mui/material";
+import ConfirmDialog from "../components/Confirm";
 
 export default function Pages() {
   const { data } = useSWR<PagesData>("/api/admin/pages", fetcher);
@@ -22,7 +24,6 @@ export default function Pages() {
   if (!data) {
     return <Loader />;
   }
-  console.log("pages", data);
 
   return (
     <Box
@@ -38,6 +39,7 @@ export default function Pages() {
               <TableCell align="right">Tytuł</TableCell>
               <TableCell align="right">Opublikowane</TableCell>
               <TableCell align="right">Usuń</TableCell>
+              <TableCell align="right">Edytuj</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -58,7 +60,14 @@ export default function Pages() {
                   )}
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton />
+                  <IconButton aria-label="delete" color="error" >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell align="right">
+                  <IconButton aria-label="edit" color="error" href={`/admin/pages/edit/${page.id}`}>
+                    <EditIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -77,6 +86,7 @@ export default function Pages() {
       >
         <AddIcon />
       </Fab>
+      {/* <ConfirmDialog agreeAction={() => null} msg={"Czy na pewno usunąć stronę " + page.title} /> */}
     </Box>
   );
 }
