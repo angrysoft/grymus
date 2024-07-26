@@ -43,6 +43,7 @@ export default function RootLayout({
               >
                 <List>
                   <AdminAction name="Strony" url="/admin/pages" />
+                  <AdminAction name="Media" url="/admin/media" />
                 </List>
               </Drawer>
               <Box

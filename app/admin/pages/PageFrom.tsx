@@ -63,7 +63,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         setError(result.error);
         return;
       }
-      router.push("/admin/pages");
+      router.push("/admin/pages", {scroll:false});
     }
   };
 
@@ -82,7 +82,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         id="title"
         name="title"
         label="Tytuł Strony"
-        defaultValue={null}
+        defaultValue={props.title}
         fullWidth
         required
         onChange={(ev) => setPageTitle(ev.target.value)}
