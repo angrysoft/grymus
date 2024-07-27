@@ -4,17 +4,25 @@ import useSWR from "swr";
 import { Header } from "../../components/Header";
 import { Loader } from "../../components/Loader";
 import { fetcher } from "../../../lib/fetcher";
-import { PageData } from "../../../models/page";
+import { PageData } from "../../../models/page-data";
 import { DefaultResponse } from "../../../models/default-response";
+import { notFound } from "next/navigation";
 
 export default function Page({
   params,
 }: Readonly<{ params: { slug: string } }>) {
-  const { data } = useSWR<DefaultResponse<PageData>>(`/api/pages/${params.slug}`, fetcher);
+  const { data } = useSWR<DefaultResponse<PageData>>(
+    `/api/pages/${params.slug}`,
+    fetcher,
+  );
   if (!data) {
     return <Loader />;
   }
-  console.log(data);
+
+  if (!data.success) {
+    notFound();
+  }
+
   return (
     <Box
       sx={{
@@ -36,6 +44,7 @@ export default function Page({
         <Paper
           sx={{
             padding: "2rem",
+            margin: "2rem",
           }}
           component="section"
           dangerouslySetInnerHTML={{ __html: data.result.content }}

@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   Container,
+  Paper,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -22,6 +23,11 @@ export default function Home() {
         gap: "5rem",
       }}
     >
+      <Container maxWidth="xl" component="section">
+        <Paper sx={{ paddingTop: "3rem" }} elevation={0}>
+          <Header>Przedszkole Miejskie nr 16 Grymuś w Otwocku</Header>
+        </Paper>
+      </Container>
       <Background
         opacity={0.8}
         sx={{
@@ -29,7 +35,6 @@ export default function Home() {
         }}
       >
         <Container maxWidth="xl" component="section">
-          <Header>Przedszkole Miejskie nr 16 Grymuś w Otwocku</Header>
           <Box
             sx={{
               display: "grid",

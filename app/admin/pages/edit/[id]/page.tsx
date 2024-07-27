@@ -6,13 +6,12 @@ import useSWR from "swr";
 import { Loader } from "../../../../(main)/components/Loader";
 import { PageFrom } from "../../PageFrom";
 import { DefaultResponse } from "../../../../models/default-response";
-import { PageData } from "../../../../models/page";
+import { PageData } from "../../../../models/page-data";
 import { fetcher } from "../../../../lib/fetcher";
 
 export default function AddPAge({
   params,
 }: Readonly<{ params: { id: number } }>) {
-
   const { data } = useSWR<DefaultResponse<PageData>>(
     `/api/admin/pages/${params.id}`,
     fetcher,
@@ -22,7 +21,7 @@ export default function AddPAge({
     return <Loader />;
   }
 
-  const {title, content, enabled, id} = {...data.result}
+  const { title, content, enabled, id, slug } = { ...data.result };
 
   return (
     <Paper>
@@ -44,7 +43,13 @@ export default function AddPAge({
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <PageFrom title={title} content={content} enabled={enabled} id={id}/>
+      <PageFrom
+        title={title}
+        content={content}
+        enabled={enabled}
+        id={id}
+        slug={slug}
+      />
     </Paper>
   );
 }

@@ -69,4 +69,16 @@ const theme = createTheme({
   },
 });
 
+const contrastTheme = createTheme({
+  palette: {
+    primary: {
+      main: purple[500],
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#f44336",
+    },
+  },
+})
+
 export default theme;

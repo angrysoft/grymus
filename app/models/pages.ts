@@ -1,4 +1,4 @@
-import { PageData } from "./page";
+import { PageData } from "./page-data";
 
 export interface PagesData {
   success: boolean;

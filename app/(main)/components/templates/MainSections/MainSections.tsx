@@ -24,19 +24,19 @@ export function MainSections() {
 
       <SectionItem
         title="Opłaty"
-        url="/pages/oplaty"
+        url="/strony/oplaty"
         image="/images/sections/oplaty.jpg"
       />
 
       <SectionItem
         title="Galeria"
-        url="/pages/galeria"
+        url="/strony/galeria"
         image="/images/sections/galeria.jpg"
       />
 
       <SectionItem
         title="Rekrutacje"
-        url="/pages/rekrutacje"
+        url="/strony/rekrutacje"
         image="/images/sections/rekrutacje.jpg"
       />
     </Container>

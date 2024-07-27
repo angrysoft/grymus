@@ -18,6 +18,7 @@ import { createSlug } from "../../lib/utils";
 interface IPageFromProps {
   id?: number;
   title?: string;
+  slug?: string;
   content?: string;
   enabled?: boolean;
 }
@@ -25,7 +26,8 @@ interface IPageFromProps {
 export function PageFrom(props: Readonly<IPageFromProps>) {
   const editorRef = useRef<any>(null);
   const [pageTitle, setPageTitle] = useState("");
-  const [enabled, setEnabled] = useState(false);
+  const [slug, setSlug] = useState(props.slug ?? "");
+  const [enabled, setEnabled] = useState(props.enabled ?? false);
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -63,8 +65,13 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         setError(result.error);
         return;
       }
-      router.push("/admin/pages", {scroll:false});
+      router.push("/admin/pages", { scroll: false });
     }
+  };
+
+  const titleChange = (title: string) => {
+    setPageTitle(title);
+    setSlug(createSlug(title));
   };
 
   return (
@@ -85,7 +92,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         defaultValue={props.title}
         fullWidth
         required
-        onChange={(ev) => setPageTitle(ev.target.value)}
+        onChange={(ev) => titleChange(ev.target.value)}
       />
       <Divider />
       <FormControl
@@ -98,8 +105,8 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
           control={
             <Switch
               name="enabled"
-              defaultChecked={props.enabled}
-              onChange={(ev: any) => setEnabled(ev.target.value)}
+              checked={enabled}
+              onChange={(ev: any) => setEnabled(ev.target.checked)}
             />
           }
           label="Opublikowana"
@@ -112,7 +119,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
       {enabled && (
         <Typography sx={{ color: "primary" }}>
           <strong>Link do Strony:</strong>{" "}
-          {`${window.location.origin}/strony/${createSlug(pageTitle)}`}
+          {`${window.location.origin}/strony/${slug}`}
         </Typography>
       )}
       <Divider />
@@ -128,6 +135,7 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
             "undo redo | accordion accordionremove | blocks fontsize | bold italic underline strikethrough | align numlist bullist | link anchor image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | preview",
           tinycomments_mode: "embedded",
           height: 800,
+          language: "pl",
         }}
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue={props.content}
