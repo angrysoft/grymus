@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../lib/prisma";
 import { createSlug } from "../../../lib/utils";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
         id: true,
         title: true,
         enabled: true,
-        updatedAt: true
+        updatedAt: true,
       },
     }),
   ]);
@@ -36,13 +36,13 @@ export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session)
     return NextResponse.json({ error: "Access denied" }, { status: 401 });
-  
+
   const data = await request.json();
 
   if (!data) {
     return;
   }
-  
+
   try {
     const news = await prisma.news.create({
       data: {

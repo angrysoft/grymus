@@ -19,29 +19,26 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Hasło", type: "password", placeholder: "hasło" },
       },
       async authorize(credentials, req) {
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-        // You can also use the `req` object to obtain additional parameters
-        // (i.e., the request IP address)
-        // const res = await fetch("/api/login", {
-        //   method: "POST",
-        //   body: JSON.stringify(credentials),
-        //   headers: { "Content-Type": "application/json" },
-        // });
-        // const user = await res.json();
-
-        // If no error and we have user data, return it
-        // if (res.ok && user) {
-        //   return user;
-        // }
-        // Return null if user data could not be retrieved
+        
+        //FIXME for develpnet remove
         if (
           credentials?.username === process.env.ADMIN &&
           credentials?.password === process.env.ADMIN_PASSWD
         )
           return { name: "admin", id: "0" };
+
+        const res = await fetch("/api/login", {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        // If no error and we have user data, return it
+        if (res.ok && data.success && data.data) {
+          return data.data.user;
+        }
+
+        // Return null if user data could not be retrieved
         return null;
       },
     }),
