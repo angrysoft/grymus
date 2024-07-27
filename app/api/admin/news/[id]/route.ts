@@ -9,7 +9,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const result = await prisma.page.findUnique({
+  const result = await prisma.news.findUnique({
     where: {
       id: Number(params.id),
     },
@@ -31,19 +31,20 @@ export async function PUT(
   }
 
   try {
-    const oldPage = await prisma.page.findUnique({
+    const oldPage = await prisma.news.findUnique({
       where: {
         id: Number(params.id),
       },
     });
 
-    const page = await prisma.page.update({
+    const page = await prisma.news.update({
       where: {
         id: Number(params.id),
       },
       data: {
         title: data.title,
         slug: createSlug(data.title),
+        short: data.short,
         content: data.content,
         enabled: Boolean(data.enabled) || false,
       },
@@ -77,10 +78,10 @@ export async function DELETE(
   if (!session)
     return NextResponse.json({ error: "Access denied" }, { status: 401 });
 
-  const result = await prisma.page.delete({
+  const news = await prisma.news.delete({
     where: {
       id: Number(params.id),
     },
   });
-  return NextResponse.json({ success: true, result: result });
+  return NextResponse.json({ success: true, result: news });
 }

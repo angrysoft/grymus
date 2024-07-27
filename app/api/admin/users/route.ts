@@ -4,22 +4,26 @@ import { prisma } from "../../../lib/prisma";
 import { createSlug } from "../../../lib/utils";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
+import { hashPassword } from "../../../lib/apiUtils";
 
 export async function GET(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json({ error: "Access denied" }, { status: 401 });
+
   const items: number = Number(request.nextUrl.searchParams.get("items") ?? 50);
   const offset: number = Number(
     request.nextUrl.searchParams.get("offset") ?? 0,
   );
   const transaction = await prisma.$transaction([
-    prisma.page.count(),
-    prisma.page.findMany({
+    prisma.user.count(),
+    prisma.user.findMany({
       skip: offset,
       take: items,
       select: {
         id: true,
-        slug: true,
-        title: true,
-        enabled: true,
+        email: true,
+        active: true,
       },
     }),
   ]);
@@ -36,24 +40,24 @@ export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session)
     return NextResponse.json({ error: "Access denied" }, { status: 401 });
-  
+
   const data = await request.json();
 
   if (!data) {
     return;
   }
+
   try {
-    const page = await prisma.page.create({
+    const user = await prisma.user.create({
       data: {
-        title: data.title,
-        slug: createSlug(data.title),
-        content: data.content,
-        enabled: data.enabled || false,
+        email: data.email,
+        password: hashPassword(data.password, process.env.SALT),
+        active: data.active || false,
       },
     });
     return NextResponse.json(
       {
-        data: { added: page.id },
+        data: { added: user.id },
         status: "success",
       },
       { status: 201 },

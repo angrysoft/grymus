@@ -40,11 +40,11 @@ export default function Page({
       >
         <Header title={data.result.title}>{data.result.title}</Header>
       </Box>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Paper
           sx={{
             padding: "2rem",
-            margin: "2rem",
+            margin: "2rem 0",
           }}
           component="section"
           dangerouslySetInnerHTML={{ __html: data.result.content }}

@@ -11,15 +11,15 @@ export async function GET(request: NextRequest) {
     request.nextUrl.searchParams.get("offset") ?? 0,
   );
   const transaction = await prisma.$transaction([
-    prisma.page.count(),
-    prisma.page.findMany({
+    prisma.news.count(),
+    prisma.news.findMany({
       skip: offset,
       take: items,
       select: {
         id: true,
-        slug: true,
         title: true,
         enabled: true,
+        updatedAt: true
       },
     }),
   ]);
@@ -42,18 +42,20 @@ export async function POST(request: NextRequest) {
   if (!data) {
     return;
   }
+  
   try {
-    const page = await prisma.page.create({
+    const news = await prisma.news.create({
       data: {
         title: data.title,
         slug: createSlug(data.title),
+        short: data.short,
         content: data.content,
         enabled: data.enabled || false,
       },
     });
     return NextResponse.json(
       {
-        data: { added: page.id },
+        data: { added: news.id },
         status: "success",
       },
       { status: 201 },

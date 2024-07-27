@@ -5,15 +5,10 @@ generator client {
     provider = "prisma-client-js"
 }
 
-// datasource db {
-//     provider = "sqlite"
-//     url      = env("DATABASE_URL")
-// }
-
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Page {
@@ -36,7 +31,30 @@ model News {
 }
 
 model User {
-    id       Int    @id @default(autoincrement())
-    email    String @unique
+    id       Int     @id @default(autoincrement())
+    email    String  @unique
     password String
+    active   Boolean @default(true)
+}
+
+model Groups {
+    id    Int    @id @default(autoincrement())
+    name  String
+    image String
+    urls  String
+}
+
+model Media {
+    id         Int      @id @default(autoincrement())
+    name       String   @unique
+    size       Int
+    type       String
+    uploadedAt DateTime @default(now())
+}
+
+model Settings {
+    id    Int    @id @default(autoincrement())
+    name  String @unique
+    value String
+    type  String
 }

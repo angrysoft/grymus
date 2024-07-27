@@ -9,6 +9,7 @@ import * as React from "react";
 import theme from "../theme";
 import { AdminAction } from "./components/AdminAction";
 import { AdminBar } from "./components/AdminBar";
+import { Divider } from "@mui/material";
 
 export const metadata = {
   title: "Admin",
@@ -42,8 +43,13 @@ export default function RootLayout({
                 anchor="left"
               >
                 <List>
-                  <AdminAction name="Strony" url="/admin/pages" />
+                  <AdminAction name="Aktualności" url="/admin/news" />
                   <AdminAction name="Media" url="/admin/media" />
+                  <AdminAction name="Strony" url="/admin/pages" />
+                  <AdminAction name="Grupy" url="/admin/groups" />
+                  <Divider />
+                  <AdminAction name="Użytkownicy" url="/admin/users" />
+                  <AdminAction name="Ustawienia" url="/admin/settings" />
                 </List>
               </Drawer>
               <Box
