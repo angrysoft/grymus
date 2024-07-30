@@ -11,12 +11,12 @@ import { useRouter } from "next/navigation";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", flex: 1 },
-  { field: "email", headerName: "Email", flex: 1 },
-  { field: "active", headerName: "Aktywny", flex: 1, type: "boolean" },
+  { field: "name", headerName: "Nazwa", flex: 1 },
+  { field: "sort", headerName: "Sort", flex: 1 },
 ];
 
-export default function DataTable() {
-  const { data } = useSWR<UsersData>("/api/admin/users", fetcher);
+export default function GroupTable() {
+  const { data } = useSWR<UsersData>("/api/admin/groups", fetcher);
   const router = useRouter();
 
   if (!data) {
@@ -35,7 +35,7 @@ export default function DataTable() {
         disableColumnSorting
         disableColumnSelector
         onRowDoubleClick={(ev) =>
-          router.push(`/admin/users/edit/${ev.id}`, { scroll: false })
+          router.push(`/admin/groups/edit/${ev.id}`, { scroll: false })
         }
         initialState={{
           pagination: {
@@ -43,7 +43,6 @@ export default function DataTable() {
           },
         }}
         pageSizeOptions={[50, 100]}
-        // checkboxSelection
       />
       <Fab
         color="primary"
@@ -53,7 +52,7 @@ export default function DataTable() {
           bottom: "1rem",
           right: "1rem",
         }}
-        href="/admin/users/add"
+        href="/admin/groups/add"
       >
         <AddIcon />
       </Fab>

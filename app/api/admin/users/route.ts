@@ -1,15 +1,9 @@
 import { Prisma } from "@prisma/client";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../../../lib/auth";
 import { hashPassword } from "../../lib/apiUtils";
 import { prisma } from "../../lib/prisma";
 
 export async function GET(request: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Access denied" }, { status: 401 });
-
   const items: number = Number(request.nextUrl.searchParams.get("items") ?? 50);
   const offset: number = Number(
     request.nextUrl.searchParams.get("offset") ?? 0,
@@ -36,10 +30,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Access denied" }, { status: 401 });
-
   const data = await request.json();
 
   if (!data) {
@@ -50,10 +40,13 @@ export async function POST(request: NextRequest) {
     const user = await prisma.user.create({
       data: {
         email: data.email,
-        password: hashPassword(data.password, process.env.SALT),
+        password: hashPassword(data.password),
         active: data.active || false,
       },
     });
+
+    console.log("user: ", user);
+
     return NextResponse.json(
       {
         data: { added: user.id },
@@ -71,8 +64,10 @@ export async function POST(request: NextRequest) {
           error: "Taki tytuł już istnieje",
         });
       }
-      // } else if (e instanceof Prisma.PrismaClientUnknownRequestError) {
+    // } else if (e instanceof Prisma.PrismaClientUnknownRequestError) {
+    //   console.error(e.message);
     } else {
+      console.error(e.message);
       return NextResponse.json({ status: "error", error: e }, { status: 400 });
     }
   }

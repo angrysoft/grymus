@@ -1,9 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../lib/prisma";
 import { createSlug } from "../../../lib/utils";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../../lib/auth";
+import { prisma } from "../../lib/prisma";
 
 export async function GET(request: NextRequest) {
   const items: number = Number(request.nextUrl.searchParams.get("items") ?? 50);
@@ -33,9 +31,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Access denied" }, { status: 401 });
 
   const data = await request.json();
 

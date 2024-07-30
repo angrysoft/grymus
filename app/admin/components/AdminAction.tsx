@@ -24,6 +24,7 @@ export function AdminAction(props: Readonly<IAdminActionProps>) {
             textDecoration: "none",
             color: "inherit",
           }}
+          scroll={false}
         >
           <ListItemText
             primary={props.name}

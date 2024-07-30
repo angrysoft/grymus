@@ -7,14 +7,16 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const result = await prisma.user.findUnique({
+  const result = await prisma.groups.findUnique({
     where: {
       id: Number(params.id),
     },
     select: {
       id: true,
-      email: true,
-      active: true,
+      name: true,
+      image: true,
+      desc: true,
+      sort: true,
     },
   });
 
@@ -31,43 +33,34 @@ export async function PUT(
   }
 
   try {
-    const oldUser = await prisma.user.findUnique({
+    const oldGroups = await prisma.groups.findUnique({
       where: {
         id: Number(params.id),
       },
     });
 
-    if (!oldUser) {
-      console.error("User not exist");
+    if (!oldGroups) {
+      console.error("groups not exist");
       return NextResponse.json({
         status: "error",
         error: "Nie ma takiego użytkownika",
       });
     }
 
-    const user = await prisma.user.update({
+    const groups = await prisma.groups.update({
       where: {
         id: Number(params.id),
       },
       data: {
-        active: data.active,
-        email: data.email,
+        name: data.name,
+        image: data.image,
+        sort: Number(data.sort),
+        desc: data.desc,
       },
     });
 
-    if (typeof data.password === "string" && data.password.length > 7) {
-      await prisma.user.update({
-        where: {
-          id: Number(params.id),
-        },
-        data: {
-          password: hashPassword(data.password),
-        },
-      });
-    }
-
     return NextResponse.json({
-      data: { added: user.id },
+      data: { added: groups.id },
       status: "success",
     });
   } catch (e: any) {
@@ -91,10 +84,10 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const user = await prisma.user.delete({
+  const groups = await prisma.groups.delete({
     where: {
       id: Number(params.id),
     },
   });
-  return NextResponse.json({ success: true, result: user });
+  return NextResponse.json({ success: true, result: groups });
 }

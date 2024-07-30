@@ -41,7 +41,8 @@ model Groups {
     id    Int    @id @default(autoincrement())
     name  String
     image String
-    urls  String
+    desc  String
+    sort  Int
 }
 
 model Media {

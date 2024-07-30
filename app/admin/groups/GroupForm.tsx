@@ -2,32 +2,25 @@
 import {
   Box,
   Divider,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Switch,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { Editor } from "@tinymce/tinymce-react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { createSlug } from "../../lib/utils";
 import { SaveDelete } from "../components/SaveDelete";
 
 interface IPageFromProps {
   id?: number;
-  title?: string;
-  slug?: string;
-  content?: string;
-  enabled?: boolean;
+  name?: string;
+  image?: string;
+  desc?: string;
+  sort?: number;
 }
 
-export function PageFrom(props: Readonly<IPageFromProps>) {
+export function GroupForm(props: Readonly<IPageFromProps>) {
   const editorRef = useRef<any>(null);
-  const [pageTitle, setPageTitle] = useState("");
-  const [slug, setSlug] = useState(props.slug ?? "");
-  const [enabled, setEnabled] = useState(props.enabled ?? false);
+
   const [error, setError] = useState("");
   const router = useRouter();
   const [working, setWorking] = useState(false);
@@ -37,49 +30,46 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
     setWorking(true);
     setError("");
     const form = new FormData(ev.target as HTMLFormElement);
-
     if (editorRef.current) {
-      const pagesData = {
-        title: form.get("title"),
-        enabled: form.get("enabled") === "on",
-        content: editorRef.current.getContent(),
+      const groupData = {
+        name: form.get("name"),
+        desc: editorRef.current.getContent(),
+        image: form.get("image"),
+        sort: form.get("sort"),
       };
+
+
       editorRef.current.setDirty(false);
-      let url = "/api/admin/pages";
+      let url = "/api/admin/groups";
       let method = "POST";
       if (props.id) {
         url += `/${props.id}`;
         method = "PUT";
       }
+
       const res = await fetch(url, {
         method: method,
-        body: JSON.stringify(pagesData),
+        body: JSON.stringify(groupData),
       });
 
       if (res.ok) {
-        router.push("/admin/pages", { scroll: false });
+        router.push("/admin/groups", { scroll: false });
       } else {
         setError("Nie udało się zapisać ");
       }
-      setWorking(false);
     }
+    setWorking(false);
   };
 
-  const titleChange = (title: string) => {
-    setPageTitle(title);
-    setSlug(createSlug(title));
-  };
-
-  const deletePage = async (id: number | undefined) => {
+  const deleteUser = async (id: number | undefined) => {
     if (!id) return;
     setWorking(true);
-
-    const res = await fetch(`/api/admin/pages/${id}`, {
+    const res = await fetch(`/api/admin/groups/${id}`, {
       method: "DELETE",
     });
 
     if (res.ok) {
-      router.push("/admin/pages", { scroll: false });
+      router.push("/admin/groups", { scroll: false });
     } else {
       setError("Nie udało się usunąć");
     }
@@ -101,42 +91,27 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
         {error}
       </Typography>
       <TextField
-        id="title"
-        name="title"
-        label="Tytuł Strony"
-        value={pageTitle}
-        fullWidth
+        id="name"
+        name="name"
+        label="Nazwa"
+        defaultValue={props.name}
         required
-        onChange={(ev) => titleChange(ev.target.value)}
       />
-      <Divider />
-      <FormControl
-        variant="outlined"
-        sx={{
-          width: "fit-content",
-        }}
-      >
-        <FormControlLabel
-          control={
-            <Switch
-              name="enabled"
-              checked={enabled}
-              onChange={(ev: any) => setEnabled(ev.target.checked)}
-            />
-          }
-          label="Opublikowana"
-        />
-
-        <FormHelperText id="my-helper-text">
-          Zaznacz aby strona była widoczna.
-        </FormHelperText>
-      </FormControl>
-      {enabled && (
-        <Typography sx={{ color: "primary" }}>
-          <strong>Link do Strony:</strong>{" "}
-          {`${window.location.origin}/strony/${slug}`}
-        </Typography>
-      )}
+      <TextField
+        id="image"
+        name="image"
+        label="Url Obrazka"
+        defaultValue={props.image}
+        required
+      />
+      <TextField
+        id="sort"
+        name="sort"
+        label="Sort"
+        type="number"
+        defaultValue={props.sort ?? 0}
+        required
+      />
       <Divider />
       <Editor
         id="editor"
@@ -153,10 +128,12 @@ export function PageFrom(props: Readonly<IPageFromProps>) {
           language: "pl",
         }}
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue={props.content}
+        initialValue={props.desc}
       />
+
       <Divider />
-      <SaveDelete id={props.id} delateAction={deletePage} working={working} />
+
+      <SaveDelete id={props.id} delateAction={deleteUser} working={working} />
     </Box>
   );
 }

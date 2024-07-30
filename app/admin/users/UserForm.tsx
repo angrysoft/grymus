@@ -1,7 +1,6 @@
 "use client";
 import {
   Box,
-  Button,
   Divider,
   FormControl,
   FormControlLabel,
@@ -9,9 +8,11 @@ import {
   FormHelperText,
   Switch,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
+import { SaveDelete } from "../components/SaveDelete";
 
 interface IPageFromProps {
   id?: number;
@@ -20,60 +21,64 @@ interface IPageFromProps {
 }
 
 export function UserFrom(props: Readonly<IPageFromProps>) {
-  const editorRef = useRef<any>(null);
   const [active, setActive] = useState(props.active ?? false);
   const [error, setError] = useState("");
   const [passwd, setPasswd] = useState("");
   const [passwd2, setPasswd2] = useState("");
-  const [passwdErr, setPasswdErr] = useState(false);
   const router = useRouter();
+  const [working, setWorking] = useState(false);
 
   const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (passwd !== passwd2) return;
-    
+    setWorking(true);
     setError("");
     const form = new FormData(ev.target as HTMLFormElement);
 
-    if (editorRef.current) {
-      const userData = {
-        email: form.get("email"),
-        active: form.get("active") === "on",
-        password: form.get("password"),
-        password2: form.get("password2"),
-      };
+    const userData = {
+      email: form.get("username"),
+      active: form.get("active") === "on",
+      password: form.get("password"),
+      password2: form.get("password2"),
+    };
 
-      editorRef.current.setDirty(false);
-      let url = "/api/admin/users";
-      let method = "POST";
-      if (props.id) {
-        url += `/${props.id}`;
-        method = "PUT";
-      }
-      const res = await fetch(url, {
-        method: method,
-        body: JSON.stringify(userData),
-      });
-
-      if (!res.ok) {
-        setError("Nie udało się zapisać ");
-        return;
-      }
-      const result = await res.json();
-      if (result.status === "error") {
-        setError(result.error);
-        return;
-      }
-      router.push("/admin/users", { scroll: false });
+    let url = "/api/admin/users";
+    let method = "POST";
+    if (props.id) {
+      url += `/${props.id}`;
+      method = "PUT";
+    } else if (!userData.password) {
+      setError("Brak hasła");
+      setWorking(false);
+      return;
     }
+
+    const res = await fetch(url, {
+      method: method,
+      body: JSON.stringify(userData),
+    });
+
+    if (res.ok) {
+      router.push("/admin/users", { scroll: false });
+    } else {
+      setError("Nie udało się zapisać ");
+    }
+    setWorking(false);
   };
 
-  const changePasswd = (ev: any) => {
-    setPasswd(ev.target.value);
-    if (passwd != passwd2) {
-      setPasswdErr(true);
+  const deleteUser = async (id: number | undefined) => {
+    if (!id) return;
+    setWorking(true);
+    const res = await fetch(`/api/admin/users/${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      router.push("/admin/users", { scroll: false });
+    } else {
+      setError("Nie udało się usunąć");
     }
-    setPasswdErr(false);
+    setWorking(false);
   };
 
   return (
@@ -87,9 +92,12 @@ export function UserFrom(props: Readonly<IPageFromProps>) {
         padding: "1rem",
       }}
     >
+      <Typography color={"error"} variant="h5">
+        {error}
+      </Typography>
       <TextField
         id="email"
-        name="email"
+        name="username"
         label="Email"
         type="email"
         defaultValue={props.email}
@@ -97,22 +105,24 @@ export function UserFrom(props: Readonly<IPageFromProps>) {
       />
       <Divider />
       <FormGroup sx={{ display: "flex", gap: "1rem" }}>
+        {passwd !== passwd2 && (
+          <Typography color={"error"}>Hasła się różnią</Typography>
+        )}
         <TextField
           id="password"
           name="password"
           label="Password"
           type="password"
-          defaultValue=""
-          error={passwdErr}
-          onChange={changePasswd}
+          value={passwd}
+          onChange={(ev) => setPasswd(ev.target.value)}
         />
         <TextField
           id="password2"
           name="password2"
           label="Password2"
           type="password"
-          defaultValue=""
-          error={passwdErr}
+          value={passwd2}
+          onChange={(ev) => setPasswd2(ev.target.value)}
         />
       </FormGroup>
       <Divider />
@@ -139,15 +149,7 @@ export function UserFrom(props: Readonly<IPageFromProps>) {
       </FormControl>
       <Divider />
 
-      <Button
-        variant="contained"
-        type="submit"
-        sx={{
-          width: "fit-content",
-        }}
-      >
-        Zapisz
-      </Button>
+      <SaveDelete id={props.id} delateAction={deleteUser} working={working} />
     </Box>
   );
 }

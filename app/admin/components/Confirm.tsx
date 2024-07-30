@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,47 +6,34 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 interface IConfirmDialogProps {
-  agreeAction: () => void;
+  agreeAction: (arg: any) => void;
+  closeHandler: (arg: boolean) => void;
   msg: string;
+  title?: string;
+  open: boolean;
+  color?:string;
 }
 
 export default function ConfirmDialog(props: Readonly<IConfirmDialogProps>) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {props.msg}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={props.agreeAction} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </React.Fragment>
+    <Dialog
+      open={props.open}
+      onClose={() => props.closeHandler(false)}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title" color={props.color ?? ""}>{props.title}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description" color={props.color ?? ""}>
+          {props.msg}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => props.closeHandler(false)}>Anuluj</Button>
+        <Button onClick={props.agreeAction} autoFocus>
+          ok
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }

@@ -8,8 +8,9 @@ import { PageFrom } from "../../PageFrom";
 import { DefaultResponse } from "../../../../models/default-response";
 import { PageData } from "../../../../models/page-data";
 import { fetcher } from "../../../../lib/fetcher";
+import { BaseForm } from "../../../components/BaseForm";
 
-export default function AddPAge({
+export default function EditPage({
   params,
 }: Readonly<{ params: { id: number } }>) {
   const { data } = useSWR<DefaultResponse<PageData>>(
@@ -24,25 +25,7 @@ export default function AddPAge({
   const { title, content, enabled, id, slug } = { ...data.result };
 
   return (
-    <Paper>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            href="/admin/pages"
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Dodaj Strone
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Toolbar />
+    <BaseForm backTo="/admin/pages" title="Dodaj Stronę">
       <PageFrom
         title={title}
         content={content}
@@ -50,6 +33,6 @@ export default function AddPAge({
         id={id}
         slug={slug}
       />
-    </Paper>
+    </BaseForm>
   );
 }

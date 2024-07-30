@@ -1,9 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../../../lib/auth";
-import { createSlug } from "../../../../lib/utils";
 import { Prisma } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
+import { createSlug } from "../../../../lib/utils";
+import { prisma } from "../../../lib/prisma";
 
 export async function GET(
   request: NextRequest,
@@ -21,9 +19,6 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Access denied" }, { status: 401 });
 
   const data = await request.json();
   if (!data) {
@@ -73,10 +68,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Access denied" }, { status: 401 });
-
+ 
   const result = await prisma.page.delete({
     where: {
       id: Number(params.id),
