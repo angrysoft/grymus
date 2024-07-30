@@ -1,10 +1,10 @@
 "use client";
 import { BaseForm } from "../../components/BaseForm";
-import { NewsForm } from "../PageFrom";
+import { NewsForm } from "../NewsForm";
 
-export default function AddPAge() {
+export default function AddNews() {
   return (
-    <BaseForm backTo="/admin/pages" title="Dodaj Stronę">
+    <BaseForm backTo="/admin/news" title="Dodaj Aktualność">
       <NewsForm />
     </BaseForm>
   );

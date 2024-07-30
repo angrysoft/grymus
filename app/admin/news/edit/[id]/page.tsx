@@ -1,20 +1,17 @@
 "use client";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { AppBar, IconButton, Paper, Toolbar, Typography } from "@mui/material";
-import React from "react";
 import useSWR from "swr";
 import { Loader } from "../../../../(main)/components/Loader";
-import { NewsForm } from "../../PageFrom";
-import { DefaultResponse } from "../../../../models/default-response";
-import { PageData } from "../../../../models/page-data";
 import { fetcher } from "../../../../lib/fetcher";
+import { DefaultResponse } from "../../../../models/default-response";
+import { NewsDataItem } from "../../../../models/news-data";
 import { BaseForm } from "../../../components/BaseForm";
+import { NewsForm } from "../../NewsForm";
 
-export default function EditPage({
+export default function EditNews({
   params,
 }: Readonly<{ params: { id: number } }>) {
-  const { data } = useSWR<DefaultResponse<PageData>>(
-    `/api/admin/pages/${params.id}`,
+  const { data } = useSWR<DefaultResponse<NewsDataItem>>(
+    `/api/admin/news/${params.id}`,
     fetcher,
   );
 
@@ -22,14 +19,18 @@ export default function EditPage({
     return <Loader />;
   }
 
-  const { title, content, enabled, id, slug } = { ...data.result };
+  const { title, content, enabled, id, slug, short, pined } = {
+    ...data.result,
+  };
 
   return (
-    <BaseForm backTo="/admin/pages" title="Dodaj Stronę">
+    <BaseForm backTo="/admin/news" title="Dodaj Stronę">
       <NewsForm
         title={title}
         content={content}
         enabled={enabled}
+        short={short}
+        pined={pined}
         id={id}
         slug={slug}
       />

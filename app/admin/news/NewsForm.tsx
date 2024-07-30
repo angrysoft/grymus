@@ -4,6 +4,7 @@ import {
   Divider,
   FormControl,
   FormControlLabel,
+  FormGroup,
   FormHelperText,
   Switch,
   TextField,
@@ -26,10 +27,12 @@ interface IPageFromProps {
 }
 
 export function NewsForm(props: Readonly<IPageFromProps>) {
-  const editorRef = useRef<any>(null);
+  const shortRef = useRef<any>(null);
+  const contentRef = useRef<any>(null);
   const [pageTitle, setPageTitle] = useState("");
   const [slug, setSlug] = useState(props.slug ?? "");
   const [enabled, setEnabled] = useState(props.enabled ?? false);
+  const [pined, setPined] = useState(props.pined ?? false);
   const [error, setError] = useState("");
   const router = useRouter();
   const [working, setWorking] = useState(false);
@@ -40,13 +43,13 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
     setError("");
     const form = new FormData(ev.target as HTMLFormElement);
 
-    if (editorRef.current) {
+    if (contentRef.current) {
       const newsData = {
         title: form.get("title"),
         enabled: form.get("enabled") === "on",
-        content: editorRef.current.getContent(),
+        content: contentRef.current.getContent(),
       };
-      editorRef.current.setDirty(false);
+      contentRef.current.setDirty(false);
       let url = "/api/admin/news";
       let method = "POST";
       if (props.id) {
@@ -105,11 +108,31 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
       <TextField
         id="title"
         name="title"
-        label="Tytuł Strony"
+        label="Tytuł Newsa"
         value={pageTitle}
         fullWidth
         required
         onChange={(ev) => titleChange(ev.target.value)}
+      />
+      <Divider />
+      <Typography variant="h6">Skrót</Typography>
+      <Editor
+        id="short"
+        apiKey="ajul7zksmk772je0mygzjbkk63ivqdvxlqf0fw2r1r2cwz5y"
+        init={{
+          plugins:
+            "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
+          imagetools_toolbar: "editimage imageoptions",
+          menubar: "file edit view insert format tools table help",
+          toolbar:
+            "undo redo | accordion accordionremove | blocks fontsize | bold italic underline strikethrough | align numlist bullist | link anchor image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | preview",
+          tinycomments_mode: "embedded",
+          height: 400,
+          language: "pl",
+        }}
+        
+        onInit={(evt, editor) => (shortRef.current = editor)}
+        initialValue={props.short}
       />
       <Divider />
       <FormControl
@@ -128,9 +151,29 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
           }
           label="Opublikowana"
         />
-
         <FormHelperText id="my-helper-text">
           Zaznacz aby strona była widoczna.
+        </FormHelperText>
+      </FormControl>
+      <FormControl
+        variant="outlined"
+        sx={{
+          width: "fit-content",
+        }}
+      >
+        <FormControlLabel
+          control={
+            <Switch
+              name="pined"
+              checked={pined}
+              onChange={(ev: any) => setPined(ev.target.checked)}
+            />
+          }
+          label="Przypiety"
+        />
+
+        <FormHelperText id="my-helper-text">
+          Zaznacz aby news był przypiety na gorze strony.
         </FormHelperText>
       </FormControl>
       {enabled && (
@@ -140,8 +183,9 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
         </Typography>
       )}
       <Divider />
+      <Typography variant="h6">Kontent</Typography>
       <Editor
-        id="editor"
+        id="content"
         apiKey="ajul7zksmk772je0mygzjbkk63ivqdvxlqf0fw2r1r2cwz5y"
         init={{
           plugins:
@@ -154,7 +198,7 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
           height: 800,
           language: "pl",
         }}
-        onInit={(evt, editor) => (editorRef.current = editor)}
+        onInit={(evt, editor) => (contentRef.current = editor)}
         initialValue={props.content}
       />
       <Divider />

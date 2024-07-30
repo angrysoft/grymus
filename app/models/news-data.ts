@@ -10,6 +10,7 @@ export interface NewsDataItem {
   title: string;
   slug: string;
   enabled: boolean;
+  content: string;
   short: string;
   pined: boolean;
   createdAt: string;
