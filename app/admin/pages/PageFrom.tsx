@@ -25,7 +25,7 @@ interface IPageFromProps {
 
 export function PageFrom(props: Readonly<IPageFromProps>) {
   const editorRef = useRef<any>(null);
-  const [pageTitle, setPageTitle] = useState("");
+  const [pageTitle, setPageTitle] = useState(props.title ?? "");
   const [slug, setSlug] = useState(props.slug ?? "");
   const [enabled, setEnabled] = useState(props.enabled ?? false);
   const [error, setError] = useState("");

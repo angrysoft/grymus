@@ -20,6 +20,8 @@ export function DataTable(props: Readonly<IDataTableProps>) {
     return <Loader />;
   }
 
+  console.log("dataTable: ", data)
+
   return (
     <Box
       sx={{

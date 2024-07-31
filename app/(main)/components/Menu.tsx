@@ -33,12 +33,13 @@ function Menu(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Divider />
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center"}}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
+          padding:"2rem 0",
+          gap:"1rem",
         }}
       >
         {navItems.map((item) => (

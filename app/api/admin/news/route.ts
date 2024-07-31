@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
         id: true,
         title: true,
         enabled: true,
+        pined: true,
         updatedAt: true,
       },
     }),
@@ -46,6 +47,7 @@ export async function POST(request: NextRequest) {
         short: data.short,
         content: data.content,
         enabled: data.enabled || false,
+        pined: data.pined || false,
       },
     });
     return NextResponse.json(

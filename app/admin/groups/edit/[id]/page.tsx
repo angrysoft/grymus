@@ -19,11 +19,11 @@ export default function EditGroup({
     return <Loader />;
   }
 
-  const { id, name, image, sort } = { ...data.result };
+  const { id, name, image, sort, desc } = { ...data.result };
 
   return (
     <BaseForm backTo="/admin/groups" title="Edytuj Grupe">
-      <GroupForm id={id} name={name} image={image} sort={sort} />
+      <GroupForm id={id} name={name} image={image} sort={sort} desc={desc}/>
     </BaseForm>
   );
 }

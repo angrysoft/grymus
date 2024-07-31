@@ -12,6 +12,7 @@ interface IHeaderProps {
   title?: string;
   children: ReactNode;
   variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  color?: string;
 }
 
 export function Header(props: Readonly<IHeaderProps>) {
@@ -23,7 +24,7 @@ export function Header(props: Readonly<IHeaderProps>) {
         align="center"
         sx={{
           // background: "linear-gradient(in hsl longer hue 90deg, yellow 0 0)",
-          background: "linear-gradient(to right, blue, lawnGreen,red,orange,yellow)",
+          background: props.color ?? "linear-gradient(to right, blue, lawnGreen,red,orange,yellow)",
           backgroundClip: "text",
           WebkitTextFillColor: "transparent",
           // fontFamily: logoFont.style.fontFamily,

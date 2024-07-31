@@ -25,7 +25,8 @@ export default function Groups() {
         component="section"
         sx={{
           backgroundColor: "rgb(98 89 149)",
-          padding: "3rem",
+          paddingTop: "3rem",
+          paddingBottom: "3rem",
         }}
       >
         <Container
@@ -33,7 +34,6 @@ export default function Groups() {
           sx={{
             display: "flex",
             flexDirection: "column",
-
             gap: "2rem",
           }}
         >

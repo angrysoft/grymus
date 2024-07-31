@@ -19,7 +19,7 @@ export default function EditNews({
     return <Loader />;
   }
 
-  const { title, content, enabled, id, slug, short, pined } = {
+  const { title, content, enabled, id, slug, short, pined, updatedAt } = {
     ...data.result,
   };
 
@@ -33,6 +33,7 @@ export default function EditNews({
         pined={pined}
         id={id}
         slug={slug}
+        updatedAt={updatedAt}
       />
     </BaseForm>
   );

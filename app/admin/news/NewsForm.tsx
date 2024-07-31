@@ -24,12 +24,13 @@ interface IPageFromProps {
   short?: string;
   content?: string;
   pined?: boolean;
+  updatedAt?: string;
 }
 
 export function NewsForm(props: Readonly<IPageFromProps>) {
   const shortRef = useRef<any>(null);
   const contentRef = useRef<any>(null);
-  const [pageTitle, setPageTitle] = useState("");
+  const [pageTitle, setPageTitle] = useState(props.title ?? "");
   const [slug, setSlug] = useState(props.slug ?? "");
   const [enabled, setEnabled] = useState(props.enabled ?? false);
   const [pined, setPined] = useState(props.pined ?? false);
@@ -43,13 +44,18 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
     setError("");
     const form = new FormData(ev.target as HTMLFormElement);
 
-    if (contentRef.current) {
+    if (contentRef.current && shortRef.current) {
       const newsData = {
         title: form.get("title"),
         enabled: form.get("enabled") === "on",
         content: contentRef.current.getContent(),
+        short: shortRef.current.getContent(),
+        pined: form.get("pined") === "on",
       };
+
       contentRef.current.setDirty(false);
+      shortRef.current.setDirty(false);
+
       let url = "/api/admin/news";
       let method = "POST";
       if (props.id) {
@@ -105,6 +111,14 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
       <Typography color={"error"} variant="h5">
         {error}
       </Typography>
+      {props.id && (
+        <>
+          <Typography variant="h5">
+            Ostatnia Aktualizacja: {new Date(props.updatedAt ?? "").toLocaleString()}
+          </Typography>
+          <Divider />
+        </>
+      )}
       <TextField
         id="title"
         name="title"
@@ -130,7 +144,6 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
           height: 400,
           language: "pl",
         }}
-        
         onInit={(evt, editor) => (shortRef.current = editor)}
         initialValue={props.short}
       />
@@ -183,7 +196,7 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
         </Typography>
       )}
       <Divider />
-      <Typography variant="h6">Kontent</Typography>
+      <Typography variant="h6">Treść</Typography>
       <Editor
         id="content"
         apiKey="ajul7zksmk772je0mygzjbkk63ivqdvxlqf0fw2r1r2cwz5y"

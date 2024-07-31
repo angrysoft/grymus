@@ -25,7 +25,7 @@ export function Group(props: Readonly<IGroupProps>) {
     <Paper
       sx={{
         aspectRatio: "1/1",
-        width: "400px",
+        width: {lg:"400px", sm:"100%"},
       }}
     >
       <Stack>
