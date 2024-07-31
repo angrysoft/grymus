@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { Loader } from "../../(main)/components/Loader";
 import { fetcher } from "../../lib/fetcher";
+import { SetStateAction, useState } from "react";
 
 interface IDataTableProps {
   columns: GridColDef[];
@@ -13,14 +14,26 @@ interface IDataTableProps {
 }
 
 export function DataTable(props: Readonly<IDataTableProps>) {
-  const { data } = useSWR(props.api, fetcher);
+  const [pageSize, setPageSize] = useState(2);
+  const [page, setPage] = useState(0);
+  const [offset, setOffset] = useState(0)
+  const { data } = useSWR(`${props.api}?items=${pageSize}&offset=${offset}`, fetcher);
   const router = useRouter();
 
   if (!data) {
     return <Loader />;
   }
 
-  console.log("dataTable: ", data)
+
+  const handlePaginationChange = (info: {
+    page: SetStateAction<number>;
+    pageSize: SetStateAction<number>;
+  }) => {
+    const calculatedOffset = Number(info.page) * Number(info.pageSize);
+    setPage(info.page);
+    setPageSize(info.pageSize);
+    setOffset(calculatedOffset);
+  };
 
   return (
     <Box
@@ -37,15 +50,20 @@ export function DataTable(props: Readonly<IDataTableProps>) {
         disableColumnFilter
         disableColumnSorting
         disableColumnSelector
+        disableRowSelectionOnClick
+        paginationMode="server"
+        rowCount={data.total}
+        onPaginationModelChange={handlePaginationChange}
+        onPaginationMetaChange={(ev) => console.log(ev)}
         onRowDoubleClick={(ev) =>
           router.push(`${props.url}/edit/${ev.id}`, { scroll: false })
         }
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
+            paginationModel: { page: page, pageSize: pageSize },
           },
         }}
-        pageSizeOptions={[10, 15]}
+        pageSizeOptions={[2, 10, 15]}
       />
       <Fab
         color="primary"
