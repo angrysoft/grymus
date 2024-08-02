@@ -14,16 +14,18 @@ interface IDataTableProps {
 }
 
 export function DataTable(props: Readonly<IDataTableProps>) {
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(20);
   const [page, setPage] = useState(0);
-  const [offset, setOffset] = useState(0)
-  const { data } = useSWR(`${props.api}?items=${pageSize}&offset=${offset}`, fetcher);
+  const [offset, setOffset] = useState(0);
+  const { data } = useSWR(
+    `${props.api}?items=${pageSize}&offset=${offset}`,
+    fetcher,
+  );
   const router = useRouter();
 
   if (!data) {
     return <Loader />;
   }
-
 
   const handlePaginationChange = (info: {
     page: SetStateAction<number>;
@@ -63,7 +65,7 @@ export function DataTable(props: Readonly<IDataTableProps>) {
             paginationModel: { page: page, pageSize: pageSize },
           },
         }}
-        pageSizeOptions={[2, 10, 15]}
+        pageSizeOptions={[20, 30, 50]}
       />
       <Fab
         color="primary"
