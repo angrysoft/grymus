@@ -39,6 +39,12 @@ declare module "@mui/material/Typography" {
   }
 }
 
+declare module "@mui/material/" {
+  interface TypeBackground {
+    section: string,
+  }
+}
+
 const theme = createTheme({
   typography: {
     fontFamily: kalam.style.fontFamily,
@@ -66,6 +72,9 @@ const theme = createTheme({
     secondary: {
       main: "#f44336",
     },
+    background: {
+      section: purple[500],
+    }
   },
 });
 
@@ -98,6 +107,9 @@ const themeBiggerFont = createTheme({
     secondary: {
       main: "#f44336",
     },
+    background: {
+      section: purple[500],
+    }
   },
 });
 
@@ -113,6 +125,7 @@ const contrastTheme = createTheme({
     background: {
       default: "black",
       paper: "black",
+      section: "black",
     },
     text: {
       primary: "#FFFF00",

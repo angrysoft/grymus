@@ -12,7 +12,7 @@ interface IBackgroundProps {
 
 export function Background(props: Readonly<IBackgroundProps>) {
   const color = alpha(
-    props.color ?? theme.palette.primary.main,
+    props.color ?? theme.palette.background.section,
     props.opacity ?? 1,
   );
   const sx = {
