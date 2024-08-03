@@ -1,5 +1,5 @@
 "use client";
-import { purple } from "@mui/material/colors";
+import { purple, yellow } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import { Kalam, Love_Ya_Like_A_Sister, Sriracha } from "next/font/google";
 
@@ -69,7 +69,27 @@ const theme = createTheme({
   },
 });
 
-const contrastTheme = createTheme({
+const themeBiggerFont = createTheme({
+  typography: {
+    fontFamily: kalam.style.fontFamily,
+    accents: {
+      fontFamily: sriracha.style.fontFamily,
+    },
+    h1: {
+      fontFamily: headerFont.style.fontFamily,
+    },
+    h2: {
+      fontFamily: headerFont.style.fontFamily,
+    },
+    h3: {
+      fontFamily: headerFont.style.fontFamily,
+    },
+    h4: {
+      fontFamily: headerFont.style.fontFamily,
+    },
+    fontSize: 16,
+    // htmlFontSize: 32,
+  },
   palette: {
     primary: {
       main: purple[500],
@@ -79,6 +99,27 @@ const contrastTheme = createTheme({
       main: "#f44336",
     },
   },
-})
+});
 
+const contrastTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#000",
+      contrastText: "#FFFF00",
+    },
+    secondary: {
+      main: yellow[500],
+    },
+    background: {
+      default: "black",
+      paper: "black",
+    },
+    text: {
+      primary: "#FFFF00",
+      secondary: "#FFFF00",
+    },
+  },
+});
+
+export { contrastTheme, themeBiggerFont };
 export default theme;

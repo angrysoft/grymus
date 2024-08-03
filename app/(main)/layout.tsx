@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
@@ -7,16 +7,18 @@ import { Container, Box, Toolbar, useTheme } from "@mui/material";
 import { Menu } from "./components/Menu";
 import { Footer } from "./components/Footer";
 import { Accessibility } from "./components/Accessibility";
+import { useState } from "react";
+import { contrastTheme, themeBiggerFont } from "../theme";
 
 export default function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const themeSet = useTheme();
+  const [th, setTh] = useState(theme);
   return (
     <AppRouterCacheProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={th}>
         <CssBaseline />
         <Container
           maxWidth={false}
@@ -39,10 +41,10 @@ export default function MainLayout({
             <Toolbar sx={{ height: "6rem" }} />
             <Accessibility
               handleFontNormal={() => {
-                theme.typography.htmlFontSize = 1;
-                console.log("click", themeSet.typography.fontSize)
+                setTh(theme);
               }}
-              handleFontBigger={() => themeSet.typography.fontSize = 18}
+              handleFontBigger={() => setTh(themeBiggerFont)}
+              handleHightContrast={() => setTh(contrastTheme)}
             />
             {children}
           </Box>
