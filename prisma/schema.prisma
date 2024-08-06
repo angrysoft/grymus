@@ -51,6 +51,7 @@ model Media {
     name       String   @unique
     size       Int
     type       String
+    icon       String
     uploadedAt DateTime @default(now())
 }
 

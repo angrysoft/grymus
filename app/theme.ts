@@ -116,7 +116,7 @@ const themeBiggerFont = createTheme({
 const contrastTheme = createTheme({
   palette: {
     primary: {
-      main: "#000",
+      main: "#FFFF00",
       contrastText: "#FFFF00",
     },
     secondary: {

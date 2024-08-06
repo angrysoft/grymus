@@ -7,7 +7,7 @@ interface IAccessibilityProps {
   handleHightContrast?: ()=> void;
 }
 
-export function Accessibility(props: IAccessibilityProps) {
+export function Accessibility(props: Readonly<IAccessibilityProps>) {
   return (
     <Paper
       sx={{
@@ -43,6 +43,7 @@ export function Accessibility(props: IAccessibilityProps) {
           A
         </Box>
         <Box
+          title="Wersja kolorystyczna żółto-czarna"
           sx={{
             backgroundColor: "yellow",
             cursor: "pointer",

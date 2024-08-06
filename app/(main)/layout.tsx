@@ -1,14 +1,13 @@
 "use client";
+import { Box, Container, Toolbar } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "../theme";
-import { Container, Box, Toolbar, useTheme } from "@mui/material";
-import { Menu } from "./components/Menu";
-import { Footer } from "./components/Footer";
-import { Accessibility } from "./components/Accessibility";
 import { useState } from "react";
-import { contrastTheme, themeBiggerFont } from "../theme";
+import theme, { contrastTheme, themeBiggerFont } from "../theme";
+import { Accessibility } from "./components/Accessibility";
+import { Footer } from "./components/Footer";
+import { Menu } from "./components/Menu";
 
 export default function MainLayout({
   children,
