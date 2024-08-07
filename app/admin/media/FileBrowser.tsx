@@ -4,18 +4,18 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import { ChangeEvent, useEffect, useState } from "react";
 import useSWR from "swr";
 import { Loader } from "../../(main)/components/Loader";
 import { fetcher } from "../../lib/fetcher";
 import { FilesData, FilesDataItem } from "../../models/files-data";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 interface ImageItem {
   id: number;
@@ -56,15 +56,22 @@ export function FileBrowser() {
           image={["/files", item.icon].join("/")}
           title={item.name}
         />
-        {/* <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent> */}
+        <CardContent>
+          <Stack useFlexGap spacing={1}>
+            <Typography>
+              <strong>Nazwa: </strong>
+              {item.name}
+            </Typography>
+            <Typography>
+              <strong>Rozmiar: </strong>
+              {(Number(item.size) / 1000000).toFixed(2)} mb
+            </Typography>
+            <Typography>
+              <strong>Przesłano: </strong>
+              {item.uploadedAt}
+            </Typography>
+          </Stack>
+        </CardContent>
         <CardActions>
           <Button
             size="small"
@@ -87,7 +94,6 @@ export function FileBrowser() {
       sx={{
         padding: "1rem",
       }}
-      // className="flex flex-wrap justify-around gap-y-2 gap-x-1 p-1 bg-surface text-onSurface rounded-lg relative"
     >
       <Stack
         direction="column"

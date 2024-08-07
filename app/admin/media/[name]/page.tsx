@@ -1,46 +1,76 @@
 "use client";
 import useSWR from "swr";
-import { Loader } from "../../../[lang]/components/Loader";
-import { fetcher } from "../../../../lib/utils";
-import { Button } from "../../../components/Button";
-import Link from "next/link";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import { Loader } from "../../../(main)/components/Loader";
+import { fetcher } from "../../../lib/fetcher";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
-export default function Media({ params }: { params: { name: string } }) {
-  const { data, error } = useSWR(`/api/photos/byName/${params.name}`, fetcher);
+export default function Media({
+  params,
+}: Readonly<{ params: { name: string } }>) {
+  const { data, error } = useSWR(`/api/media/byName/${params.name}`, fetcher);
   console.error("error: ", error);
   if (!data) return <Loader />;
 
   return (
-    <div className="max-h-full p-1">
-      <section className="grid grid-cols-[2fr_1fr] h-full gap-2 relative ">
+    <Box
+      sx={{
+        maxHeight: "100%",
+        padding: "1rem",
+        height: "100dvh",
+      }}
+    >
+      <Paper
+        component="section"
+        sx={{
+          position: "relative",
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          height: "100%",
+          gap: "2rem",
+          padding: "1rem",
+        }}
+      >
         <Link
-          className="grid justify-items-center relative"
-          href={"/photos/" + params.name}
+          sx={{
+            display: "grid",
+            justifyItems: "center",
+            position: "relative",
+          }}
+          href={"/files/" + params.name}
         >
-          <img
-            className="h-full max-h-full absolute top-0"
-            src={"/photos/" + params.name}
+          <Box
+            component="img"
+            sx={{
+              width: "100%",
+              height: "auto",
+              position: "absolute",
+              top: 0,
+            }}
+            src={"/files/" + params.name}
             alt=""
           />
         </Link>
-        <div className="grid gap-1 content-start bg-surface rounded p-2">
-          <div>
-            <span className="font-bold text-primary">Nazwa: </span>
-            <span className="text-onSurface">{data.result.name}</span>
-          </div>
-          <div>
-            <span className="font-bold text-primary">Rozmiar: </span>
-            <span className="text-onSurface">
-              {(Number(data.result.size) / 1000000).toFixed(2)} mb
-            </span>
-          </div>
-          <div>
-            <span className="font-bold text-primary">Przesłano: </span>
-            <span className="text-onSurface">{data.result.uploadedAt}</span>
-          </div>
-          <Button to="/admin/photos">Wróć do zdjęć</Button>
-        </div>
-      </section>
-    </div>
+        <Stack useFlexGap spacing={1}>
+          <Typography>
+            <strong>Nazwa: </strong>
+            {data.result.name}
+          </Typography>
+          <Typography>
+            <strong>Rozmiar: </strong>
+            {(Number(data.result.size) / 1000000).toFixed(2)} mb
+          </Typography>
+          <Typography>
+            <strong>Przesłano: </strong>
+            {data.result.uploadedAt}
+          </Typography>
+          <Button href="/admin/media">Wróć do plików</Button>
+        </Stack>
+      </Paper>
+    </Box>
   );
 }

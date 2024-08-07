@@ -73,16 +73,16 @@ export async function POST(request: NextRequest) {
 
 async function saveFile(fileName: string, fileType: string, buffer: Buffer) {
   let resize = false;
-  let icon = null
+  let iconName = null
   switch (fileType) {
     case "image/png":
     case "image/jpeg":
     case "image/webp":
       resize = true;
-      icon = `small_${fileName}`;
+      iconName = `small_${fileName}`;
       break;
     case "application/pdf":
-      icon = "pdf_file"
+      iconName = "pdf_file.png"
       break;
     default:
       return null;
@@ -95,5 +95,5 @@ async function saveFile(fileName: string, fileType: string, buffer: Buffer) {
         console.log(err, info),
       );
   }
-  return icon;
+  return iconName;
 }

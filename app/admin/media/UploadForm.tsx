@@ -93,7 +93,7 @@ export function UploadForm() {
         >
           Dodaj nowe
           <VisuallyHiddenInput
-            accept="image/*"
+            accept="image/*|application/pdf"
             name="file"
             type="file"
             ref={formRef}
