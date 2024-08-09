@@ -24,43 +24,44 @@ export default function RootLayout({
   const drawerWidth = 240;
 
   return (
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Box sx={{ display: "flex" }}>
-              <CssBaseline />
-              <AdminBar drawerWidth={drawerWidth} />
-              <Drawer
-                sx={{
-                  width: drawerWidth,
-                  flexShrink: 0,
-                  "& .MuiDrawer-paper": {
-                    width: drawerWidth,
-                    boxSizing: "border-box",
-                  },
-                }}
-                variant="permanent"
-                anchor="left"
-              >
-                <List>
-                  <AdminAction name="Aktualności" url="/admin/news" />
-                  <AdminAction name="Media" url="/admin/media" />
-                  <AdminAction name="Strony" url="/admin/pages" />
-                  <AdminAction name="Grupy" url="/admin/groups" />
-                  <Divider />
-                  <AdminAction name="Użytkownicy" url="/admin/users" />
-                  <AdminAction name="Ustawienia" url="/admin/settings" />
-                </List>
-              </Drawer>
-              <Box
-                component="main"
-                sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-              >
-                <Toolbar />
-                {children}
-              </Box>
-            </Box>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+    <AppRouterCacheProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
+          <AdminBar drawerWidth={drawerWidth} />
+          <Drawer
+            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              "& .MuiDrawer-paper": {
+                width: drawerWidth,
+                boxSizing: "border-box",
+              },
+            }}
+            variant="permanent"
+            anchor="left"
+          >
+            <List>
+              <AdminAction name="Aktualności" url="/admin/news" />
+              <AdminAction name="Media" url="/admin/media" />
+              <AdminAction name="Galeria" url="/admin/gallery" />
+              <AdminAction name="Strony" url="/admin/pages" />
+              <AdminAction name="Grupy" url="/admin/groups" />
+              <Divider />
+              <AdminAction name="Użytkownicy" url="/admin/users" />
+              <AdminAction name="Ustawienia" url="/admin/settings" />
+            </List>
+          </Drawer>
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+          >
+            <Toolbar />
+            {children}
+          </Box>
+        </Box>
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   );
 }

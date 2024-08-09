@@ -1,7 +1,7 @@
 import { unlink } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 import { existsSync } from "fs";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 
 export async function GET(
   request: NextRequest,

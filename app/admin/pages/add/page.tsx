@@ -1,6 +1,6 @@
 "use client";
 import { BaseForm } from "../../components/BaseForm";
-import { PageFrom } from "../PageFrom";
+import { PageFrom } from "../PageForm";
 
 export default function AddPAge() {
   return (

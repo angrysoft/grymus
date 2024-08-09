@@ -12,8 +12,7 @@ import Typography from "@mui/material/Typography";
 export default function Media({
   params,
 }: Readonly<{ params: { name: string } }>) {
-  const { data, error } = useSWR(`/api/media/byName/${params.name}`, fetcher);
-  console.error("error: ", error);
+  const { data } = useSWR(`/api/admin/media/byName/${params.name}`, fetcher);
   if (!data) return <Loader />;
 
   return (

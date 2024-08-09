@@ -1,24 +1,35 @@
 import { writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../../lib/prisma";
 
 export async function GET(request: NextRequest) {
   const items: number = Number(request.nextUrl.searchParams.get("items") ?? 10);
   const offset: number = Number(
     request.nextUrl.searchParams.get("offset") ?? 0,
   );
+  const query: string = request.nextUrl.searchParams.get("q") ?? "";
+  const prismaQuery: any = {
+    skip: offset,
+    take: items,
+    orderBy: [
+      {
+        uploadedAt: "desc",
+      },
+    ],
+  };
+
+  if (query.length > 3) {
+    prismaQuery.where = {
+      name: {
+        contains: query,
+      },
+    };
+  }
+  
   const transaction = await prisma.$transaction([
     prisma.media.count(),
-    prisma.media.findMany({
-      skip: offset,
-      take: items,
-      orderBy: [
-        {
-          uploadedAt: "desc",
-        },
-      ],
-    }),
+    prisma.media.findMany(prismaQuery),
   ]);
 
   return NextResponse.json({
@@ -73,7 +84,7 @@ export async function POST(request: NextRequest) {
 
 async function saveFile(fileName: string, fileType: string, buffer: Buffer) {
   let resize = false;
-  let iconName = null
+  let iconName = null;
   switch (fileType) {
     case "image/png":
     case "image/jpeg":
@@ -82,7 +93,7 @@ async function saveFile(fileName: string, fileType: string, buffer: Buffer) {
       iconName = `small_${fileName}`;
       break;
     case "application/pdf":
-      iconName = "pdf_file.png"
+      iconName = "pdf_file.png";
       break;
     default:
       return null;

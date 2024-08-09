@@ -15,7 +15,7 @@ interface IFilesContext {
 const FileContext = createContext<IFilesContext | null>(null);
 
 const FileProvider = ({ children }: { children: ReactNode }) => {
-  const [needRefresh, setNeedRefresh] = useState(true);
+  const [needRefresh, setNeedRefresh] = useState(false);
   const [cursor, serCursor] = useState({ offset: 0, items: 10 });
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);

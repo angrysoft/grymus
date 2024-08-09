@@ -4,7 +4,7 @@ import { AppBar, IconButton, Paper, Toolbar, Typography } from "@mui/material";
 import React from "react";
 import useSWR from "swr";
 import { Loader } from "../../../../(main)/components/Loader";
-import { PageFrom } from "../../PageFrom";
+import { PageFrom } from "../../PageForm";
 import { DefaultResponse } from "../../../../models/default-response";
 import { PageData } from "../../../../models/page-data";
 import { fetcher } from "../../../../lib/fetcher";

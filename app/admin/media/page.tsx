@@ -4,7 +4,7 @@ import { UploadForm } from "./UploadForm";
 import { SearchFrom } from "./SearchFrom";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
-import { FileBrowser } from "./FileBrowser";
+import { FileBrowser } from "../components/FileBrowser";
 
 export default function Media() {
   return (
@@ -20,7 +20,7 @@ export default function Media() {
         <FileProvider>
           <UploadForm />
           <Divider />
-          <SearchFrom />
+          {/* <SearchFrom /> */}
           <FileBrowser />
         </FileProvider>
       </Paper>

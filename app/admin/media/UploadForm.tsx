@@ -33,7 +33,7 @@ export function UploadForm() {
       const data = new FormData();
       data.set("file", file);
 
-      const res = await fetch("/api/media", {
+      const res = await fetch("/api/admin/media", {
         method: "POST",
         body: data,
       });

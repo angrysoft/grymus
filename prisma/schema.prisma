@@ -47,12 +47,22 @@ model Groups {
 }
 
 model Media {
-    id         Int      @id @default(autoincrement())
-    name       String   @unique
+    id         Int       @id @default(autoincrement())
+    name       String    @unique
     size       Int
     type       String
     icon       String
-    uploadedAt DateTime @default(now())
+    Gallery    Gallery[]
+    uploadedAt DateTime  @default(now())
+}
+
+model Gallery {
+    id        Int      @id @default(autoincrement())
+    name      String   @unique
+    slug      String   @unique
+    items     Media[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Settings {
