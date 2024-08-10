@@ -114,7 +114,8 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
       {props.id && (
         <>
           <Typography variant="h5">
-            Ostatnia Aktualizacja: {new Date(props.updatedAt ?? "").toLocaleString()}
+            Ostatnia Aktualizacja:{" "}
+            {new Date(props.updatedAt ?? "").toLocaleString()}
           </Typography>
           <Divider />
         </>
@@ -198,18 +199,23 @@ export function NewsForm(props: Readonly<IPageFromProps>) {
       <Divider />
       <Typography variant="h6">Treść</Typography>
       <Editor
-        id="content"
+        id="editor"
         apiKey="ajul7zksmk772je0mygzjbkk63ivqdvxlqf0fw2r1r2cwz5y"
         init={{
           plugins:
-            "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
+            "importcss searchreplace autolink directionality fullscreen image link media table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
           imagetools_toolbar: "editimage imageoptions",
           menubar: "file edit view insert format tools table help",
           toolbar:
-            "undo redo | accordion accordionremove | blocks fontsize | bold italic underline strikethrough | align numlist bullist | link anchor image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | preview",
+            "undo redo | accordion accordionremove | blocks fontsize | bold italic underline strikethrough | align numlist bullist | link anchor image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons",
           tinycomments_mode: "embedded",
           height: 800,
           language: "pl",
+          images_upload_url: "/api/admin/media?source=editor",
+          // image_prepend_url: "http://localhost:3000",
+          // images_upload_base_path: '/files',
+          relative_urls: false,
+          images_upload_credentials: true,
         }}
         onInit={(evt, editor) => (contentRef.current = editor)}
         initialValue={props.content}
