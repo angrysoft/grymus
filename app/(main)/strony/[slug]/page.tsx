@@ -1,5 +1,5 @@
 "use client";
-import { Box, Container, Paper } from "@mui/material";
+import { Box, Container, GlobalStyles, Paper } from "@mui/material";
 import useSWR from "swr";
 import { Header } from "../../components/Header";
 import { Loader } from "../../components/Loader";
@@ -41,10 +41,12 @@ export default function Page({
         <Header title={data.result.title}>{data.result.title}</Header>
       </Box>
       <Container maxWidth="lg">
+        <GlobalStyles styles={{ img: { maxWidth: "100%", height: "auto" } }} />
         <Paper
           sx={{
             padding: "2rem",
             margin: "2rem 0",
+            overflow: "hidden",
           }}
           component="section"
           dangerouslySetInnerHTML={{ __html: data.result.content }}

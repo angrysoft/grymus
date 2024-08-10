@@ -88,6 +88,7 @@ export function FileBrowser(props: Readonly<IFileBrowserProps>) {
       setFileId(-1);
     }
     setInfoOpen(false);
+    setConfirmOpen(false);
     ctx?.setNeedRefresh(true);
   };
 

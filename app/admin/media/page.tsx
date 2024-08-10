@@ -20,7 +20,6 @@ export default function Media() {
         <FileProvider>
           <UploadForm />
           <Divider />
-          {/* <SearchFrom /> */}
           <FileBrowser />
         </FileProvider>
       </Paper>

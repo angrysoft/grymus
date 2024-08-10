@@ -1,6 +1,7 @@
 import { writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
+import { createSafeFileName } from "../../../lib/utils";
 import { prisma } from "../../lib/prisma";
 
 export async function GET(request: NextRequest) {
@@ -26,7 +27,7 @@ export async function GET(request: NextRequest) {
       },
     };
   }
-  
+
   const transaction = await prisma.$transaction([
     prisma.media.count(),
     prisma.media.findMany(prismaQuery),
@@ -58,28 +59,31 @@ export async function POST(request: NextRequest) {
 
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const icon = await saveFile(file.name, file.type, buffer);
+  const safeFileName = createSafeFileName(file.name);
+  const icon = await saveFile(safeFileName, file.type, buffer);
   if (!icon) return NextResponse.json({ success: false }, { status: 400 });
-
   const media = await prisma.media.upsert({
     where: {
-      name: file.name,
+      name: safeFileName,
     },
     update: {
-      name: file.name,
+      name: safeFileName,
       size: file.size,
       type: file.type,
       icon: icon,
     },
     create: {
-      name: file.name,
+      name: safeFileName,
       size: file.size,
       type: file.type,
       icon: icon,
     },
   });
-  console.log("media: ", media);
-  return NextResponse.json({ success: true, created: media });
+  return NextResponse.json({
+    success: true,
+    created: media,
+    location: `/files/${safeFileName}`,
+  });
 }
 
 async function saveFile(fileName: string, fileType: string, buffer: Buffer) {

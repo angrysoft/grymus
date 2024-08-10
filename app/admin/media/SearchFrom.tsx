@@ -2,12 +2,13 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
+import BackspaceIcon from '@mui/icons-material/Backspace';
 
 interface ISearchProps {
   onSearch: (q:string) => void;
 }
 
-export function SearchFrom(props: ISearchProps) {
+export function SearchFrom(props: Readonly<ISearchProps>) {
   return (
     <Box
       sx={{
@@ -20,7 +21,7 @@ export function SearchFrom(props: ISearchProps) {
         sx={{
           display: "grid",
           gap: "1rem",
-          gridTemplateColumns: { sm: "1fr", lg: "1fr auto" },
+          gridTemplateColumns: { sm: "1fr", lg: "1fr auto auto" },
           width: "100%",
         }}
         onSubmit={(ev) => {
@@ -41,6 +42,11 @@ export function SearchFrom(props: ISearchProps) {
         />
         <IconButton aria-label="search" size="large" type="submit">
           <SearchIcon />
+        </IconButton>
+        <IconButton aria-label="search" size="large" onClick={(ev) => {
+          props.onSearch("");
+        }}>
+          <BackspaceIcon />
         </IconButton>
       </Box>
     </Box>

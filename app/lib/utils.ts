@@ -43,4 +43,39 @@ function createSlug(title: string) {
     .replace(/[^\w-]+/g, "");
 }
 
-export { phoneFormat, createSlug };
+function createSafeFileName(name:string) {
+  const result =  name
+    .toLowerCase()
+    .trim()
+    .replace(/ /g, "_")
+    .split("")
+    .map((c) => {
+      switch (c) {
+        case "ę":
+          return "e";
+        case "ó":
+          return "o";
+        case "ą":
+          return "a";
+        case "ś":
+          return "s";
+        case "ł":
+          return "l";
+        case "ż":
+        case "ź":
+          return "z";
+        case "ć":
+          return "c";
+        case "ń":
+          return "n";
+        default:
+          return c;
+      }
+    })
+    .join("")
+    .replace(/\.\./g, ".");
+
+    return result;
+}
+
+export { phoneFormat, createSlug, createSafeFileName };
