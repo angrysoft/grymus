@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * The template for displaying default page
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#page
+ *
+ * @package Ves_Theme
+ */
+
+get_header();
+?>
+<header class="page-header">
+    <h1><?php the_title() ?></h1>
+</header>
+
+<?php
+while (have_posts()) :
+    the_post();
+    // the_ID();
+    // post_class();
+    // get_the_title();
+?>
+    <main>
+        <div>
+            <?php the_content(); ?>
+        </div>
+    </main>
+
+<?php
+    // If comments are open or we have at least one comment, load up the comment template.
+    if (comments_open() || get_comments_number()) {
+        comments_template();
+    }
+
+endwhile; // End the loop.
+?>
+<!-- <?php get_template_part('parts/to', 'contact'); ?> -->
+
+<?php get_footer(); ?>
