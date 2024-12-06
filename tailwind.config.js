@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./**/*.php",
+    "./grymus/*.php",
   ],
   theme: {
     fontFamily: {
@@ -53,15 +53,15 @@ module.exports = {
         'print': { 'raw': 'print' },
       },
       colors: {
-          background: "#fff",
-          onBackground: "#fff",
-          primary: "#9c27b0",
-          onPrimary: "#00000000",
-          secondary: "#f44336",
-          onSecondary: "#080808",
-          surface: "#1e1e1e",
-          onSurface:"#e1e1e1",
-      },  
+        primary: "#9c27b0",
+        background: "#fff",
+        onBackground: "#00000000",
+        onPrimary: "#00000000",
+        secondary: "#f44336",
+        onSecondary: "#080808",
+        surface: "#1e1e1e",
+        onSurface:"#e1e1e1",
+    },  
 
       minHeight: {
         'a4h': '31.7cm',

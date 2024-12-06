@@ -7,15 +7,25 @@
 get_header(); ?>
 
 <header class="container flex justify-center">
-    <h1 class="font-header text-red-40 text-6xl bg-background p-2">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
+    <h1 class="font-header text-red-40 text-6xl p-2 bg-background">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
 </header>
 
-<?php $post_hist = get_page_by_path('home/historia'); ?>
-<article class="bg-primary">
-    <header class="font-header text-xl"><?php echo apply_filters('the_content', $post_hist->post_title); ?></header>
-    <section class="offer-items">
-        <?php echo apply_filters('the_content', $post_hist->post_content); ?>
-    </section>
-</article>
+<?php $page_hist = get_page_by_path('home/historia'); ?>
+<main>
+    <article class="bg-primary flex flex-row p-2">
+        <section class="container grid md:grid-cols-2 grid-cols-1 gap-1">
+            <div class="bg-background rounded p-1">
+                <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_hist->post_title); ?></h3>
+                <?php echo apply_filters('the_content', $page_hist->post_content); ?>
+            </div>
+            <?php if (has_post_thumbnail($page_hist->ID)): ?>
+                <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($page_hist->ID), 'full'); ?>
+                <div class="grid bg-cover bg-center bg-no-repeat h-full rounded overflow-hidden" style="background-image: url('<?php echo $image[0]; ?>')">
+
+                </div>
+            <?php endif; ?>
+        </section>
+    </article>
+</main>
 
 <?php get_footer() ?>
