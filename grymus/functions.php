@@ -40,7 +40,7 @@ function get_menu_logo()
     $custom_logo_id = get_theme_mod('custom_logo');
     $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
     if (has_custom_logo()) {
-        echo '<img class="h-auto max-w-full" src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '">';
+        echo '<img class="h-full w-auto" src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '">';
     }
 }
 

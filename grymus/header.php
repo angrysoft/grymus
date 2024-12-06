@@ -26,21 +26,24 @@
                 'opsz' 24
         }
     </style>
+    
 </head>
 
-<body class="font-body text-base bg-cover bg-center bg-fixed" style="background-image: url(<?php echo get_template_directory_uri() . '/images/bg.png'; ?>);">
-    <nav class="flex w-full fixed h-6 p-1 border-b-2 border-b-primary top-0 shadow z-50 flex-shrink-0 flex-row right-0 left-auto bg-background">
-        <div class="flex relative w-16 p-1">
-            <a href="/"><?php get_menu_logo(); ?></a>
-            <span id="menu-toggle" class="material-symbols-outlined">menu</span>
+<body class="font-body text-base bg-cover bg-center bg-fixed relative" style="background-image: url(<?php echo get_template_directory_uri() . '/images/bg.png'; ?>);">
+    <nav class="grid grid-cols-1 sm:grid-cols-2 justify-center sm:justify-between fixed top-0 right-0 left-auto w-full h-6 sm:px-3 px-1 py-1  border-b-2 border-b-primary  shadow z-50  bg-background">
+        <div class="flex justify-start sm:justify-between items-center relative h-full">
+            <button id="menu-toggle" class="material-symbols-outlined block sm:hidden text-4xl font-bold" type="button">menu</button>
+            <a class="flex justify-center sm:justify-start h-full w-full" href="/"><?php get_menu_logo(); ?></a>
         </div>
-        <?php wp_nav_menu(array(
-            'menu' => 'Top Menu',
-            'items_wrap' => '%3$s',
-            'container' => 'div',
-            'container_class' => 'flex flex-row items-center justify-center',
-            'walker' => new Description_Walker
-        ));
-        ?>
+        <div id="menu-wrapper" class="grid items-start z-50 sm:items-center fixed sm:relative h-full w-full left-[-100dvw] sm:left-[unset] bg-background/90 transition-left duration-500 px-1 pt-6 sm:p-0">
+            <?php wp_nav_menu(array(
+                'menu' => 'Top Menu',
+                'items_wrap' => '%3$s',
+                'container' => 'div',
+                'container_class' => 'grid sm:grid-flow-col gap-1 items-center justify-start sm:justify-end overflow-hidden h-max text-xl font-bold bg-gradient-to-r from-blue-600 from-20% via-red-600 via-60% to-80% to-yellow-400 bg-clip-text text-transparent',
+                'walker' => new Description_Walker
+            ));
+            ?>
+        </div>
     </nav>
     <div class="mt-6"></div>
