@@ -52,7 +52,7 @@ class Description_Walker extends Walker_Nav_Menu
         $classes = empty($item->classes) ? array() : (array) $item->classes;
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
         !empty($class_names) and $class_names = ' class="' . esc_attr($class_names) . '"';
-        $output .= "<div id='menu-item-$item->ID' $class_names>";
+        $output .= "<div id='menu-item-$item->ID' class='hover:animate-pulse hover:text-primary'>";
         $attributes  = '';
         !empty($item->attr_title) and $attributes .= ' title="'  . esc_attr($item->attr_title) . '"';
         !empty($item->target) and $attributes .= ' target="' . esc_attr($item->target) . '"';
