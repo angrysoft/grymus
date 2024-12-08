@@ -5,13 +5,13 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#page
  *
- * @package Ves_Theme
+ * @package Grymus_Theme
  */
 
 get_header();
 ?>
-<header class="page-header">
-    <h1><?php the_title() ?></h1>
+<header class="grid content-center bg-secondary p-4">
+    <h1 class="headPage text-onSecondary"><?php the_title() ?></h1>
 </header>
 
 <?php
@@ -21,17 +21,14 @@ while (have_posts()) :
     // post_class();
     // get_the_title();
 ?>
-    <main>
-        <div>
+    <main class="container">
+        <div class="card prose prose-slate my-4 md:mx-auto md:max-w-3xl lg:max-w-6xl p-1 md:p-4">
             <?php the_content(); ?>
         </div>
     </main>
 
 <?php
-    // If comments are open or we have at least one comment, load up the comment template.
-    if (comments_open() || get_comments_number()) {
-        comments_template();
-    }
+
 
 endwhile; // End the loop.
 ?>

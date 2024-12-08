@@ -2,7 +2,7 @@
 function add_theme_scripts()
 {
     wp_enqueue_style('style', get_stylesheet_uri());
-    // wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
+    wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
 }
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
@@ -49,9 +49,6 @@ class Description_Walker extends Walker_Nav_Menu
 {
     function start_el(&$output, $item, $depth = 0, $args = NULL, $id = 0)
     {
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
-        !empty($class_names) and $class_names = ' class="' . esc_attr($class_names) . '"';
         $output .= "<div id='menu-item-$item->ID' class='hover:animate-pulse hover:text-primary'>";
         $attributes  = '';
         !empty($item->attr_title) and $attributes .= ' title="'  . esc_attr($item->attr_title) . '"';

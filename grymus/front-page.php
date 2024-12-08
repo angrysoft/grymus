@@ -2,18 +2,18 @@
 
 /**
  *
- * @package Ves_Theme
+ * @package Grymus_Theme
  */
 get_header(); ?>
 
 
 <main class="flex flex-col gap-2">
-    <header class="container card">
-        <h1 class="font-header text-6xl text-center p-2 bg-gradient-to-r from-blue-600 from-20% via-red-600 via-60% to-80% to-yellow-400 bg-clip-text text-transparent">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
+    <header class="container card mt-2">
+        <h1 class="headMain">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
     </header>
     <article class="bg-primary/80 flex flex-row p-4">
         <?php $page_hist = get_page_by_path('home/historia'); ?>
-        <section class="container grid md:grid-cols-2 grid-cols-1 gap-2">
+        <section class="container grid lg:grid-cols-2 grid-cols-1 gap-2 items-center">
             <div class="card">
                 <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_hist->post_title); ?></h3>
                 <div class="prose max-w-none">
@@ -22,15 +22,15 @@ get_header(); ?>
             </div>
             <?php if (has_post_thumbnail($page_hist->ID)): ?>
                 <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($page_hist->ID), 'full'); ?>
-                <div class="grid bg-cover bg-center bg-no-repeat h-full rounded overflow-hidden shadow-md" style="background-image: url('<?php echo $image[0]; ?>')">
+                <img class="grid bg-contain bg-center bg-no-repeat w-full h-auto rounded overflow-hidden shadow-md" src="<?php echo $image[0]; ?>">
 
                 </div>
             <?php endif; ?>
         </section>
     </article>
-    <article class="container flex flex-row p-4">
+    <article class="flex flex-row p-4">
         <?php $page_wiz = get_page_by_path('home/wizja-przedszkola'); ?>
-        <div class="card">
+        <div class="container card py-1 px-4">
             <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_wiz->post_title); ?></h3>
             <div class="prose max-w-none">
                 <?php echo apply_filters('the_content', $page_wiz->post_content); ?>
@@ -62,9 +62,9 @@ get_header(); ?>
         </div>
     </article>
 
-    <article id="kontakt" class="container flex flex-col p-4 gap-3 justify-center">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-between">
-            <div class="card aspect-square p-2 items-center justify-around">
+    <article id="kontakt" class="container flex flex-col gap-3 justify-center pt-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 justify-between">
+            <div class="card aspect-square p-2 items-center justify-around hover:shadow-xl transition-shadow duration-500">
                 <span class="material-symbols-outlined text-primary text-8xl text-center">location_on</span>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Adres</h4>
                 <hr class="border border-primary/60 w-full m-2">
@@ -74,7 +74,7 @@ get_header(); ?>
                     05-400 Otwock
                 </div>
             </div>
-            <div class="card aspect-square p-2 items-center justify-around">
+            <div class="card aspect-square p-2 items-center justify-around hover:shadow-xl transition-shadow duration-500">
                 <span class="material-symbols-outlined text-primary text-8xl text-center">call</span>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Kontakt</h4>
                 <hr class="border border-primary/60 w-full m-2">
@@ -83,7 +83,7 @@ get_header(); ?>
                     <a href="mailto:grymus16@wp.pl">grymus16@wp.pl</a>
                 </div>
             </div>
-            <div class="card aspect-square p-2 items-center justify-around">
+            <div class="card aspect-square p-2 items-center justify-around hover:shadow-xl transition-shadow duration-500">
                 <span class="material-symbols-outlined text-primary text-8xl text-center">schedule</span>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Godziny Otwarcia</h4>
                 <hr class="border border-primary/60 w-full m-2">

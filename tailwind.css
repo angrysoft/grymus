@@ -16,9 +16,18 @@ License: GNU General Public License v2 or later
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 @layer components {
   .card {
      @apply flex flex-col shadow-md p-1 rounded bg-background;
+  }
+
+  .headMain {
+    @apply font-header text-2xl sm:text-6xl text-center p-2 bg-gradient-to-r from-blue-600 from-20% via-red-600 via-60% to-80% to-yellow-400 bg-clip-text text-transparent;
+  }
+
+  .headPage {
+    @apply font-header text-2xl sm:text-6xl text-center p-2 text-onSurface;
   }
 }

@@ -3,12 +3,12 @@
 /**
  * Footer template partial
  *
- * @package Ves_Theme
+ * @package Grymus_Theme
  *
  */
 ?>
 <!-- Footer -->
-<footer class="bg-primary text-onSurface p-2">
+<footer class="bg-primary text-onSurface p-2 mt-2">
     <div class="container grid grid-cols-1 sm:grid-cols-3">
         <div class="prose text-onSurface">
             <h4 class="font-header p-2 border-b text-onSurface text-4xl">Numery Kont</h4>
@@ -41,30 +41,15 @@
             <p><a href="/deklaracja-dostepnosci" class="text-onSurface">Deklaracja Dostępności</a></p>
         </div>
     </div>
-    <div class="p-1">
-        © <?php echo date("Y"); ?> Grymuś All rights reserved
+    <div class="p-1 flex flex-wrap gap-1">
+        <div>
+            © <?php echo date("Y"); ?> Grymuś All rights reserved
+        </div>
+        <div>
+            Design by <a href="https://angrysoft.ovh">AngrySoft</a>
+        </div>
     </div>
 </footer>
-<script>
-    function menuShow() {
-        const menu = document.getElementById("menu-wrapper");
-        menu.style.left = "0";
-    }
-
-    function menuHide() {
-        const menu = document.getElementById("menu-wrapper");
-        if (!menu.style.left) return;
-        menu.style.left = "-100dvw";
-    }
-
-
-    document.getElementById("menu-wrapper").addEventListener("click", () => {
-        menuHide();
-    });
-    document.getElementById("menu-toggle").addEventListener("click", () => {
-        menuShow();
-    });
-</script>
 </body>
 
 </html>

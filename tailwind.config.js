@@ -57,7 +57,7 @@ module.exports = {
         background: "#fff",
         onBackground: "#00000000",
         onPrimary: "#FFFF00",
-        secondary: "#f44336",
+        secondary: "#625995",
         onSecondary: "#FFFF00",
         surface: "#1e1e1e",
         onSurface:"#e1e1e1",
