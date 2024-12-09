@@ -26,11 +26,13 @@ get_header();
                     'sort_column' => 'menu_order',
                     'child_of' => get_the_ID()
                 );
+                $delay = 0;
                 $childList = get_pages($childArgs);
                 foreach ($childList as $child) { ?>
-                    <div class="flex flex-col gap-1 relative bg-secondary justify-center items-center bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500">
+                    <div class="flex flex-col gap-1 relative bg-secondary justify-center items-center bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 zoomIn load-on-view" data-delay="<?php echo $delay ?>">
                         <a href="<?php the_permalink($child); ?>" class="block p-1 text-onSecondary rounded text-4xl font-header w-full h-full text-center"><?php echo $child->post_title; ?></a>
                     </div>
+                    <?php $delay += 100; ?>
                 <?php } ?>
             </div>
         </article>

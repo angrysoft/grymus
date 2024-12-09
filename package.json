@@ -2,12 +2,11 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "tailwindcss": "^3.4.16",
-    "tailwindcss-animated": "^1.1.2",
     "typescript": "^5.7.2"
   },
   "scripts": {
     "watch": "npx tailwindcss -i ./tailwind.css -o ./grymus/style.css --watch",
-    "tail": "npx tailwindcss -i ./tailwind.css -o ./grymus/style.css",
+    "tail": "npx tailwindcss build -i ./tailwind.css -o ./grymus/style.css",
     "build": "npx tsc -b src"
   }
 }

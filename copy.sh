@@ -1,6 +1,7 @@
 #!/bin/sh
 
 npm run build &&
+npm run tail &&
 sudo rm -r /var/lib/docker/volumes/grymus_wordpress/_data/wp-content/themes/grymus
 sudo cp -rv grymus /var/lib/docker/volumes/grymus_wordpress/_data/wp-content/themes
 

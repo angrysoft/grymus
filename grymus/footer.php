@@ -51,5 +51,6 @@
     </div>
 </footer>
 </body>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/load.js" defer></script>
 
 </html>

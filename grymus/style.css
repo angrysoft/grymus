@@ -1208,6 +1208,89 @@ video {
   }
 }
 
+.zoomIn {
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  visibility: hidden;
+}
+
+.load-on-view {
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+}
+
+.slideInUp {
+  animation-name: slideInUp;
+  animation-duration: 500ms;
+  opacity: 0;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 50%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -50%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+    visibility: visible;
+  }
+
+  50% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes leftIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .fixed{
   position: fixed;
 }
@@ -1308,6 +1391,10 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.max-w-\[100ch\]{
+  max-width: 100ch;
 }
 
 .max-w-full{
@@ -1527,11 +1614,6 @@ video {
   padding-right: 1rem;
 }
 
-.px-4{
-  padding-left: 4rem;
-  padding-right: 4rem;
-}
-
 .py-1{
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1611,6 +1693,12 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-inner{
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-md{
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -1642,6 +1730,12 @@ video {
   color: rgb(156 39 176 / var(--tw-text-opacity, 1));
 }
 
+.hover\:shadow-2xl:hover{
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .hover\:shadow-xl:hover{
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
@@ -1660,16 +1754,17 @@ video {
     margin-right: auto;
   }
 
-  .md\:max-w-3xl{
-    max-width: 48rem;
-  }
-
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:p-4{
     padding: 4rem;
+  }
+
+  .md\:px-4{
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
 
@@ -1688,10 +1783,6 @@ video {
 
   .lg\:h-full{
     height: 100%;
-  }
-
-  .lg\:max-w-6xl{
-    max-width: 72rem;
   }
 
   .lg\:grid-flow-col{

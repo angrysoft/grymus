@@ -20,7 +20,7 @@ License: GNU General Public License v2 or later
 
 @layer components {
   .card {
-     @apply flex flex-col shadow-md p-1 rounded bg-background;
+    @apply flex flex-col shadow-md p-1 rounded bg-background;
   }
 
   .headMain {
@@ -29,5 +29,108 @@ License: GNU General Public License v2 or later
 
   .headPage {
     @apply font-header text-2xl sm:text-6xl text-center p-2 text-onSurface;
+  }
+
+  .zoomIn {
+    animation-name: zoomIn;
+    animation-duration: 1s;
+    visibility: hidden;
+  }
+
+  .load-on-view {
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+  }
+
+
+  .leftIn {
+    animation-name: leftIn;
+    animation-duration: 700ms;
+    opacity: 0;
+  }
+
+  .rightIn {
+    animation-name: rightIn;
+    animation-duration: 700ms;
+    opacity: 0;
+  }
+
+    .slideInUp {
+      animation-name: slideInUp;
+      animation-duration: 500ms;
+      opacity: 0;
+    }
+  
+    .slideInDown {
+      animation-name: slideInDown;
+      animation-duration: 500ms;
+      opacity: 0;
+    }
+
+    @keyframes slideInUp {
+      from {
+        transform: translate3d(0, 50%, 0);
+        opacity: 0;
+      }
+  
+      to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+    @keyframes slideInDown {
+      from {
+        transform: translate3d(0, -50%, 0);
+        opacity: 0;
+      }
+  
+      to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+  
+    
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+      visibility: visible;
+    }
+
+    50% {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @keyframes leftIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes rightIn {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }

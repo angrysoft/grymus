@@ -22,7 +22,7 @@ while (have_posts()) :
     // get_the_title();
 ?>
     <main class="container">
-        <div class="card prose prose-slate my-4 md:mx-auto md:max-w-3xl lg:max-w-6xl p-1 md:p-4">
+        <div class="card prose prose-slate my-4 md:mx-auto max-w-[100ch] p-1 md:p-4">
             <?php the_content(); ?>
         </div>
     </main>

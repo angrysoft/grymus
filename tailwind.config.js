@@ -48,7 +48,7 @@ module.exports = {
         accents: ["Sriracha", "cursive"],
         header: ["Love Ya Like A Sister", "cursive"],
 
-      }, 
+      },
       screens: {
         'print': { 'raw': 'print' },
       },
@@ -60,8 +60,8 @@ module.exports = {
         secondary: "#625995",
         onSecondary: "#FFFF00",
         surface: "#1e1e1e",
-        onSurface:"#e1e1e1",
-    },  
+        onSurface: "#e1e1e1",
+      },
 
       minHeight: {
         'a4h': '31.7cm',
@@ -71,7 +71,10 @@ module.exports = {
         "contacts": "repeat(auto-fit,minmax(22rem,1fr))",
         "jobs": "repeat(auto-fit, minmax(25rem, 35rem))",
       },
+      
     },
-},
-  plugins: [require('@tailwindcss/typography'),],
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
