@@ -133,6 +133,10 @@ License: GNU General Public License v2 or later
   .arrow {
     @apply text-4xl font-bold text-onSecondary;
   }
+
+  .btn {
+    @apply rounded p-1 bg-primary shadow text-onPrimary text-center text-xl hover:shadow-xl transition-all duration-500 uppercase no-underline;
+  }
 }
 
 .navigation.pagination {
