@@ -12,7 +12,7 @@ get_header();
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
-    <main class="bg-secondary">
+    <main class="bg-secondary/90">
         <article class="container group gap-2">
             <header class="grid content-center p-1 md:p-4 ">
                 <div class="p-2 bg-primary rounded-xl">

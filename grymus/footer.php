@@ -8,7 +8,7 @@
  */
 ?>
 <!-- Footer -->
-<footer class="bg-primary text-onSurface p-2 mt-2">
+<footer class="bg-primary text-onSurface p-2">
     <div class="container grid grid-cols-1 sm:grid-cols-3">
         <div class="prose text-onSurface">
             <h4 class="font-header p-2 border-b text-onSurface text-4xl">Numery Kont</h4>

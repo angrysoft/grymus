@@ -7,7 +7,7 @@
 get_header(); ?>
 
 
-<main class="flex flex-col gap-2">
+<main class="flex flex-col gap-2 mb-2">
     <header class="container card mt-2 slideInUp load-on-view">
         <h1 class="headMain">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
     </header>

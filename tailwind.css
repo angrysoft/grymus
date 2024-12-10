@@ -42,7 +42,6 @@ License: GNU General Public License v2 or later
     animation-fill-mode: forwards;
   }
 
-
   .leftIn {
     animation-name: leftIn;
     animation-duration: 700ms;
@@ -55,42 +54,40 @@ License: GNU General Public License v2 or later
     opacity: 0;
   }
 
-    .slideInUp {
-      animation-name: slideInUp;
-      animation-duration: 500ms;
-      opacity: 0;
-    }
-  
-    .slideInDown {
-      animation-name: slideInDown;
-      animation-duration: 500ms;
+  .slideInUp {
+    animation-name: slideInUp;
+    animation-duration: 500ms;
+    opacity: 0;
+  }
+
+  .slideInDown {
+    animation-name: slideInDown;
+    animation-duration: 500ms;
+    opacity: 0;
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translate3d(0, 50%, 0);
       opacity: 0;
     }
 
-    @keyframes slideInUp {
-      from {
-        transform: translate3d(0, 50%, 0);
-        opacity: 0;
-      }
-  
-      to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-      }
+    to {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
     }
-    @keyframes slideInDown {
-      from {
-        transform: translate3d(0, -50%, 0);
-        opacity: 0;
-      }
-  
-      to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-      }
+  }
+  @keyframes slideInDown {
+    from {
+      transform: translate3d(0, -50%, 0);
+      opacity: 0;
     }
-  
-    
+
+    to {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
 
   @keyframes zoomIn {
     from {
@@ -133,4 +130,29 @@ License: GNU General Public License v2 or later
       transform: translateX(0);
     }
   }
+  .arrow {
+    @apply text-4xl font-bold text-onSecondary;
+  }
+}
+
+.navigation.pagination {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #625995;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.page-numbers {
+  font-size: 1.4rem;
+  color: #FFFF00;
+  font-family: "Love Ya Like A Sister", serif;
+  font-weight: 400;
+  font-style: normal;
 }
