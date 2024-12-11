@@ -23,7 +23,8 @@ get_header();
         <div class="card grid grid-cols-[auto_100ch] items-center justify-center prose prose-slate max-w-[125ch] w-full p-0 slideInUp load-on-view">
             <?php
             if (has_post_thumbnail()) {
-                $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'large');
+                $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'thumbnail');
+                $image = $image[0];
             } else {
                 $image = esc_url(get_template_directory_uri() . '/images/grymus_logo_250.webp');
             }
