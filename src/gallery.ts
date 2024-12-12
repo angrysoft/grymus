@@ -1,0 +1,235 @@
+class Gallery {
+  private readonly container: Element;
+  private readonly imagesList: NodeListOf<HTMLImageElement>;
+  private currentIndex: number = 0;
+  private currentSlice: number = 0;
+  private img = document.createElement("img");
+  private fullView: HTMLElement = document.createElement("div");
+  private readonly sliceSize: number = 6;
+
+  public constructor(el: Element) {
+    this.addFullView();
+
+    this.container = el;
+    this.imagesList = this.container.querySelectorAll(
+      ".wp-block-image img"
+    );
+    console.log(this.imagesList);
+    this.container.addEventListener("click", (e) => this.showGallery(e));
+    this.makeSlice();
+    this.fullView.addEventListener("animationend", () => {
+      if (this.fullView.style.animationName === "zoomOut") {
+        this.fullView.style.display = "";
+      }
+      this.fullView.style.animationName = "";
+    });
+
+    this.img.addEventListener("animationend", () => {
+      this.img.style.animationName = "";
+    });
+  }
+
+  private addFullView() {
+    this.fullView = document.createElement("div");
+    let btnClose = this.makeButton("close", "close-gallery");
+    btnClose.addEventListener("click", () => this.hideGallery());
+    this.fullView.appendChild(btnClose);
+
+    let btnPrev = this.makeButton("navigate_before", "gallery-prev");
+    btnPrev.addEventListener("click", () => this.prevPhoto());
+    this.fullView.appendChild(btnPrev);
+
+    let btnNext = this.makeButton("navigate_next", "gallery-next");
+    btnNext.addEventListener("click", () => this.nextPhoto());
+    this.fullView.appendChild(btnNext);
+
+    this.fullView.appendChild(this.img);
+
+    this.fullView.id = "gallery-full-view";
+    document.querySelector("body")?.appendChild(this.fullView);
+  }
+
+  private makeButton(text: string, id: string): HTMLElement {
+    let btn = document.createElement("span");
+    btn.className = "material-icons";
+    btn.id = id;
+    btn.innerText = text;
+    return btn;
+  }
+
+  private nextSlice() {
+    if (
+      ++this.currentSlice >
+      Math.ceil(this.imagesList.length / this.sliceSize) - 1
+    ) {
+      this.currentSlice = 0;
+    }
+    console.log(this.currentSlice);
+    this.showSlice();
+  }
+
+  private prevSlice() {
+    if (--this.currentSlice < 0) {
+      this.currentSlice =
+        Math.ceil(this.imagesList.length / this.sliceSize) - 1;
+    }
+    console.log(this.currentSlice);
+    this.showSlice();
+  }
+
+  private makeSlice() {
+    if (this.imagesList.length > this.sliceSize) {
+      let sliceNavDiv: HTMLElement = document.createElement("div");
+      let sliceNavPrev: HTMLElement = this.makeButton(
+        "navigate_before",
+        "slice-prev"
+      );
+      let sliceNavNext: HTMLElement = this.makeButton(
+        "navigate_next",
+        "slice-next"
+      );
+      sliceNavDiv.id = "sliceNav";
+      sliceNavNext.addEventListener("click", () => this.nextSlice());
+      sliceNavDiv.appendChild(sliceNavPrev);
+      sliceNavPrev.addEventListener("click", () => this.prevSlice());
+      sliceNavDiv.appendChild(sliceNavNext);
+      this.container.appendChild(sliceNavDiv);
+    }
+    this.showSlice();
+  }
+
+  private showSlice() {
+    let startIndex: number = this.currentSlice * this.sliceSize;
+    let endIndex: number = startIndex + this.sliceSize;
+    if (endIndex > this.imagesList.length) {
+      endIndex = this.imagesList.length;
+    }
+
+    this.hideOtherSlice();
+    let animNo = 0;
+    for (; startIndex != endIndex; startIndex++) {
+      console.log(
+        startIndex,
+        this.imagesList.length,
+        this.imagesList[startIndex]
+      );
+      let parent = this.imagesList[startIndex].parentElement?.parentElement;
+      if (parent) {
+        parent.addEventListener(
+          "animationend",
+          (el) => {
+            (el.target as HTMLElement).style.opacity = "";
+          },
+          { once: true }
+        );
+        parent.style.opacity = "0";
+        parent.classList.add("show-self");
+        parent.style.animationName = `anim-${++animNo}`;
+        parent.style.animationDelay = `${animNo * 100}ms`;
+      }
+    }
+  }
+
+  private hideOtherSlice() {
+    let elList: NodeListOf<HTMLElement> = this.container.querySelectorAll(
+      "li.blocks-gallery-item.show-self"
+    );
+
+    elList.forEach((el) => {
+      el.classList.remove("show-self");
+      el.style.animationName = "";
+    });
+  }
+
+  private setCurrentIndex(dataId: string) {
+    for (var _i: number = 0; _i < this.imagesList.length; _i++) {
+      if (this.imagesList[_i].dataset.id === dataId) {
+        this.currentIndex = _i;
+        break;
+      }
+    }
+  }
+
+  private showGallery(e: Event) {
+    let img = e.target as HTMLElement;
+    if (img.nodeName != "IMG") {
+      return;
+    }
+    if (img.dataset.id) {
+      this.setCurrentIndex(img.dataset.id);
+    } else {
+      this.currentIndex = 0;
+    }
+    this.setCurrentPhoto("fadeIn");
+    this.fullView.style.animationName = "zoomIn";
+    this.fullView.style.display = "flex";
+    this.addKeyEvent();
+  }
+
+  public hideGallery() {
+    this.fullView.style.animationName = "zoomOut";
+    this.delKeyEvent();
+  }
+
+  private addKeyEvent() {
+    document.addEventListener("keyup", (e) => this.keyPress(e));
+    // document.addEventListener('keydown', (e) => e.preventDefault());
+  }
+
+  private delKeyEvent() {
+    document.removeEventListener("keyup", (e) => this.keyPress(e));
+    // document.removeEventListener('keydown', (e) => e.preventDefault());
+  }
+
+  private keyPress(e: KeyboardEvent) {
+    e.preventDefault();
+    switch (e.code) {
+      case "ArrowLeft":
+        this.nextPhoto();
+        break;
+      case "ArrowRight":
+        this.prevPhoto();
+        break;
+      case "Space":
+        this.nextPhoto();
+        break;
+      case "Escape":
+        this.hideGallery();
+        break;
+    }
+  }
+
+  public nextPhoto() {
+    if (++this.currentIndex === this.imagesList.length) {
+      this.currentIndex = 0;
+    }
+
+    this.setCurrentPhoto("fadeIn");
+  }
+
+  public prevPhoto() {
+    if (--this.currentIndex < 0) {
+      this.currentIndex = this.imagesList.length - 1;
+    }
+
+    this.setCurrentPhoto("fadeIn");
+  }
+
+  public setCurrentPhoto(animationName: string) {
+    let img = new Image();
+    img.onload = () => {
+      this.fullView.removeChild(this.img);
+      this.img = img;
+      this.img.style.animationName = animationName;
+      this.fullView.appendChild(this.img);
+    };
+    img.src = this.imagesList[this.currentIndex].dataset.fullUrl as string;
+  }
+}
+
+window.addEventListener("load", () => {
+  let allGallery = document.querySelectorAll(".grymus-gallery");
+  allGallery.forEach((gal) => {
+    new Gallery(gal);
+  });
+});

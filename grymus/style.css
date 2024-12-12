@@ -1365,6 +1365,10 @@ video {
   margin: 2rem;
 }
 
+.m-auto{
+  margin: auto;
+}
+
 .my-2{
   margin-top: 2rem;
   margin-bottom: 2rem;

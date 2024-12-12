@@ -10,7 +10,7 @@
 
 get_header();
 ?>
-<header class="grid content-center bg-secondary p-4">
+<header class="grid content-center bg-primary p-2">
     <h1 class="headPage text-onSecondary"><?php the_title() ?></h1>
 </header>
 
@@ -20,7 +20,7 @@ while (have_posts()) :
 
 ?>
     <main class="container">
-        <div class="card prose prose-slate my-4 md:mx-auto max-w-[100ch] p-1 md:p-4">
+        <div class="card prose prose-slate my-4 md:mx-auto max-w-[100ch] p-1">
             <?php the_content(); ?>
         </div>
     </main>
@@ -30,5 +30,5 @@ while (have_posts()) :
 
 endwhile; // End the loop.
 ?>
-
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/gallery.js" defer></script>
 <?php get_footer(); ?>
