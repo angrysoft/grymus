@@ -36,7 +36,7 @@ get_header(); ?>
             <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_wiz->post_title); ?></h3>
             <div class="prose max-w-none">
                 <?php echo apply_filters('the_content', $page_wiz->post_content); ?>
-                <a href="/?page_id=45" class="text-primary font-bold">CZYTAJ WIECEJ</a>
+                <a href="/koncepcja-pracy" class="text-primary font-bold">CZYTAJ WIECEJ</a>
             </div>
         </div>
     </article>

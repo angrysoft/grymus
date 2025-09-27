@@ -12,15 +12,15 @@ class Gallery {
         console.log(this.imagesList);
         this.container.addEventListener("click", (e) => this.showGallery(e));
         this.makeSlice();
-        // this.fullView.addEventListener("animationend", () => {
-        //   if (this.fullView.style.animationName === "zoomOut") {
-        //     this.fullView.style.display = "";
-        //   }
-        //   this.fullView.style.animationName = "";
-        // });
-        // this.img.addEventListener("animationend", () => {
-        //   this.img.style.animationName = "";
-        // });
+        this.fullView.addEventListener("animationend", () => {
+            if (this.fullView.style.animationName === "zoomOut") {
+                this.fullView.style.display = "";
+            }
+            this.fullView.style.animationName = "";
+        });
+        this.img.addEventListener("animationend", () => {
+            this.img.style.animationName = "";
+        });
     }
     addFullView() {
         this.fullView = document.createElement("div");

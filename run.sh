@@ -8,4 +8,4 @@
 #         -d wordpress
 
 npm run watch &
-docker-compose -f compose.yml up
+podman compose -f compose.yml up
