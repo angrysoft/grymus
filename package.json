@@ -3,12 +3,15 @@
 	"version": "0.2.2",
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.15",
-		"tailwindcss": "^3.4.16",
+		"tailwindcss": "^4.1.13",
 		"typescript": "^5.7.2"
 	},
 	"scripts": {
-		"watch": "npx tailwindcss -i ./tailwind.css -o ./grymus/style.css --watch",
-		"tail": "npx tailwindcss build -i ./tailwind.css -o ./grymus/style.css",
+		"watch": "npx @tailwindcss/cli -i ./tailwind.css -o ./grymus/style.css --watch",
+		"tail": "npx @tailwindcss/cli -i ./tailwind.css -o ./grymus/style.css",
 		"build": "npx tsc -b src"
+	},
+	"dependencies": {
+		"@tailwindcss/cli": "^4.1.13"
 	}
 }

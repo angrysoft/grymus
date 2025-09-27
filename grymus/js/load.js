@@ -7,6 +7,7 @@ class ElementLoader {
             root: null,
             rootMargin: "0px",
             threshold: 0.2,
+            delay: 200,
         };
         this.elementList = document.querySelectorAll(".load-on-view");
         this.observer = new IntersectionObserver((entries, observer) => this.onViewAction(entries, observer), options);
@@ -36,8 +37,8 @@ class ElementLoader {
         return `${this.delay}ms`;
     }
     addObservers() {
-        this.elementList.forEach((news) => {
-            this.observer.observe(news);
+        this.elementList.forEach((item) => {
+            this.observer.observe(item);
         });
     }
 }

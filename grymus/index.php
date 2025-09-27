@@ -11,7 +11,7 @@
 get_header();
 ?>
 <header class="grid content-center bg-secondary p-4">
-    <h1 class="headPage text-onSecondary"><?php the_title() ?></h1>
+    <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
 </header>
 
 <?php
@@ -19,7 +19,7 @@ while (have_posts()) :
     the_post();
 
 ?>
-    <main class="container">
+    <main class="grid justify-center">
         <div class="paper">
             <?php the_content(); ?>
         </div>

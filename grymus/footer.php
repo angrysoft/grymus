@@ -8,10 +8,10 @@
  */
 ?>
 <!-- Footer -->
-<footer class="bg-primary text-onSurface p-2">
-    <div class="container grid grid-cols-1 sm:grid-cols-3">
-        <div class="prose text-onSurface">
-            <h4 class="font-header p-2 border-b text-onSurface text-4xl">Numery Kont</h4>
+<footer class="@container grid justify-center bg-primary text-on-surface p-2">
+    <div class="max-w-main grid grid-cols-1 sm:grid-cols-3">
+        <div class="prose text-on-surface p-1">
+            <h4 class="font-header p-2 border-b text-on-surface text-4xl">Numery Kont</h4>
             <p>
                 Opłatę za wyżywienie<br />
                 92 8001 0005 2001 0008 0129 0001
@@ -21,8 +21,8 @@
                 65 8001 0005 2001 0008 0129 0002
             </p>
         </div>
-        <div class="prose text-onSurface">
-            <h4 class="font-header p-2 border-b text-onSurface text-4xl">Kontakt</h4>
+        <div class="prose text-on-surface p-1">
+            <h4 class="font-header p-2 border-b text-on-surface text-4xl">Kontakt</h4>
             <p>
                 Przedszkole Miejskie nr 16 ul.<br />
                 Karczewska 27A
@@ -35,10 +35,10 @@
                 Email: grymus16@wp.pl
             </p>
         </div>
-        <div class="prose text-onSurface">
-            <h4 class="font-header p-2 border-b text-onSurface text-4xl">Informacje</h4>
-            <p><a href="/rodo" class="text-onSurface">RODO</a></p>
-            <p><a href="/deklaracja-dostepnosci" class="text-onSurface">Deklaracja Dostępności</a></p>
+        <div class="prose text-on-surface p-1">
+            <h4 class="font-header p-2 border-b text-on-surface text-4xl">Informacje</h4>
+            <p><a href="/rodo" class="text-on-surface">RODO</a></p>
+            <p><a href="/deklaracja-dostepnosci" class="text-on-surface">Deklaracja Dostępności</a></p>
         </div>
     </div>
     <div class="p-1 flex flex-wrap gap-1">

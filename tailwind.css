@@ -1,4 +1,4 @@
-/*
+/*!
 Theme Name: Grumuś Theme
 Theme URI: https://angrysoft.ovh/Grumuś
 Author: Sebastian Zwierzchowski
@@ -8,67 +8,47 @@ Text Domain: grumus
 Version: 1.0.0
 License: GNU General Public License v2 or later
 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Love+Ya+Like+A+Sister&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Love+Ya+Like+A+Sister&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap");
+@theme {
+  --font-body: "Kalam", cursive;
+  --font-header: "Love Ya Like A Sister", cursive;
+  --font-header--weight: 400;
+  --font-header--style: normal;
+  --font-accents: "Sriracha", cursive;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
+  --spacing: 1rem;
+  --spacing-01: 0.1rem;
+  --spacing-02: 0.2rem;
+  --spacing-03: 0.3rem;
+  --spacing-05: 0.5rem;
+  --spacing-06: 0.6rem;
+  --spacing-07: 0.7rem;
+  --spacing-08: 0.8rem;
+  --spacing-09: 0.9rem;
+  --animate-fadeInDown: fadeInDown;
+  --animate-slideInLeft: slideInLeft;
+  --animate-slideInRight: slideInRight;
+  --animate-slideInDown: slideInDown;
+  --animate-slideInUp: slideInUp;
+  --animate-zoomIn: zoomIn;
+  --animate-leftIn: leftIn;
+  --animate-rightIn: rightIn;
 
-@layer components {
-  .card {
-    @apply flex flex-col shadow-md p-1 rounded bg-background;
-  }
+  --container-main: 96rem;
 
-  .paper {
-    @apply flex flex-col shadow-xl p-1 rounded bg-background prose prose-slate my-4 md:mx-auto max-w-[calc(100ch+4rem)] md:p-4;
-  }
-
-  .headMain {
-    @apply font-header text-2xl sm:text-6xl text-center p-2 bg-gradient-to-r from-blue-600 from-20% via-red-600 via-60% to-80% to-yellow-400 bg-clip-text text-transparent;
-  }
-
-  .headPage {
-    @apply font-header text-2xl sm:text-6xl text-center p-2 text-onSurface;
-  }
-
-  .zoomIn {
-    animation-name: zoomIn;
-    animation-duration: 1s;
-    visibility: hidden;
-  }
-
-  .load-on-view {
-    animation-play-state: paused;
-    animation-fill-mode: forwards;
-  }
-
-  .leftIn {
-    animation-name: leftIn;
-    animation-duration: 700ms;
-    opacity: 0;
-  }
-
-  .rightIn {
-    animation-name: rightIn;
-    animation-duration: 700ms;
-    opacity: 0;
-  }
-
-  .slideInUp {
-    animation-name: slideInUp;
-    animation-duration: 500ms;
-    opacity: 0;
-  }
-
-  .slideInDown {
-    animation-name: slideInDown;
-    animation-duration: 500ms;
-    opacity: 0;
-  }
+  --color-primary: #9c27b0;
+  --color-on-primary: #FFFF00;
+  --color-background: #fff;
+  --color-on-background: #00000000;
+  --color-secondary: #625995;
+  --color-on-secondary: #FFFF00;
+  --color-surface: #1e1e1e;
+  --color-on-surface: #e1e1e1;
 
   @keyframes slideInUp {
     from {
@@ -81,6 +61,7 @@ License: GNU General Public License v2 or later
       opacity: 1;
     }
   }
+
   @keyframes slideInDown {
     from {
       transform: translate3d(0, -50%, 0);
@@ -134,33 +115,90 @@ License: GNU General Public License v2 or later
       transform: translateX(0);
     }
   }
-  .arrow {
-    @apply text-4xl font-bold text-onSecondary;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: black var(--color-accents) !important;
+}
+
+@utility card {
+  @apply flex flex-col shadow-md p-1 rounded-sm bg-background;
+}
+
+@utility paper {
+  @apply flex flex-col shadow-xl p-1 rounded-sm bg-background prose prose-slate my-4 @md:mx-auto max-w-[calc(100ch+4rem)] @md:p-4;
   }
 
-  .btn {
-    @apply rounded p-1 bg-primary shadow text-onPrimary text-center text-xl hover:shadow-xl transition-all duration-500 uppercase no-underline;
+  @utility headMain {
+    @apply font-header text-2xl @md:text-6xl text-center p-2 bg-linear-to-r from-blue-600 from-20% via-red-600 via-60% to-80% to-yellow-400 bg-clip-text text-transparent;
   }
-}
 
-.navigation.pagination {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  background-color: #625995;
-}
+  @utility headPage {
+    @apply font-header text-2xl sm:text-6xl text-center p-2 text-on-surface;
+  }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-}
+  @utility arrow {
+    @apply text-4xl font-bold text-on-secondary;
+  }
 
-.page-numbers {
-  font-size: 1.4rem;
-  color: #FFFF00;
-  font-family: "Love Ya Like A Sister", serif;
-  font-weight: 400;
-  font-style: normal;
-}
+  @utility btn {
+    @apply rounded-sm p-1 bg-primary shadow-sm text-on-primary text-center text-xl hover:shadow-xl transition-all duration-500 uppercase no-underline;
+  }
+
+  .zoomIn {
+    animation-name: var(--animate-zoomIn);
+    animation-duration: 1s;
+    visibility: hidden;
+  }
+
+  .load-on-view {
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+  }
+
+  .leftIn {
+    animation-name: var(--animate-leftIn);
+    animation-duration: 700ms;
+    opacity: 0;
+  }
+
+  .rightIn {
+    animation-name: var(--animate-rightIn);
+    animation-duration: 700ms;
+    opacity: 0;
+  }
+
+  .slideInUp {
+    animation-name: var(--animate-slideInUp);
+    animation-duration: 500ms;
+    opacity: 0;
+  }
+
+  .slideInDown {
+    animation-name: var(--animate-slideInDown);
+    animation-duration: 500ms;
+    opacity: 0;
+  }
+
+  .navigation.pagination {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #625995;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .page-numbers {
+    font-size: 1.4rem;
+    color: #FFFF00;
+    font-family: "Love Ya Like A Sister", serif;
+    font-weight: 400;
+    font-style: normal;
+  }

@@ -8,7 +8,7 @@ npm run build &&
 	sudo rm -r $volume/wp-content/themes/grymus
 podman cp grymus $container:/var/www/html/wp-content/themes
 
-sudo rm -r $volume/wp-content/plugins/gallery-posts
+sudo rm -rv $volume/wp-content/plugins/gallery-posts
 # cp -rv gallery-posts $volume/wp-content/plugins
 podman cp gallery-posts $container:/var/www/html/wp-content/plugins
 

@@ -11,7 +11,7 @@
 get_header();
 ?>
 <header class="grid content-center bg-primary p-2">
-    <h1 class="headPage text-onSecondary"><?php the_title() ?></h1>
+    <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
 </header>
 
 <?php

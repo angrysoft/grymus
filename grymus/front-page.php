@@ -8,41 +8,39 @@ get_header(); ?>
 
 
 <main class="flex flex-col gap-2 mb-2">
-    <header class="container card mt-2 slideInUp load-on-view">
+    <header class="card mt-2 slideInUp load-on-view">
         <h1 class="headMain">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
     </header>
-    <article class="bg-primary/80 flex flex-row md:p-4 p-1 slideInUp load-on-view" data-delay="500">
+    <article class=" bg-primary/80 grid @md:p-4 p-1 slideInUp load-on-view" data-delay="500">
         <?php $page_hist = get_page_by_path('home/historia'); ?>
-        <section class="container grid lg:grid-cols-2 grid-cols-1 gap-2 items-center">
+        <section class="grid @xl:grid-cols-2 max-w-main grid-cols-1 gap-2 items-center mx-auto">
             <div class="card">
                 <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_hist->post_title); ?></h3>
                 <div class="prose max-w-none">
                     <?php echo apply_filters('the_content', $page_hist->post_content); ?>
-                    <a href="/kadra-pedagogiczna" class="text-primary font-bold">KADRA</a>
                 </div>
             </div>
 
             <?php if (has_post_thumbnail($page_hist->ID)): ?>
                 <div class="card">
                     <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($page_hist->ID), 'full'); ?>
-                    <img class="grid bg-contain bg-center bg-no-repeat w-full h-auto rounded shadow-inner" src="<?php echo $image[0]; ?>">
+                    <img class="grid bg-contain bg-center bg-no-repeat w-full h-auto rounded-sm shadow-inner" alt="header" src="<?php echo $image[0]; ?>">
 
                 </div>
             <?php endif; ?>
         </section>
     </article>
-    <article class="flex flex-row p-1 md:p-4">
+    <article class="flex flex-row p-1 md:p-4 justify-center">
         <?php $page_wiz = get_page_by_path('home/wizja-przedszkola'); ?>
-        <div class="container card py-1 md:px-4 p-1 slideInUp load-on-view">
+        <div class="max-w-main card py-1 @md:px-4 p-1 slideInUp load-on-view">
             <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_wiz->post_title); ?></h3>
             <div class="prose max-w-none">
                 <?php echo apply_filters('the_content', $page_wiz->post_content); ?>
-                <a href="/koncepcja-pracy" class="text-primary font-bold">CZYTAJ WIECEJ</a>
             </div>
         </div>
     </article>
-    <article class="bg-primary/80 flex flex-row p-4">
-        <div class="container flex flex-wrap gap-2 justify-around">
+    <article class="bg-primary/80 grid justify-center p-4">
+        <div class="max-w-main flex flex-wrap gap-2 justify-between">
             <?php $page_cat = get_page_by_path('home/kategorie'); ?>
             <?php
             $childArgs = array(
@@ -55,8 +53,8 @@ get_header(); ?>
             foreach ($childList as $child) { ?>
                 <?php if (has_post_thumbnail($child->ID)): ?>
                     <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($child->ID), 'full'); ?>
-                    <div class="grid justify-center items-end p-2 bg-cover bg-center bg-no-repeat h-[20rem] w-[20rem] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-500 slideInUp load-on-view" style="background-image: url('<?php echo $image[0]; ?>')" data-delay="<?php echo $delay ?>">
-                        <a href="<?php the_permalink($child); ?>" class="bg-secondary/80 p-1 text-onSecondary rounded text-4xl font-header shadow">
+                    <div class="grid justify-center items-end p-2 bg-cover bg-center bg-no-repeat h-[20rem] w-xs rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-500 slideInUp load-on-view" style="background-image: url('<?php echo $image[0]; ?>')" data-delay="<?php echo $delay ?>">
+                        <a href="<?php the_permalink($child); ?>" class="bg-secondary/80 p-1 text-on-secondary rounded-sm text-4xl font-header shadow-sm">
                             <?php echo $child->post_title; ?>
                         </a>
                     </div>
@@ -66,10 +64,10 @@ get_header(); ?>
         </div>
     </article>
 
-    <article id="kontakt" class="container flex flex-col gap-3 justify-center pt-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 justify-between">
+    <article id="kontakt" class="grid gap-3 justify-center pt-6">
+        <div class="grid grid-cols-1 max-w-main @md:grid-cols-3 gap-2 justify-between">
             <div class="card aspect-square p-2 items-center justify-around hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="0">
-                <span class="material-symbols-outlined text-primary text-8xl text-center">location_on</span>
+                <span class="material-symbols-outlined text-primary !text-8xl text-center">location_on</span>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Adres</h4>
                 <hr class="border border-primary/60 w-full m-2">
                 <div class="grid justify-center gap-1 text-center text-2xl prose ">
@@ -79,7 +77,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="card aspect-square p-2 items-center justify-around hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="200">
-                <span class="material-symbols-outlined text-primary text-8xl text-center">call</span>
+                <span class="material-symbols-outlined text-primary !text-8xl text-center">call</span>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Kontakt</h4>
                 <hr class="border border-primary/60 w-full m-2">
                 <div class="grid justify-center gap-1 p-1 text-center text-2xl prose">
@@ -88,7 +86,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="card aspect-square p-2 items-center justify-around hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="400">
-                <span class="material-symbols-outlined text-primary text-8xl text-center">schedule</span>
+                <span class="material-symbols-outlined text-primary !text-8xl text-center">schedule</span>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Godziny Otwarcia</h4>
                 <hr class="border border-primary/60 w-full m-2">
                 <div class="grid justify-center gap-1 p-1 text-center text-2xl prose">
@@ -96,7 +94,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-        <div class="card zoomIn load-on-view">
+        <div class="card zoomIn max-w-main load-on-view" data-delay="600">
             <iframe
                 title="maps"
                 width="100%"

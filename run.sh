@@ -7,5 +7,7 @@
 #         --env-file=.env.docker \
 #         -d wordpress
 
-npm run watch &
+# npm run watch &
+podman rm grymus_wordpress_1
+podman rm grymus_db_1
 podman compose -f compose.yml up

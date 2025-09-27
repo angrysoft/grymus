@@ -9,6 +9,7 @@ class ElementLoader {
       root: null,
       rootMargin: "0px",
       threshold: 0.2,
+      delay: 200,
     };
     this.elementList = document.querySelectorAll(".load-on-view");
     this.observer = new IntersectionObserver(
@@ -29,7 +30,7 @@ class ElementLoader {
 
       let target = entry.target as HTMLElement;
       console.log(target.dataset.delay);
-      if (target.dataset.delay) 
+      if (target.dataset.delay)
         target.style.animationDelay = target.dataset.delay + "ms";
       target.style.animationPlayState = "running";
       observer.unobserve(entry.target);
@@ -47,8 +48,8 @@ class ElementLoader {
   }
 
   private addObservers() {
-    this.elementList.forEach((news) => {
-      this.observer.observe(news);
+    this.elementList.forEach((item) => {
+      this.observer.observe(item);
     });
   }
 }

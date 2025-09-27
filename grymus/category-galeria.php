@@ -11,7 +11,7 @@
 get_header();
 ?>
 <header class="grid content-center bg-secondary p-4">
-    <h1 class="headPage text-onSecondary"><?php single_cat_title(); ?> gaga</h1>
+    <h1 class="headPage text-on-secondary"><?php single_cat_title(); ?> gaga</h1>
 </header>
 <main class="container flex flex-col items-center gap-2 my-2">
     <?php $delay = 100; ?>
