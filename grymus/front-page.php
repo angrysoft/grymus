@@ -18,6 +18,7 @@ get_header(); ?>
                 <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_hist->post_title); ?></h3>
                 <div class="prose max-w-none">
                     <?php echo apply_filters('the_content', $page_hist->post_content); ?>
+                    <a href="/kadra-pedagogiczna" class="text-primary font-bold">KADRA</a>
                 </div>
             </div>
 
