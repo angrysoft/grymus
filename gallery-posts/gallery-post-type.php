@@ -33,7 +33,7 @@ function gallery_post_type()
         'add_new'             => 'Dodaj nową',
         'edit_item'           => 'Edytuj galerie',
         'update_item'         => 'Aktualizuj',
-        'search_items'        => 'Szukaj Galeri',
+        'search_items'        => 'Szukaj Galerii',
         'not_found'           => 'Nie znaleziono',
         'not_found_in_trash'  => 'Nie znaleziono'
     );

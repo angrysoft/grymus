@@ -23,6 +23,10 @@ License: GNU General Public License v2 or later
     @apply flex flex-col shadow-md p-1 rounded bg-background;
   }
 
+  .paper {
+    @apply flex flex-col shadow-md p-1 rounded bg-background prose prose-slate my-4 md: mx-auto max-w-[calc(100ch+4rem)] md:p-4;
+  }
+
   .headMain {
     @apply font-header text-2xl sm:text-6xl text-center p-2 bg-gradient-to-r from-blue-600 from-20% via-red-600 via-60% to-80% to-yellow-400 bg-clip-text text-transparent;
   }

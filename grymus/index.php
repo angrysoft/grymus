@@ -20,7 +20,7 @@ while (have_posts()) :
 
 ?>
     <main class="container">
-        <div class="card prose prose-slate my-4 md:mx-auto max-w-[100ch] p-1 md:p-4">
+        <div class="paper">
             <?php the_content(); ?>
         </div>
     </main>

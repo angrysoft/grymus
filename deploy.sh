@@ -5,23 +5,32 @@ VERSION=$(npm pkg get version | sed 's/"//g')
 
 build() {
 	echo "Building..."
-	rm -frv dist
-	ng build --configuration production
+	npm run tail
+	npm run build
 
 }
 
 archive() {
 	echo "Archiving..."
-	cd dist
 	tar czf $NAME-$VERSION.tgz grymus gallery-posts
 	sha256sum $NAME-$VERSION.tgz >$NAME-$VERSION.tgz.sha
 	echo "Created $NAME-$VERSION.tgz and $NAME-$VERSION.tgz.sha"
 }
 
-zip() {
+zip_theme() {
 	echo "Zipping..."
-
+	rm -f $NAME-*.zip
+	zip -r $NAME-$VERSION.zip grymus
+	echo "Created $NAME-$VERSION.zip"
 }
+
+zip_plugins() {
+	echo "Zipping plugins..."
+	rm -f gallery-posts-*.zip
+	zip -r gallery-posts-$VERSION.zip gallery-posts
+	echo "Created gallery-posts-$VERSION.zip"
+}
+
 case "$1" in
 prod)
 	echo "Deploying to production server"
@@ -48,9 +57,11 @@ ver)
 	;;
 zip)
 	build
+	zip_theme
+	zip_plugins
 	;;
 *)
-	echo "Usage: $0 {prod|ver}"
+	echo "Usage: $0 {prod|ver|zip}"
 	exit 1
 	;;
 esac
