@@ -51,8 +51,7 @@ ver)
 		exit 1
 	fi
 	VERSION=$(npm pkg get version | sed 's/"//g')
-	sed -i "s/frontendVersion.=.\".*\"/frontendVersion = \"${VERSION}\"/g" /home/seba/workspace/event-tools-frontend/src/app/version.ts
-	git add src/app/version.ts
+	sed -i "s/Version:.*\/Version: ${VERSION}/g" /home/seba/workspace/grymus/grymus/style.css
 	git commit -m "Bump version to $VERSION"
 	;;
 zip)
