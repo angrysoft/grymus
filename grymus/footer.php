@@ -9,7 +9,7 @@
 ?>
 <!-- Footer -->
 <footer class="grid justify-center bg-primary text-on-surface p-2">
-    <div class="max-w-main grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center p-1 @md:py-2 @md:px-4">
+    <div class="max-w-main grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center p-1 @md:py-2 @md:px-4">
         <div class="prose text-on-surface p-1">
             <h4 class="font-header p-2 border-b text-on-surface text-3xl">Numery Kont</h4>
             <p>

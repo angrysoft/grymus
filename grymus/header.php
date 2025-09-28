@@ -27,7 +27,7 @@
             <button id="menu-toggle" class="material-symbols-outlined block @xl:!hidden text-4xl font-bold" type="button">menu</button>
             <a class="flex justify-center @xl:justify-start h-full w-full" href="/"><?php get_menu_logo(); ?></a>
         </div>
-        <div id="menu-wrapper" class="grid items-start z-50 @xl:items-center fixed @xl:relative h-full w-full left-[-100dvw] @xl:left-[unset] bg-background/90 transition-left duration-500 px-1 pt-6 @xl:p-0">
+        <div id="menu-wrapper" class="grid items-start z-50 @xl:items-center fixed justify-center @xl:relative h-full w-full left-[-100dvw] @xl:left-[unset] bg-background/90 transition-left duration-500 px-1 pt-6 @xl:p-0">
             <?php wp_nav_menu(array(
                 'menu' => 'Top Menu',
                 'items_wrap' => '%3$s',
