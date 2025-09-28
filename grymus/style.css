@@ -734,6 +734,9 @@ License: GNU General Public License v2 or later
     & :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
       margin-block: var(--spacing-03);
     }
+    & :is(:where(ul):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      margin-block: var(--spacing-03);
+    }
   }
   .mx-auto {
     margin-inline: auto;
