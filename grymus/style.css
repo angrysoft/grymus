@@ -6,7 +6,7 @@ Author: Sebastian Zwierzchowski
 Author URI: https://angrysoft.ovh
 Description: Grumuś WebSite
 Text Domain: grumus
-Version: 0.4.0
+Version: 0.5.0
 License: GNU General Public License v2 or later
 */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap');
@@ -1236,8 +1236,8 @@ License: GNU General Public License v2 or later
   .grid-cols-\[auto_100ch\] {
     grid-template-columns: auto 100ch;
   }
-  .grid-rows-\[2fr_1fr_auto\] {
-    grid-template-rows: 2fr 1fr auto;
+  .grid-rows-\[1fr_auto_2fr\] {
+    grid-template-rows: 1fr auto 2fr;
   }
   .grid-rows-\[minmax\(0px\,1fr\)\] {
     grid-template-rows: minmax(0px,1fr);

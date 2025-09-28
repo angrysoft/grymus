@@ -34,7 +34,7 @@ get_header();
                         $image = wp_get_attachment_image_src(get_post_thumbnail_id($child->ID), 'single-post-thumbnail');
                     }
                     ?>
-                    <div class="grid grid-rows-[2fr_1fr_auto] gap-1 p-2 relative bg-primary justify-center items-center bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="<?php echo $delay ?>">
+                    <div class="grid grid-rows-[1fr_auto_2fr] gap-1 p-2 relative bg-primary justify-center items-center bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="<?php echo $delay ?>">
                         <div class="grid justify-center items-center w-full h-full overflow-hidden bg-center bg-contain bg-no-repeat p-1" style="background-image: url('<?php echo $image[0] ?>');">
                         </div>
                         <div class="bg-secondary/80 p-1 text-on-secondary text-center rounded-sm text-4xl font-header"><?php echo $child->post_title; ?></div>
