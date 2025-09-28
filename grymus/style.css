@@ -6,7 +6,7 @@ Author: Sebastian Zwierzchowski
 Author URI: https://angrysoft.ovh
 Description: Grumuś WebSite
 Text Domain: grumus
-Version: 0.5.1
+Version: 0.5.2
 License: GNU General Public License v2 or later
 */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap');
@@ -22,7 +22,6 @@ License: GNU General Public License v2 or later
       "Courier New", monospace;
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-yellow-400: oklch(85.2% 0.199 91.936);
-    --color-green-600: oklch(62.7% 0.194 149.214);
     --color-blue-600: oklch(54.6% 0.245 262.881);
     --spacing: 1rem;
     --container-xs: 20rem;
@@ -1216,6 +1215,9 @@ License: GNU General Public License v2 or later
   .max-w-\[100ch\] {
     max-width: 100ch;
   }
+  .max-w-\[120ch\] {
+    max-width: 120ch;
+  }
   .max-w-\[125ch\] {
     max-width: 125ch;
   }
@@ -1236,6 +1238,9 @@ License: GNU General Public License v2 or later
   }
   .grid-cols-\[auto_100ch\] {
     grid-template-columns: auto 100ch;
+  }
+  .grid-rows-\[1fr_2fr\] {
+    grid-template-rows: 1fr 2fr;
   }
   .grid-rows-\[1fr_auto_2fr\] {
     grid-template-rows: 1fr auto 2fr;
@@ -1349,17 +1354,11 @@ License: GNU General Public License v2 or later
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 2px;
   }
-  .border-green-600 {
-    border-color: var(--color-green-600);
-  }
   .border-primary\/60 {
     border-color: color-mix(in srgb, #9c27b0 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-primary) 60%, transparent);
     }
-  }
-  .border-red-600 {
-    border-color: var(--color-red-600);
   }
   .border-b-primary {
     border-bottom-color: var(--color-primary);
@@ -1681,14 +1680,19 @@ License: GNU General Public License v2 or later
       padding: calc(var(--spacing) * 4);
     }
   }
-  .\@md\:grid-cols-2 {
-    @container (width >= 28rem) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
   .\@md\:grid-cols-3 {
     @container (width >= 28rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .\@md\:grid-cols-\[1fr_2fr\] {
+    @container (width >= 28rem) {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+  .\@md\:grid-rows-1 {
+    @container (width >= 28rem) {
+      grid-template-rows: repeat(1, minmax(0, 1fr));
     }
   }
   .\@md\:p-2 {
