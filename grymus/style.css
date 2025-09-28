@@ -49,6 +49,7 @@ License: GNU General Public License v2 or later
     --default-mono-font-family: var(--font-mono);
     --font-body: "Kalam", cursive;
     --font-header: "Love Ya Like A Sister", cursive;
+    --spacing-03: 0.3rem;
     --animate-slideInDown: slideInDown;
     --animate-slideInUp: slideInUp;
     --animate-zoomIn: zoomIn;
@@ -729,6 +730,9 @@ License: GNU General Public License v2 or later
     }
     @container (width >= 28rem) {
       padding: calc(var(--spacing) * 4);
+    }
+    & :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      margin-block: var(--spacing-03);
     }
   }
   .mx-auto {
