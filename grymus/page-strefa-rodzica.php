@@ -19,7 +19,7 @@ get_header();
                     <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
                 </div>
             </header>
-            <div class="grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 gap-2 justify-around items-center p-1 @md:p-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] max-w-[120rem] gap-2 justify-center p-1 @md:py-2 @md:px-4">
                 <?php
                 $childArgs = array(
                     'sort_order' => 'ASC',
@@ -29,12 +29,13 @@ get_header();
                 $delay = 0;
                 $childList = get_pages($childArgs);
                 foreach ($childList as $child) { ?>
-                    <div class="flex flex-col gap-1 relative bg-secondary justify-center items-center bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 zoomIn load-on-view" data-delay="<?php echo $delay ?>">
-                        <a href="<?php the_permalink($child); ?>" class="block p-1 text-on-secondary rounded-sm text-4xl font-header w-full h-full text-center"><?php echo $child->post_title; ?></a>
-                    </div>
-                    <?php $delay += 100; ?>
-                <?php } ?>
+                    <a href="<?php the_permalink($child); ?>" class="grid gap-1 relative bg-secondary text-on-secondary place-content-center rounded-xl overflow-hidden shadow-md hover:shadow-xl p-2 transition-shadow duration-500 zoomIn load-on-view" data-delay="<?php echo $delay ?>">
+                        <?php echo $child->post_title; ?>
+                    </a>
             </div>
+            <?php $delay += 100; ?>
+        <?php } ?>
+        </div>
         </article>
     </main>
 

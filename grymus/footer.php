@@ -8,10 +8,10 @@
  */
 ?>
 <!-- Footer -->
-<footer class="@container grid justify-center bg-primary text-on-surface p-2">
-    <div class="max-w-main grid grid-cols-1 sm:grid-cols-3">
+<footer class="grid justify-center bg-primary text-on-surface p-2">
+    <div class="max-w-main grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center p-1 @md:py-2 @md:px-4">
         <div class="prose text-on-surface p-1">
-            <h4 class="font-header p-2 border-b text-on-surface text-4xl">Numery Kont</h4>
+            <h4 class="font-header p-2 border-b text-on-surface text-3xl">Numery Kont</h4>
             <p>
                 Opłatę za wyżywienie<br />
                 92 8001 0005 2001 0008 0129 0001
@@ -22,7 +22,7 @@
             </p>
         </div>
         <div class="prose text-on-surface p-1">
-            <h4 class="font-header p-2 border-b text-on-surface text-4xl">Kontakt</h4>
+            <h4 class="font-header p-2 border-b text-on-surface text-3xl">Kontakt</h4>
             <p>
                 Przedszkole Miejskie nr 16 ul.<br />
                 Karczewska 27A
@@ -36,7 +36,7 @@
             </p>
         </div>
         <div class="prose text-on-surface p-1">
-            <h4 class="font-header p-2 border-b text-on-surface text-4xl">Informacje</h4>
+            <h4 class="font-header p-2 border-b text-on-surface text-3xl">Informacje</h4>
             <p><a href="/rodo" class="text-on-surface">RODO</a></p>
             <p><a href="/deklaracja-dostepnosci" class="text-on-surface">Deklaracja Dostępności</a></p>
         </div>

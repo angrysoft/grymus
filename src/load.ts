@@ -8,7 +8,7 @@ class ElementLoader {
     let options: Object = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.2,
+      threshold: 0.1,
       delay: 200,
     };
     this.elementList = document.querySelectorAll(".load-on-view");

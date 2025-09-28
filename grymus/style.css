@@ -31,6 +31,8 @@ License: GNU General Public License v2 or later
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
@@ -1204,9 +1206,6 @@ License: GNU General Public License v2 or later
   .h-max {
     height: max-content;
   }
-  .max-h-full {
-    max-height: 100%;
-  }
   .w-full {
     width: 100%;
   }
@@ -1216,11 +1215,11 @@ License: GNU General Public License v2 or later
   .max-w-\[100ch\] {
     max-width: 100ch;
   }
+  .max-w-\[120rem\] {
+    max-width: 120rem;
+  }
   .max-w-\[125ch\] {
     max-width: 125ch;
-  }
-  .max-w-full {
-    max-width: 100%;
   }
   .max-w-main {
     max-width: var(--container-main);
@@ -1228,7 +1227,7 @@ License: GNU General Public License v2 or later
   .max-w-none {
     max-width: none;
   }
-  .grow {
+  .flex-grow {
     flex-grow: 1;
   }
   .transform {
@@ -1243,6 +1242,12 @@ License: GNU General Public License v2 or later
   .grid-cols-\[auto_100ch\] {
     grid-template-columns: auto 100ch;
   }
+  .grid-rows-\[2fr_1fr_auto\] {
+    grid-template-rows: 2fr 1fr auto;
+  }
+  .grid-rows-\[minmax\(0px\,1fr\)\] {
+    grid-template-rows: minmax(0px,1fr);
+  }
   .flex-col {
     flex-direction: column;
   }
@@ -1251,6 +1256,9 @@ License: GNU General Public License v2 or later
   }
   .flex-wrap {
     flex-wrap: wrap;
+  }
+  .place-content-center {
+    place-content: center;
   }
   .content-center {
     align-content: center;
@@ -1318,6 +1326,9 @@ License: GNU General Public License v2 or later
       }
     }
   }
+  .rounded {
+    border-radius: 0.25rem;
+  }
   .rounded-sm {
     border-radius: var(--radius-sm);
   }
@@ -1351,6 +1362,12 @@ License: GNU General Public License v2 or later
   }
   .bg-background {
     background-color: var(--color-background);
+  }
+  .bg-background\/80 {
+    background-color: color-mix(in srgb, #fff 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-background) 80%, transparent);
+    }
   }
   .bg-background\/90 {
     background-color: color-mix(in srgb, #fff 90%, transparent);
@@ -1516,6 +1533,10 @@ License: GNU General Public License v2 or later
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
   .text-4xl {
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
@@ -1639,11 +1660,6 @@ License: GNU General Public License v2 or later
       }
     }
   }
-  .sm\:grid-cols-3 {
-    @media (width >= 40rem) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
   .md\:mx-auto {
     @media (width >= 48rem) {
       margin-inline: auto;
@@ -1652,6 +1668,16 @@ License: GNU General Public License v2 or later
   .md\:p-4 {
     @media (width >= 48rem) {
       padding: calc(var(--spacing) * 4);
+    }
+  }
+  .lg\:grid-cols-2 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .xl\:grid-cols-3 {
+    @media (width >= 80rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .\@md\:grid-cols-3 {
@@ -1672,11 +1698,6 @@ License: GNU General Public License v2 or later
   .\@md\:py-2 {
     @container (width >= 28rem) {
       padding-block: calc(var(--spacing) * 2);
-    }
-  }
-  .\@lg\:grid-cols-2 {
-    @container (width >= 32rem) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .\@xl\:relative {
@@ -1707,11 +1728,6 @@ License: GNU General Public License v2 or later
   .\@xl\:grid-cols-2 {
     @container (width >= 36rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  .\@xl\:grid-cols-3 {
-    @container (width >= 36rem) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .\@xl\:items-center {

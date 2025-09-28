@@ -19,7 +19,7 @@ get_header();
                     <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
                 </div>
             </header>
-            <div class="grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 gap-2 justify-around p-1 @md:py-2 @md:px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center p-1 @md:py-2 @md:px-4">
                 <?php
                 $childArgs = array(
                     'sort_order' => 'ASC',
@@ -34,12 +34,11 @@ get_header();
                         $image = wp_get_attachment_image_src(get_post_thumbnail_id($child->ID), 'single-post-thumbnail');
                     }
                     ?>
-                    <div class="flex flex-col gap-1 p-2 relative bg-primary justify-center items-center bg-cover bg-center bg-no-repeat aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="<?php echo $delay ?>">
-                        <div class="flex grow justify-center items-center overflow-hidden">
-                            <img src="<?php echo $image[0] ?>" alt="mrówka" class="max-h-full max-w-full" />
+                    <div class="grid grid-rows-[2fr_1fr_auto] flex-grow gap-1 p-2 relative bg-primary justify-center items-center bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 slideInUp load-on-view" data-delay="<?php echo $delay ?>">
+                        <div class="grid justify-center items-center w-full h-full overflow-hidden bg-center bg-contain bg-no-repeat p-1" style="background-image: url('<?php echo $image[0] ?>');">
                         </div>
-                        <p class="bg-secondary/80 p-1 text-on-secondary rounded-sm text-4xl font-header"><?php echo $child->post_title; ?></p>
-                        <div class="text-on-surface">
+                        <div class="bg-secondary/80 p-1 text-on-secondary text-center rounded-sm text-4xl font-header"><?php echo $child->post_title; ?></div>
+                        <div class="rounded prose bg-background/80 p-1 aspect-square">
                             <?php echo $child->post_content; ?>
                         </div>
                     </div>
