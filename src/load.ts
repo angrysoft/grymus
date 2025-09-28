@@ -7,7 +7,7 @@ class ElementLoader {
   constructor() {
     let options: Object = {
       root: null,
-      rootMargin: "100px",
+      rootMargin: "200px",
       threshold: 0,
       delay: 200,
     };
@@ -28,7 +28,6 @@ class ElementLoader {
         return;
       }
 
-      console.log("ElementLoader: onViewAction", entry);
       let target = entry.target as HTMLElement;
       if (target.dataset.delay)
         target.style.animationDelay = target.dataset.delay + "ms";
