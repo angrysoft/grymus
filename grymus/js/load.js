@@ -5,7 +5,7 @@ class ElementLoader {
         this.timer = 0;
         let options = {
             root: null,
-            rootMargin: "0px",
+            rootMargin: "100px",
             threshold: 0,
             delay: 200,
         };
@@ -18,8 +18,8 @@ class ElementLoader {
             if (!entry.isIntersecting) {
                 return;
             }
+            console.log("ElementLoader: onViewAction", entry);
             let target = entry.target;
-            console.log(target.dataset.delay);
             if (target.dataset.delay)
                 target.style.animationDelay = target.dataset.delay + "ms";
             target.style.animationPlayState = "running";
