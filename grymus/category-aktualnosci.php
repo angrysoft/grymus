@@ -13,41 +13,42 @@ get_header();
 <header class="grid content-center bg-secondary p-4">
     <h1 class="headPage text-on-secondary"><?php single_cat_title(); ?></h1>
 </header>
-<main class="flex flex-col items-center justify-center gap-2 my-2">
-    <?php $delay = 100; ?>
-    <?php
-    while (have_posts()) :
-        the_post();
-    ?>
-
-        <div class="card grid grid-cols-[auto_100ch] items-center justify-center prose prose-slate max-w-[125ch] w-full p-0 slideInUp load-on-view">
-            <?php
-            if (has_post_thumbnail()) {
-                $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'thumbnail');
-                $image = $image[0];
-            } else {
-                $image = esc_url(get_template_directory_uri() . '/images/grymus_logo_250.webp');
-            }
-            ?>
-            <div class="p-1">
-                <img src="<?php echo $image ?>" alt="">
-            </div>
-            <div class="flex flex-col items-start p-1">
-                <h2><?php the_title() ?></h2>
-                <?php the_excerpt(); ?>
-                <div class="flex justify-end w-full p-1">
-                    <a class="btn" href="<?php the_permalink(); ?>">
-                        <span>pokaż więcej</span>
-                    </a>
+<main class="grid justify-center">
+    <div class="grid gap-2 py-2">
+        <?php $delay = 100; ?>
+        <?php
+        while (have_posts()) :
+            the_post();
+        ?>
+            <div class="grid grid-cols-1 p-1 @md:grid-cols-2 @md:p-2 shadow-2xl items-center justify-center bg-background/80 rounded w-full slideInUp load-on-view">
+                <?php
+                if (has_post_thumbnail()) {
+                    $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'thumbnail');
+                    $image = $image[0];
+                } else {
+                    $image = esc_url(get_template_directory_uri() . '/images/grymus_logo_250.webp');
+                }
+                ?>
+                <div class="p-1">
+                    <img src="<?php echo $image ?>" alt="">
+                </div>
+                <div class="grid grid-rows-[auto_auto_auto] p-1 border prose prose-slate border-green-600">
+                    <h2><?php the_title() ?></h2>
+                    <?php the_excerpt(); ?>
+                    <div class="flex justify-end w-full p-1 border border-red-600">
+                        <a class="btn" href="<?php the_permalink(); ?>">
+                            <span>pokaż więcej</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <?php $delay += 200; ?>
+            <?php $delay += 200; ?>
 
-    <?php
-    endwhile; // End the loop.
-    ?>
+        <?php
+        endwhile; // End the loop.
+        ?>
+    </div>
 </main>
 <?php the_posts_pagination(array(
     'mid_size'  => 2,
