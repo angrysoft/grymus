@@ -62,6 +62,7 @@ License: GNU General Public License v2 or later
     --color-secondary: #625995;
     --color-on-secondary: #FFFF00;
     --color-on-surface: #e1e1e1;
+    --color-paper: #F5F5DC;
   }
 }
 @layer base {
@@ -685,7 +686,7 @@ License: GNU General Public License v2 or later
     max-width: calc(100ch + 4rem);
     flex-direction: column;
     border-radius: var(--radius-sm);
-    background-color: var(--color-background);
+    background-color: var(--color-paper);
     padding: calc(var(--spacing) * 1);
     --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);

@@ -14,7 +14,7 @@ get_header();
 <?php while (have_posts()) : the_post(); ?>
     <main class="grid justify-center">
         <article class="max-w-main group gap-2">
-            <header class="grid content-center p-1 @md:p-4 ">
+            <header class="grid content-center p-1 @md:p-2">
                 <div class="p-2 bg-primary rounded-xl">
                     <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
                 </div>

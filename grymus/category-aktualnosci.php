@@ -14,7 +14,7 @@ get_header();
     <h1 class="headPage text-on-secondary"><?php single_cat_title(); ?></h1>
 </header>
 <main>
-    <div class="grid gap-2 py-2 max-w-[120ch] mx-auto px-1 @md:px-4">
+    <div class="grid gap-2 py-2 max-w-[120ch] mx-auto px-1 @md:py-2">
         <?php $delay = 100; ?>
         <?php
         while (have_posts()) :

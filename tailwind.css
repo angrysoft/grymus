@@ -49,6 +49,12 @@ License: GNU General Public License v2 or later
   --color-on-secondary: #FFFF00;
   --color-surface: #1e1e1e;
   --color-on-surface: #e1e1e1;
+  --color-paper: #F5F5DC;
+  --color-paper-printer: #FAFAF5;   /* clean printer paper */
+  --color-paper-recycled: #EAE6DA;  /* recycled paper */
+  --color-paper-notebook: #FFFBF0;  /* warm white notebook */
+  --color-paper-oldbook: #F5ECD9;   /* slightly yellowed */
+  --color-paper-parchment: #EAD7A4; /* vintage parchment */
 
   @keyframes slideInUp {
     from {
@@ -127,7 +133,7 @@ License: GNU General Public License v2 or later
 }
 
 @utility paper {
-  @apply flex flex-col shadow-xl p-1 rounded-sm bg-background prose prose-slate prose-p:my-03 prose-ul:my-03 my-4 @md:mx-auto max-w-[calc(100ch+4rem)] @md:p-4;
+  @apply flex flex-col shadow-xl p-1 rounded-sm bg-paper prose prose-slate prose-p:my-03 prose-ul:my-03 my-4 @md:mx-auto max-w-[calc(100ch+4rem)] @md:p-4;
   }
 
   @utility headMain {
