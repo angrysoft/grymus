@@ -29,8 +29,8 @@ get_header();
                 $delay = 0;
                 $childList = get_pages($childArgs);
                 foreach ($childList as $child) { ?>
-                    <a href="<?php the_permalink($child); ?>" class="grid gap-1 relative bg-secondary text-on-secondary place-content-center rounded-xl overflow-hidden shadow-md hover:shadow-xl p-2 transition-shadow duration-500 zoomIn load-on-view" data-delay="<?php echo $delay ?>">
-                        <?php echo $child->post_title; ?>
+                    <a href="<?php the_permalink($child); ?>" class="grid gap-1 relative bg-secondary text-on-secondary !no-underline text-lg place-content-center rounded-xl overflow-hidden shadow-md hover:shadow-xl p-1 transition-shadow duration-500 zoomIn load-on-view" data-delay="<?php echo $delay ?>">
+                        <span></span><?php echo $child->post_title; ?></span>
                     </a>
                     <?php $delay += 100; ?>
                 <?php } ?>
