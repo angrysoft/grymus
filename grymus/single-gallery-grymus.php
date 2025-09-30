@@ -19,8 +19,8 @@ while (have_posts()) :
     the_post();
 
 ?>
-    <main class="container">
-        <div class="card prose prose-slate my-4 md:mx-auto max-w-[100ch] p-1">
+    <main class="grid justify-center p-2">
+        <div class="card prose prose-slate my-4 md:mx-auto max-w-main p-1">
             <?php the_content(); ?>
         </div>
     </main>

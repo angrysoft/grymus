@@ -1,230 +1,147 @@
 class Gallery {
   private readonly container: Element;
   private readonly imagesList: NodeListOf<HTMLImageElement>;
-  private currentIndex: number = 0;
-  private currentSlice: number = 0;
-  private img = document.createElement("img");
-  private fullView: HTMLElement = document.createElement("div");
   private readonly sliceSize: number = 6;
 
   public constructor(el: Element) {
-    this.addFullView();
 
     this.container = el;
+    this.container.className = "grymus-gallery";
+    this.container.classList.add("cursor-pointer");
     this.imagesList = this.container.querySelectorAll(
       ".wp-block-image img"
     );
-    console.log(this.imagesList);
     this.container.addEventListener("click", (e) => this.showGallery(e));
-    this.makeSlice();
-    this.fullView.addEventListener("animationend", () => {
-      if (this.fullView.style.animationName === "zoomOut") {
-        this.fullView.style.display = "";
-      }
-      this.fullView.style.animationName = "";
-    });
-
-    this.img.addEventListener("animationend", () => {
-      this.img.style.animationName = "";
-    });
   }
 
-  private addFullView() {
-    this.fullView = document.createElement("div");
-    let btnClose = this.makeButton("close", "close-gallery");
-    btnClose.addEventListener("click", () => this.hideGallery());
-    this.fullView.appendChild(btnClose);
+  private showGallery(e: Event): void {
+    const target = e.target as HTMLImageElement;
+    if (!target || !this.imagesList) return;
+    const imgIndex = Array.from(this.imagesList).indexOf(target);
+    if (imgIndex === -1) return;
 
-    let btnPrev = this.makeButton("navigate_before", "gallery-prev");
-    btnPrev.addEventListener("click", () => this.prevPhoto());
-    this.fullView.appendChild(btnPrev);
+    // Create overlay
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.background = "rgba(0,0,0,0.9)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "9999";
 
-    let btnNext = this.makeButton("navigate_next", "gallery-next");
-    btnNext.addEventListener("click", () => this.nextPhoto());
-    this.fullView.appendChild(btnNext);
+    // Create image element
+    const fullImg = document.createElement("img");
+    fullImg.src = target.src;
+    fullImg.style.maxWidth = "90vw";
+    fullImg.style.maxHeight = "90vh";
+    fullImg.style.boxShadow = "0 0 32px #000";
+    fullImg.style.borderRadius = "8px";
+    overlay.appendChild(fullImg);
 
-    this.fullView.appendChild(this.img);
+    // Navigation buttons
+    const prevBtn = document.createElement("button");
+    prevBtn.innerHTML = "&#8592;";
+    prevBtn.style.position = "absolute";
+    prevBtn.style.left = "32px";
+    prevBtn.style.top = "50%";
+    prevBtn.style.transform = "translateY(-50%)";
+    prevBtn.style.fontSize = "2rem";
+    prevBtn.style.background = "rgba(0,0,0,0.5)";
+    prevBtn.style.color = "#fff";
+    prevBtn.style.border = "none";
+    prevBtn.style.cursor = "pointer";
+    prevBtn.style.padding = "12px";
+    prevBtn.style.borderRadius = "50%";
+    overlay.appendChild(prevBtn);
 
-    this.fullView.id = "gallery-full-view";
-    document.querySelector("body")?.appendChild(this.fullView);
-  }
+    const nextBtn = document.createElement("button");
+    nextBtn.innerHTML = "&#8594;";
+    nextBtn.style.position = "absolute";
+    nextBtn.style.right = "32px";
+    nextBtn.style.top = "50%";
+    nextBtn.style.transform = "translateY(-50%)";
+    nextBtn.style.fontSize = "2rem";
+    nextBtn.style.background = "rgba(0,0,0,0.5)";
+    nextBtn.style.color = "#fff";
+    nextBtn.style.border = "none";
+    nextBtn.style.cursor = "pointer";
+    nextBtn.style.padding = "12px";
+    nextBtn.style.borderRadius = "50%";
+    overlay.appendChild(nextBtn);
 
-  private makeButton(text: string, id: string): HTMLElement {
-    let btn = document.createElement("span");
-    btn.className = "material-icons";
-    btn.id = id;
-    btn.innerText = text;
-    return btn;
-  }
+    // Close button
+    const closeBtn = document.createElement("button");
+    closeBtn.innerHTML = "&times;";
+    closeBtn.style.position = "absolute";
+    closeBtn.style.top = "32px";
+    closeBtn.style.right = "32px";
+    closeBtn.style.fontSize = "2rem";
+    closeBtn.style.background = "rgba(0,0,0,0.5)";
+    closeBtn.style.color = "#fff";
+    closeBtn.style.border = "none";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.padding = "12px";
+    closeBtn.style.borderRadius = "50%";
+    overlay.appendChild(closeBtn);
 
-  private nextSlice() {
-    if (
-      ++this.currentSlice >
-      Math.ceil(this.imagesList.length / this.sliceSize) - 1
-    ) {
-      this.currentSlice = 0;
-    }
-    console.log(this.currentSlice);
-    this.showSlice();
-  }
+    let currentIndex = imgIndex;
 
-  private prevSlice() {
-    if (--this.currentSlice < 0) {
-      this.currentSlice =
-        Math.ceil(this.imagesList.length / this.sliceSize) - 1;
-    }
-    console.log(this.currentSlice);
-    this.showSlice();
-  }
-
-  private makeSlice() {
-    if (this.imagesList.length > this.sliceSize) {
-      let sliceNavDiv: HTMLElement = document.createElement("div");
-      let sliceNavPrev: HTMLElement = this.makeButton(
-        "navigate_before",
-        "slice-prev"
-      );
-      let sliceNavNext: HTMLElement = this.makeButton(
-        "navigate_next",
-        "slice-next"
-      );
-      sliceNavDiv.id = "sliceNav";
-      sliceNavNext.addEventListener("click", () => this.nextSlice());
-      sliceNavDiv.appendChild(sliceNavPrev);
-      sliceNavPrev.addEventListener("click", () => this.prevSlice());
-      sliceNavDiv.appendChild(sliceNavNext);
-      this.container.appendChild(sliceNavDiv);
-    }
-    this.showSlice();
-  }
-
-  private showSlice() {
-    let startIndex: number = this.currentSlice * this.sliceSize;
-    let endIndex: number = startIndex + this.sliceSize;
-    if (endIndex > this.imagesList.length) {
-      endIndex = this.imagesList.length;
-    }
-
-    this.hideOtherSlice();
-    let animNo = 0;
-    for (; startIndex != endIndex; startIndex++) {
-      console.log(
-        startIndex,
-        this.imagesList.length,
-        this.imagesList[startIndex]
-      );
-      let parent = this.imagesList[startIndex].parentElement?.parentElement;
-      if (parent) {
-        parent.addEventListener(
-          "animationend",
-          (el) => {
-            (el.target as HTMLElement).style.opacity = "";
-          },
-          { once: true }
-        );
-        parent.style.opacity = "0";
-        parent.classList.add("show-self");
-        parent.style.animationName = `anim-${++animNo}`;
-        parent.style.animationDelay = `${animNo * 100}ms`;
-      }
-    }
-  }
-
-  private hideOtherSlice() {
-    let elList: NodeListOf<HTMLElement> = this.container.querySelectorAll(
-      "li.blocks-gallery-item.show-self"
-    );
-
-    elList.forEach((el) => {
-      el.classList.remove("show-self");
-      el.style.animationName = "";
-    });
-  }
-
-  private setCurrentIndex(dataId: string) {
-    for (var _i: number = 0; _i < this.imagesList.length; _i++) {
-      if (this.imagesList[_i].dataset.id === dataId) {
-        this.currentIndex = _i;
-        break;
-      }
-    }
-  }
-
-  private showGallery(e: Event) {
-    let img = e.target as HTMLElement;
-    if (img.nodeName != "IMG") {
-      return;
-    }
-    if (img.dataset.id) {
-      this.setCurrentIndex(img.dataset.id);
-    } else {
-      this.currentIndex = 0;
-    }
-    this.setCurrentPhoto("fadeIn");
-    this.fullView.style.animationName = "zoomIn";
-    this.fullView.style.display = "flex";
-    this.addKeyEvent();
-  }
-
-  public hideGallery() {
-    this.fullView.style.animationName = "zoomOut";
-    this.delKeyEvent();
-  }
-
-  private addKeyEvent() {
-    document.addEventListener("keyup", (e) => this.keyPress(e));
-    // document.addEventListener('keydown', (e) => e.preventDefault());
-  }
-
-  private delKeyEvent() {
-    document.removeEventListener("keyup", (e) => this.keyPress(e));
-    // document.removeEventListener('keydown', (e) => e.preventDefault());
-  }
-
-  private keyPress(e: KeyboardEvent) {
-    e.preventDefault();
-    switch (e.code) {
-      case "ArrowLeft":
-        this.nextPhoto();
-        break;
-      case "ArrowRight":
-        this.prevPhoto();
-        break;
-      case "Space":
-        this.nextPhoto();
-        break;
-      case "Escape":
-        this.hideGallery();
-        break;
-    }
-  }
-
-  public nextPhoto() {
-    if (++this.currentIndex === this.imagesList.length) {
-      this.currentIndex = 0;
-    }
-
-    this.setCurrentPhoto("fadeIn");
-  }
-
-  public prevPhoto() {
-    if (--this.currentIndex < 0) {
-      this.currentIndex = this.imagesList.length - 1;
-    }
-
-    this.setCurrentPhoto("fadeIn");
-  }
-
-  public setCurrentPhoto(animationName: string) {
-    let img = new Image();
-    img.onload = () => {
-      this.fullView.removeChild(this.img);
-      this.img = img;
-      this.img.style.animationName = animationName;
-      this.fullView.appendChild(this.img);
+    const updateImage = (idx: number) => {
+      const imgs = Array.from(this.imagesList);
+      if (idx < 0) idx = imgs.length - 1;
+      if (idx >= imgs.length) idx = 0;
+      fullImg.src = imgs[idx].src;
+      currentIndex = idx;
     };
-    img.src = this.imagesList[this.currentIndex].dataset.fullUrl as string;
+
+    prevBtn.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      updateImage(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      updateImage(currentIndex + 1);
+    });
+
+    closeBtn.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      document.body.removeChild(overlay);
+    });
+
+    overlay.addEventListener("click", () => {
+      document.body.removeChild(overlay);
+    });
+
+    fullImg.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+    });
+
+    document.body.appendChild(overlay);
+
+    // Keyboard navigation
+    const keyHandler = (ev: KeyboardEvent) => {
+      if (ev.key === "ArrowLeft") {
+        updateImage(currentIndex - 1);
+      } else if (ev.key === "ArrowRight") {
+        updateImage(currentIndex + 1);
+      } else if (ev.key === "Escape") {
+        document.body.removeChild(overlay);
+        document.removeEventListener("keydown", keyHandler);
+      }
+    };
+    document.addEventListener("keydown", keyHandler);
+
+    // Remove overlay and event listener on close
+    overlay.addEventListener("remove", () => {
+      document.removeEventListener("keydown", keyHandler);
+    });
   }
+
 }
 
 window.addEventListener("load", () => {

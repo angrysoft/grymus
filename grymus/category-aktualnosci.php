@@ -10,7 +10,7 @@
 
 get_header();
 ?>
-<header class="grid content-center bg-secondary p-4">
+<header class="grid content-center bg-secondary p-2">
     <h1 class="headPage text-on-secondary"><?php single_cat_title(); ?></h1>
 </header>
 <main>

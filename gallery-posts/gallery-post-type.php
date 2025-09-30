@@ -46,7 +46,7 @@ function gallery_post_type()
         'labels'              => $labels,
         'supports'            => array('title', 'thumbnail', 'editor', 'post-formats', 'author'),
         'taxonomies'          => array('category', 'post_tag'),
-        'hierarchical'        => false,
+        'hierarchical'        => true,
         'public'              => true,
         'show_ui'             => true,
         'show_in_menu'        => true,
@@ -56,16 +56,28 @@ function gallery_post_type()
         'menu_position'       => 4,
         'menu_icon'           => 'dashicons-id-alt',
         'can_export'          => true,
-        'has_archive'         => false,
+        'has_archive'         => true,
         'exclude_from_search' => false,
         'publicly_queryable'  => true,
         'capability_type'     => 'post',
         'template_lock'       => 'all',
         'template' => array(
-            array('core/gallery', array('columns' => 2, 'className' => 'grymus-gallery', 'sizeSlug', 'medium')),
+            array('core/gallery', array( 'className' => 'grymus-gallery', 'sizeSlug', 'medium')),
         )
     );
     register_post_type('gallery-grymus', $args);
+    register_taxonomy(
+        'galleries',
+        array('gallery-grymus'),
+        array(
+            'hierarchical' => true,
+            'label' => 'Galleries',
+            'singular_label' => 'Gallery',
+            'rewrite' => array('slug' => 'galleries', 'with_front' => false)
+        )
+    );
+
+    register_taxonomy_for_object_type('galleries', 'gallery-grymus');
 }
 add_action('init', 'gallery_post_type');
 flush_rewrite_rules();

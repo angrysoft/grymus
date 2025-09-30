@@ -6,7 +6,7 @@ Author: Sebastian Zwierzchowski
 Author URI: https://angrysoft.ovh
 Description: Grumuś WebSite
 Text Domain: grumus
-Version: 0.5.6
+Version: 0.5.7
 License: GNU General Public License v2 or later
 */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sriracha&display=swap');
@@ -64,6 +64,8 @@ License: GNU General Public License v2 or later
     --color-secondary: #625995;
     --color-on-secondary: #FFFF00;
     --color-on-surface: #e1e1e1;
+    --color-accents: #48b3c4;
+    --color-on-accents: #9c27b0;
     --color-paper: #F5F5DC;
   }
 }
@@ -744,9 +746,6 @@ License: GNU General Public License v2 or later
   .mx-auto {
     margin-inline: auto;
   }
-  .my-2 {
-    margin-block: calc(var(--spacing) * 2);
-  }
   .my-4 {
     margin-block: calc(var(--spacing) * 4);
   }
@@ -1228,14 +1227,14 @@ License: GNU General Public License v2 or later
   .max-w-\[120ch\] {
     max-width: 120ch;
   }
-  .max-w-\[125ch\] {
-    max-width: 125ch;
-  }
   .max-w-main {
     max-width: var(--container-main);
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
   .resize {
     resize: both;
@@ -1243,8 +1242,8 @@ License: GNU General Public License v2 or later
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-  .grid-cols-\[auto_100ch\] {
-    grid-template-columns: auto 100ch;
+  .grid-rows-\[1fr_1fr\] {
+    grid-template-rows: 1fr 1fr;
   }
   .grid-rows-\[1fr_2fr\] {
     grid-template-rows: 1fr 2fr;
@@ -1321,7 +1320,7 @@ License: GNU General Public License v2 or later
     line-height: var(--tw-leading, var(--text-xl--line-height));
     color: var(--color-on-primary);
     text-transform: uppercase;
-    text-decoration-line: none;
+    text-decoration-line: none !important;
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
     transition-property: all;
@@ -1369,6 +1368,9 @@ License: GNU General Public License v2 or later
   }
   .border-b-primary {
     border-bottom-color: var(--color-primary);
+  }
+  .bg-accents {
+    background-color: var(--color-accents);
   }
   .bg-background {
     background-color: var(--color-background);
@@ -1569,6 +1571,9 @@ License: GNU General Public License v2 or later
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
+  }
+  .text-on-accents {
+    color: var(--color-on-accents);
   }
   .text-on-secondary {
     color: var(--color-on-secondary);
@@ -1803,6 +1808,11 @@ License: GNU General Public License v2 or later
 * {
   scrollbar-width: thin;
   scrollbar-color: black var(--color-accents) !important;
+}
+.grymus-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
 }
 .zoomIn {
   animation-name: var(--animate-zoomIn);
