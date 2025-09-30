@@ -19,7 +19,7 @@ get_header();
                     <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
                 </div>
             </header>
-            <div class="grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center p-1 @md:py-2 @md:px-4">
+            <div class="grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center p-1 @md:p-2">
                 <?php
                 $childArgs = array(
                     'sort_order' => 'ASC',

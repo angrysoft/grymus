@@ -16,7 +16,7 @@ get_header(); ?>
         <section class="grid @xl:grid-cols-2 max-w-main grid-cols-1 gap-2 items-center mx-auto">
             <div class="card">
                 <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_hist->post_title); ?></h3>
-                <div class="prose max-w-none">
+                <div class="prose max-w-[100ch]">
                     <?php echo apply_filters('the_content', $page_hist->post_content); ?>
                 </div>
             </div>
@@ -34,7 +34,7 @@ get_header(); ?>
         <?php $page_wiz = get_page_by_path('home/wizja-przedszkola'); ?>
         <div class="max-w-main card py-1 @md:px-4 p-1 slideInUp load-on-view">
             <h3 class="font-header text-4xl text-primary"><?php echo apply_filters('the_content', $page_wiz->post_title); ?></h3>
-            <div class="prose max-w-none">
+            <div class="prose max-w-[100ch]">
                 <?php echo apply_filters('the_content', $page_wiz->post_content); ?>
             </div>
         </div>

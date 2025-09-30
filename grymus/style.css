@@ -1234,9 +1234,6 @@ License: GNU General Public License v2 or later
   .max-w-main {
     max-width: var(--container-main);
   }
-  .max-w-none {
-    max-width: none;
-  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
