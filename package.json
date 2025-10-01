@@ -1,6 +1,6 @@
 {
 	"name": "grymus",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.15",
 		"tailwindcss": "^4.1.13",
