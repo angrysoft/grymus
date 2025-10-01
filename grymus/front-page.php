@@ -9,7 +9,7 @@ get_header(); ?>
 
 <main class="flex flex-col gap-2 mb-2">
     <header class="card mt-2 slideInUp load-on-view">
-        <h1 class="headMain">Przedszkole Miejskie nr 16 Grymuś w Otwocku</h1>
+        <h1 class="headMain">Przedszkole nr 16 Grymuś w Otwocku</h1>
     </header>
     <article class=" bg-primary/80 grid @md:p-4 p-1 slideInUp load-on-view" data-delay="500">
         <?php $page_hist = get_page_by_path('home/historia'); ?>
@@ -71,7 +71,7 @@ get_header(); ?>
                 <h4 class="font-header text-center text-4xl text-primary pt-1">Adres</h4>
                 <hr class="border border-primary/60 w-full m-2">
                 <div class="grid justify-center gap-1 text-center text-2xl prose ">
-                    Przedszkole Miejskie nr 16<br>
+                    Przedszkole nr 16<br>
                     ul. Karczewska 27A<br>
                     05-400 Otwock
                 </div>

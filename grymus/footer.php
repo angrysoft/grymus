@@ -24,8 +24,8 @@
         <div class="prose text-on-surface p-1">
             <h4 class="font-header p-2 border-b text-on-surface text-3xl">Kontakt</h4>
             <p>
-                Przedszkole Miejskie nr 16 ul.<br />
-                Karczewska 27A
+                Przedszkole nr 16<br />
+                ul. Karczewska 27A
                 05-400 Otwock
             </p>
             <p>

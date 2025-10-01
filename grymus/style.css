@@ -1739,31 +1739,6 @@ License: GNU General Public License v2 or later
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  .\@xl\:relative {
-    @container (width >= 36rem) {
-      position: relative;
-    }
-  }
-  .\@xl\:left-\[unset\] {
-    @container (width >= 36rem) {
-      left: unset;
-    }
-  }
-  .\@xl\:\!hidden {
-    @container (width >= 36rem) {
-      display: none !important;
-    }
-  }
-  .\@xl\:h-full {
-    @container (width >= 36rem) {
-      height: 100%;
-    }
-  }
-  .\@xl\:grid-flow-col {
-    @container (width >= 36rem) {
-      grid-auto-flow: column;
-    }
-  }
   .\@xl\:grid-cols-2 {
     @container (width >= 36rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1774,33 +1749,63 @@ License: GNU General Public License v2 or later
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
-  .\@xl\:items-center {
-    @container (width >= 36rem) {
+  .\@4xl\:relative {
+    @container (width >= 56rem) {
+      position: relative;
+    }
+  }
+  .\@4xl\:left-\[unset\] {
+    @container (width >= 56rem) {
+      left: unset;
+    }
+  }
+  .\@4xl\:\!hidden {
+    @container (width >= 56rem) {
+      display: none !important;
+    }
+  }
+  .\@4xl\:h-full {
+    @container (width >= 56rem) {
+      height: 100%;
+    }
+  }
+  .\@4xl\:grid-flow-col {
+    @container (width >= 56rem) {
+      grid-auto-flow: column;
+    }
+  }
+  .\@4xl\:grid-cols-2 {
+    @container (width >= 56rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .\@4xl\:items-center {
+    @container (width >= 56rem) {
       align-items: center;
     }
   }
-  .\@xl\:justify-between {
-    @container (width >= 36rem) {
+  .\@4xl\:justify-between {
+    @container (width >= 56rem) {
       justify-content: space-between;
     }
   }
-  .\@xl\:justify-end {
-    @container (width >= 36rem) {
+  .\@4xl\:justify-end {
+    @container (width >= 56rem) {
       justify-content: flex-end;
     }
   }
-  .\@xl\:justify-start {
-    @container (width >= 36rem) {
+  .\@4xl\:justify-start {
+    @container (width >= 56rem) {
       justify-content: flex-start;
     }
   }
-  .\@xl\:p-0 {
-    @container (width >= 36rem) {
+  .\@4xl\:p-0 {
+    @container (width >= 56rem) {
       padding: calc(var(--spacing) * 0);
     }
   }
-  .\@xl\:px-3 {
-    @container (width >= 36rem) {
+  .\@4xl\:px-3 {
+    @container (width >= 56rem) {
       padding-inline: calc(var(--spacing) * 3);
     }
   }

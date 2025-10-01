@@ -66,18 +66,18 @@ function gallery_post_type()
         )
     );
     register_post_type('gallery-grymus', $args);
-    register_taxonomy(
-        'galleries',
-        array('gallery-grymus'),
-        array(
-            'hierarchical' => true,
-            'label' => 'Galleries',
-            'singular_label' => 'Gallery',
-            'rewrite' => array('slug' => 'galleries', 'with_front' => false)
-        )
-    );
+    // register_taxonomy(
+    //     'galleries',
+    //     array('gallery-grymus'),
+    //     array(
+    //         'hierarchical' => true,
+    //         'label' => 'Galleries',
+    //         'singular_label' => 'Gallery',
+    //         'rewrite' => array('slug' => 'galleries', 'with_front' => false)
+    //     )
+    // );
 
-    register_taxonomy_for_object_type('galleries', 'gallery-grymus');
+    // register_taxonomy_for_object_type('galleries', 'gallery-grymus');
 }
 add_action('init', 'gallery_post_type');
 flush_rewrite_rules();
