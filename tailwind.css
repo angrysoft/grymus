@@ -132,7 +132,7 @@ License: GNU General Public License v2 or later
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: black var(--color-accents) !important;
+  scrollbar-color: black var(--color-primary) !important;
 }
 
 @utility card {
