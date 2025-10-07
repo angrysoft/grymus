@@ -11,7 +11,21 @@
 get_header();
 ?>
 <header class="grid content-center bg-primary p-2">
-    <h1 class="headPage text-on-secondary"><?php the_title() ?></h1>
+    <h1 class="headPage text-on-secondary">
+        <?php
+        $post_categories = wp_get_post_terms(get_the_ID(), 'groups', array('fields' => 'names'));
+
+        if ($post_categories) {
+        ?>
+            <span> <?php echo join(', ', $post_categories); ?> </span>
+            <span> - </span>
+        <?php
+        }
+        ?>
+        <span>
+            <?php the_title() ?>
+        </span>
+    </h1>
 </header>
 
 <?php

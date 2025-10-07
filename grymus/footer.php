@@ -13,7 +13,7 @@
         <div class="prose text-on-surface p-1">
             <h4 class="font-header p-2 border-b text-on-surface text-3xl">Numery Kont</h4>
             <p>
-                Opłatę za wyżywienie<br />
+                Opłata za wyżywienie<br />
                 92 8001 0005 2001 0008 0129 0001
             </p>
             <p>

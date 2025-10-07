@@ -36,7 +36,7 @@ get_header();
                     <?php
                     $post_categories = wp_get_post_terms(get_the_ID(), 'groups', array('fields' => 'names'));
 
-                    if ($post_categories) { 
+                    if ($post_categories) {
                     ?>
                         <span> <?php echo join(', ', $post_categories); ?> </span>
                         <span> - </span>
