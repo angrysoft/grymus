@@ -52,6 +52,7 @@ ver)
 	fi
 	VERSION=$(npm pkg get version | sed 's/"//g')
 	sed -i "s/Version:.*/Version: ${VERSION}/g" /home/seba/workspace/grymus/tailwind.css
+	sed -i "s/Version:.*/Version: ${VERSION}/g" /home/seba/workspace/grymus/gallery-posts/gallery-post-type.php
 	git commit -a -m "Bump version to $VERSION"
 	;;
 zip)
