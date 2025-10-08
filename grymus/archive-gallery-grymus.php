@@ -19,7 +19,7 @@ get_header();
     while (have_posts()) :
         the_post();
     ?>
-        <div class="grid grid-rows-[1fr_1fr] grid-cols-1 p-1 @md:p-2 shadow-2xl items-center justify-center bg-background/80 rounded w-full h-full aspect-square slideInUp load-on-view">
+        <div class="grid grid-rows-[1fr_1fr] grid-cols-1 p-1 @md:p-2 shadow-2xl items-center justify-center bg-background/80 rounded w-full h-full aspect-square slideInUp load-on-view" data-delay="<?php echo $delay ?>">
             <?php
             if (has_post_thumbnail()) {
                 $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'thumbnail');
@@ -36,7 +36,7 @@ get_header();
                     <?php
                     $post_categories = wp_get_post_terms(get_the_ID(), 'groups', array('fields' => 'names'));
 
-                    if ($post_categories) { 
+                    if ($post_categories) {
                     ?>
                         <span> <?php echo join(', ', $post_categories); ?> </span>
                         <span> - </span>
