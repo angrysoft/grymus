@@ -11,7 +11,11 @@
 get_header();
 ?>
 <header class="grid content-center bg-accents p-2">
-    <h1 class="headPage text-on-accents">Galeria</h1>
+    <h1 class="headPage text-on-accents">
+        <span>Galeria</span>
+        <span> - </span>
+        <span><?php echo get_queried_object()->name; ?></span>
+    </h1>
 </header>
 <main class="grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 grid-rows-[minmax(0px,1fr)] gap-2 justify-center mx-auto p-1 @md:p-2 max-w-main">
     <?php $delay = 100; ?>
@@ -34,8 +38,7 @@ get_header();
 
                 <h2 class="text-center">
                     <?php
-                    $post_categories = wp_get_post_terms(get_the_ID(), 'groups', array('fields' => 'names'));
-
+                    $post_categories = wp_get_post_terms(get_the_ID(), "groups", array('fields' => 'names'));
                     if ($post_categories) {
                     ?>
                         <span> <?php echo join(', ', $post_categories); ?> </span>

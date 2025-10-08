@@ -8,7 +8,7 @@ Plugin URI: https://angrysoft.ovh
  
 Description: News post type.
  
-Version: 1.1
+Version: 2.0
  
 Author: Sebastian Zwierzchowski
  
@@ -72,8 +72,8 @@ function gallery_post_type()
         array('gallery-grymus'),
         array(
             'hierarchical' => true,
-            'label' => 'Gallery Groups',
-            'singular_label' => 'Gallery Group',
+            'label' => 'Grupy',
+            'singular_label' => 'Grupa',
             'rewrite' => array('slug' => 'groups', 'with_front' => false)
         )
     );
