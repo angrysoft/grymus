@@ -8,7 +8,7 @@ Plugin URI: https://angrysoft.ovh
  
 Description: News post type.
  
-Version: 0.7.1
+Version: 0.7.2
  
 Author: Sebastian Zwierzchowski
  
